@@ -1,0 +1,21 @@
+{
+  "name": "kopanko.com",
+  "version": "1.0.0",
+  "private": true,
+  "license": "AGPL-3.0",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.12.5",
+    "core-js": "^3.8.3",
+    "nuxt": "^2.14.12",
+    "nuxt-matomo": "^1.2.4",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1"
+  },
+  "devDependencies": {}
+}
