@@ -32,8 +32,6 @@ export default function Projects() {
                 The edition led by me was a show-stopper and attracted an audience of over 1000 spectators.
                 </>
               </Card>
-            </div>
-            <div className="column">
               <Card
                 title="Member of the Committee for Digitization"
                 subtitle="Uczelniana Rada Samorządu Studentów AGH"
@@ -42,6 +40,27 @@ export default function Projects() {
                 <>
                 • I am solving the current problems of university Students' Council using modern technologies including React, Koa, Electron, TypeScript and PostrgreSQL.<br></br>
                 • I've implemented solutions used by the whole university community including an advanced customer relationship management system.
+                </>
+              </Card>
+            </div>
+            <div className="column">
+              <Card
+                title="There goes a man"
+                subtitle="Short film (13 minutes), 2019"
+                imageUrl="/images/projects/idzieczlowiek2.jpg"
+              >
+                <>
+                Military Organization FAR aims to create and train an artificial intelligence that develops free will.
+                I was the editor and co-director. While editing this film, I proved my skills of surgical datamoshing.
+                </>
+              </Card>
+              <Card
+                title="Dulce et decorum est pro patria mori"
+                subtitle="Short film (5 minutes), 2017"
+                imageUrl="/images/projects/dede.jpg"
+              >
+                <>
+                Year 202X. Each country of the new world is obliged to present one dance floor. The winning nation will become the leader of the Union of States of the New World.
                 </>
               </Card>
             </div>
