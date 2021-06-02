@@ -48,14 +48,7 @@ export default function Navbar() {
                   <div className="media is-hidden-desktop">
                     <div className="media-left">
                       <figure className="image is-48x48 is-square">
-                      <Image
-                        src="/images/profile.jpg"
-                        alt="Jakub Kopańko"
-                        layout="fill"
-                        loading="eager"
-                        priority={true}
-                        className="is-rounded"
-                      />
+                        <img src="/images/profile.jpg" />
                       </figure>
                     </div>
                   </div>

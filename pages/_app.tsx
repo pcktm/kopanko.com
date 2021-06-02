@@ -1,4 +1,6 @@
 import '../styles/globals.scss'
+import 'remixicon/fonts/remixicon.css'
+import '../styles/inter/inter.css'
 import Navbar from '../components/layout/navbar'
 import Footer from '../components/layout/footer'
 import React, { useEffect } from 'react'
@@ -15,7 +17,6 @@ function MyApp({ Component, pageProps }) {
     <meta name="description" content="Full-stack developer, film director and editor." />
     <link rel="icon" type="image/png" href="/logo.png" />
     <link href="/assets/inter/inter.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
   </Head>
 
   <Navbar />

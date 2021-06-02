@@ -16,6 +16,7 @@ export default function Card({title, subtitle, description, imageUrl, children}:
             width={600}
             height={300}
             layout="responsive"
+            loading="eager"
             css={css`object-fit:cover;`}
           />
         </div>
