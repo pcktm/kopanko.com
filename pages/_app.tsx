@@ -1,10 +1,15 @@
 import '../styles/globals.scss'
 import Navbar from '../components/layout/navbar'
 import Footer from '../components/layout/footer'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
+import { init } from "@socialgouv/matomo-next"
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    init({url: '//stats33.mydevil.net/', siteId: '115'})
+  }, [])
+
   return <>
   <Head>
     <meta name="description" content="Full-stack developer, film director and editor." />

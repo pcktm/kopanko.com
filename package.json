@@ -17,6 +17,7 @@
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@koa/router": "^10.0.0",
+    "@socialgouv/matomo-next": "^1.2.2",
     "bulma": "^0.9.2",
     "koa": "^2.13.1",
     "next": "10.2.3",
