@@ -7,7 +7,7 @@ import { init } from "@socialgouv/matomo-next"
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    init({url: '//stats33.mydevil.net/', siteId: '115'})
+    init({url: '//stats33.mydevil.net/', siteId: '120'})
   }, [])
 
   return <>
