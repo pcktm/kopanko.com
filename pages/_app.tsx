@@ -1,6 +1,5 @@
 import '../styles/globals.scss'
 import 'remixicon/fonts/remixicon.css'
-import '../styles/inter/inter.css'
 import Navbar from '../components/layout/navbar'
 import Footer from '../components/layout/footer'
 import React, { useEffect } from 'react'
