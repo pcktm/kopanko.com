@@ -53,12 +53,21 @@ export default function Home() {
             <span className="icon">
               <i className="ri-mail-line"></i>
             </span>
-            <a 
+            <a
               className="mail"
               data-a={account}
               data-d={domain}
               onClick={handleMail}
             ></a>
+          </span>
+          <br></br>
+          <span className="icon-text">
+            <span className="icon">
+              <i className="ri-key-2-line"></i>
+            </span>
+            <a href="/assets/key.pub.txt">
+              My public key
+            </a>
           </span>
         </div>
       </div>
