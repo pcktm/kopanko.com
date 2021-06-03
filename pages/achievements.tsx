@@ -1,9 +1,27 @@
+import { InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Card from '../components/elements/card'
+import { getAchievements } from '../lib/cms'
+import { Achievement } from '../lib/DTOs'
 
-export default function Achievements() {
+function AchievementCard({item}: {item: Achievement}) {
+  return (
+    <Card
+      title={item.title}
+      subtitle={item.tagline}
+      imageUrl={item.coverImage?.url}
+      content={item.description.html}
+    ></Card>
+  )
+}
+
+export default function Achievements({ achievements }: InferGetStaticPropsType<typeof getStaticProps>) {
+  
+  const h1 = achievements.filter((p, i) => i % 2 === 0);
+  const h2 = achievements.filter((p, i) => i % 2 !== 0);
+  
   return (
     <div>
       <Head>
@@ -19,42 +37,27 @@ export default function Achievements() {
 
           <div className="columns is-multiline">
             <div className="column">
-
-              <Card
-                title="Finalist in Education category"
-                subtitle="HackYeah 2018, Warsaw"
-                imageUrl="/images/achievements/joint.jpg"
-                description="My friend and I competed in HackYeah - the biggest stationary hackathon in Europe. We earned our spot as the finalists under the education category. We built a Physics engine for teachers to use in their classrooms."
-              />
-
-              <Card
-                title="2nd Place Winner"
-                subtitle="BITEhack 2021, Kraków"
-                imageUrl="/images/achievements/keyanu.jpg"
-                description="I lead a team of student developers and in under 24 hours we developed a fully working manager and keyboard shortcut executor for a smarter workplace and people with increased needs."
-              />
-            
+              {h1.map(achievement => {
+                return <AchievementCard item={achievement} />
+              })}
             </div>
             <div className="column">
-
-              <Card
-                title="1st Place Winner for Best Gameplay"
-                subtitle="Grarantanna Game Jam 2020"
-                imageUrl="/images/achievements/brawlbox.png"
-                description="My friend and I took advantage of the social distancing free time and placed 1st for best gameplay in the Grarantanna Game Jam hosted by the Ministry of Digital Affairs in Poland."
-              />
-              
-              <Card
-                title="Finalist in partner task"
-                subtitle="HackYeah 2020, Warsaw"
-                imageUrl="/images/achievements/boarinc.jpg"
-                description="My friend and I developed a sophisticated solution to track wild boar sightings along with advanced spatial analysis tools."
-              />
-
+              {h2.map(achievement => {
+                return <AchievementCard item={achievement} />
+              })}
             </div>
           </div>
         </div>
       </div>
     </div>
   )
+}
+
+export const getStaticProps = async (context) => {
+  return {
+    props: {
+      achievements: await getAchievements(),
+    },
+    revalidate: 60*60,
+  }
 }

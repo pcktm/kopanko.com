@@ -6,14 +6,16 @@ import { jsx, css } from '@emotion/react';
 import { ReactElement } from 'react';
 
 
-export default function Card({title, subtitle, description, imageUrl, children}: {children?: ReactElement | string, title: string, subtitle: string, description?: string, imageUrl: string}) {
+export default function Card({title, subtitle, imageUrl, content}: {content?: string, title: string, subtitle: string, description?: string, imageUrl?: string}) {
     return (
       <div className="card" css={css`margin-bottom: 20px;`}>
-        <div className="card-image" css={css`background-color: #878787;`}>
-        <figure className="image is-5by3">
-          <img css={css`object-fit: cover;`} src={imageUrl} />
-        </figure>
-        </div>
+        { imageUrl && 
+          <div className="card-image" css={css`background-color: #878787;`}>
+            <figure className="image is-5by3">
+              <img css={css`object-fit: cover;`} src={imageUrl} />
+            </figure>
+          </div>
+        }
         <div className="card-content">
           <div className="media">
             <div className="media-content">
@@ -21,9 +23,7 @@ export default function Card({title, subtitle, description, imageUrl, children}:
               <p className="subtitle is-6">{subtitle}</p>
             </div>
           </div>
-          <div className="content">
-            {children}
-            {description}
+          <div className="content" dangerouslySetInnerHTML={{__html: content}}>
           </div>
         </div>
       </div>
