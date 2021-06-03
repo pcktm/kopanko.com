@@ -8,6 +8,7 @@ export default function Achievements() {
     <div>
       <Head>
         <title>Achievements ● Jakub Kopańko</title>
+        <meta name="description" content="My accomplishments and goals reached." />
       </Head>
       <div className="main section">
         <div className="container">

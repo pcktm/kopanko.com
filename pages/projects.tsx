@@ -9,6 +9,7 @@ export default function Projects() {
     <div>
       <Head>
         <title>Projects ● Jakub Kopańko</title>
+        <meta name="description" content="My personal projects and ventures." />
       </Head>
       <div className="main section">
         <div className="container">

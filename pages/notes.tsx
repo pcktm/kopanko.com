@@ -7,6 +7,7 @@ export default function Notes() {
     <div>
       <Head>
         <title>Notes ● Jakub Kopańko</title>
+        <meta name="description" content="Random lighthearted things and some advanced datamoshing guides." />
       </Head>
       <div className="main section">
         <div className="container">

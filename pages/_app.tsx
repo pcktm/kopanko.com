@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }) {
     <meta name="description" content="Full-stack developer, film director and editor." />
     <link rel="icon" type="image/png" href="/logo.png" />
     <link href="/assets/inter/inter.css" rel="stylesheet" />
+    <meta property="og:image" content="https://kopanko.com/images/og.png" />
   </Head>
 
   <Navbar />
