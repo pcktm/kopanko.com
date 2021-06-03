@@ -17,6 +17,9 @@ function MyApp({ Component, pageProps }) {
     <link rel="icon" type="image/png" href="/logo.png" />
     <link href="/assets/inter/inter.css" rel="stylesheet" />
     <meta property="og:image" content="https://kopanko.com/images/og.png" />
+    <meta name="twitter:card" content="summary_large_image"></meta>
+    <meta name="twitter:site" content="@pcktm_" />
+    <meta name="twitter:creator" content="@pcktm_" />
   </Head>
 
   <Navbar />
