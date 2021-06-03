@@ -38,12 +38,12 @@ export default function Achievements({ achievements }: InferGetStaticPropsType<t
           <div className="columns is-multiline">
             <div className="column">
               {h1.map(achievement => {
-                return <AchievementCard item={achievement} />
+                return <AchievementCard key={achievement.id} item={achievement} />
               })}
             </div>
             <div className="column">
               {h2.map(achievement => {
-                return <AchievementCard item={achievement} />
+                return <AchievementCard key={achievement.id} item={achievement} />
               })}
             </div>
           </div>

@@ -38,7 +38,7 @@ export default function Projects({ projects }: InferGetStaticPropsType<typeof ge
           <div className="columns is-multiline">
             <div className="column">
               {h1.map(project => {
-                return <ProjectCard project={project} />
+                return <ProjectCard key={project.id} project={project} />
               })}
             </div>
             <div className="column">
