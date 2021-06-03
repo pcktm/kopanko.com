@@ -1,0 +1,6 @@
+{
+    "ignoredFiles": [
+        "*.nocompress.*",                   // ignore by extension
+    ],
+    "aggressiveCompression": "true", // true|false
+}

@@ -1,0 +1,29 @@
+.mail:after {
+  content: attr(data-a) "@" attr(data-d) ".com";
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  border-radius: 10px;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-color: hsl(140, 7%, 30%);
+  background-clip: padding-box;
+  :hover {
+    background: hsl(140, 50%, 45%);
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cpsp" on;
+  font-feature-settings: "frac" on;
+  font-feature-settings: "salt" on;
+  font-feature-settings: "ss02" on;
+}

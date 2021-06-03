@@ -20,8 +20,6 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useRouter();
 
-  const icons = false;
-
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }

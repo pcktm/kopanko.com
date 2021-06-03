@@ -9,7 +9,7 @@ function Box({title, subtitle, href}: {title: string, subtitle: string, href: st
   <div className="column">
     <Link href={href}>
       <a>
-        <div className="box">
+        <div className="box hover-shadow">
           <h4 className="title is-4">{title}</h4>
           <h6 className="subtitle is-6">{subtitle}</h6>
         </div>

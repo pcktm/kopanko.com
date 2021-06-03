@@ -10,15 +10,9 @@ export default function Card({title, subtitle, description, imageUrl, children}:
     return (
       <div className="card" css={css`margin-bottom: 20px;`}>
         <div className="card-image" css={css`background-color: #878787;`}>
-          <Image
-            src={imageUrl}
-            alt="A screenshot of our creation"
-            width={600}
-            height={300}
-            layout="responsive"
-            loading="eager"
-            css={css`object-fit:cover;`}
-          />
+        <figure className="image is-5by3">
+          <img css={css`object-fit: cover;`} src={imageUrl} />
+        </figure>
         </div>
         <div className="card-content">
           <div className="media">
