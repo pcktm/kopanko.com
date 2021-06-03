@@ -9,9 +9,12 @@ export default function Footer() {
               </div>
             </div>
             <div className="level-right has-text-right">
-              {/* <span>
-                Get source code on <a href="https://github.com/pcktm/kopanko.com/" target="_blank" rel="noreferrer noopener">GitHub</a>.
-              </span> */}
+              { !process.env.NEXT_PUBLIC_DISABLE_BRANDING &&
+                <p>
+                  By <a href="https://kopanko.com">Jakub Kopańko</a> under AGPL-3.0.<br />
+                  Source code available on <a href="https://github.com/pcktm/kopanko.com">GitHub</a>.
+                </p>
+              }
             </div>
           </div>
         </div>
