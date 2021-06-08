@@ -64,14 +64,6 @@ export default function Home() {
             />
           </span>
           <br/>
-          <span className="icon-text">
-            <span className="icon">
-              <i className="ri-key-2-line"/>
-            </span>
-            <a href="/assets/key.pub.txt">
-              My public key
-            </a>
-          </span>
         </div>
       </div>
     </div>
