@@ -5,7 +5,7 @@ export default function Footer() {
           <div className="level">
             <div className="level-left">
               <div className="level-item copy">
-                &copy; 2021
+                &copy; 2021 Jakub Kopańko
               </div>
             </div>
             <div className="level-right has-text-right">

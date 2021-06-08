@@ -1,5 +1,5 @@
 .intro .about {
-  margin-bottom: 5rem;
+  margin-bottom: 5.5rem;
 
   .title {
     font-size: 50px;
@@ -23,6 +23,42 @@
   
     .subtitle {
       font-size: 1.5rem;
+    }
+  }
+}
+
+.main.with-gradient {
+  @media screen and (min-width: 769px) {
+    padding-top: 0;
+  }
+}
+
+.gradient {
+  border-radius: 12px;
+
+  @media screen and (min-width: 769px) {
+    padding: 60px 45px;
+    background: url('/images/gradient.png');
+    background-size: cover;
+    background-position: center center;
+    animation: huerotate 4s ease-in-out infinite;
+    animation-direction: alternate;
+  }
+
+  @keyframes huerotate {
+    from {
+      -webkit-filter: hue-rotate(-30deg);
+      -moz-filter: hue-rotate(-30deg);
+      -ms-filter: hue-rotate(-30deg);
+      -webkit-filter: hue-rotate(-30deg);
+      filter: hue-rotate(-30deg);
+    }
+    to {
+      -webkit-filter: hue-rotate(30deg);
+      -moz-filter: hue-rotate(30deg);
+      -ms-filter: hue-rotate(30deg);
+      -webkit-filter: hue-rotate(30deg);
+      filter: hue-rotate(30deg);
     }
   }
 }

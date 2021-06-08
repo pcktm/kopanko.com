@@ -13,6 +13,7 @@ function AchievementCard({item}: {item: Achievement}) {
       subtitle={item.tagline}
       imageUrl={item.coverImage?.url}
       content={item.description.html}
+      action={item.action}
     ></Card>
   )
 }

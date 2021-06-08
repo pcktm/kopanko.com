@@ -4,9 +4,18 @@ import Link from 'next/link'
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from '@emotion/react';
 import { ReactElement } from 'react';
+import { Action } from '../../lib/DTOs';
 
+type Props = {
+  content?: string,
+  title: string,
+  subtitle: string,
+  description?: string,
+  imageUrl?: string,
+  action: Action
+}
 
-export default function Card({title, subtitle, imageUrl, content}: {content?: string, title: string, subtitle: string, description?: string, imageUrl?: string}) {
+export default function Card({title, subtitle, imageUrl, content, action}: Props) {
     return (
       <div className="card" css={css`margin-bottom: 20px;`}>
         { imageUrl && 
@@ -14,6 +23,16 @@ export default function Card({title, subtitle, imageUrl, content}: {content?: st
             <figure className="image is-5by3">
               <img css={css`object-fit: cover;`} src={imageUrl} />
             </figure>
+            { action &&
+            <a href={action.url} target="_blank">
+              <button className="button is-light is-rounded call-to-action">
+                <span className="icon">
+                  <i className={action.icon}/>
+                </span>
+                <span>{action.text}</span>
+              </button>
+            </a>
+            }
           </div>
         }
         <div className="card-content">
@@ -23,7 +42,8 @@ export default function Card({title, subtitle, imageUrl, content}: {content?: st
               <p className="subtitle is-6">{subtitle}</p>
             </div>
           </div>
-          <div className="content" dangerouslySetInnerHTML={{__html: content}}>
+          <div>
+            <div className="content" dangerouslySetInnerHTML={{__html: content}} />
           </div>
         </div>
       </div>

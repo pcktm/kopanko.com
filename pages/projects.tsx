@@ -13,6 +13,7 @@ function ProjectCard({project}: {project: Project}) {
       subtitle={project.tagline}
       imageUrl={project.coverImage?.url}
       content={project.description.html}
+      action={project.action}
     ></Card>
   )
 }

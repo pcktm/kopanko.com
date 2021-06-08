@@ -15,6 +15,12 @@ export interface Image {
   width?:  number;
 }
 
+export type Action = {
+  text: string;
+  url: string;
+  icon: string;
+}
+
 export interface RichText {
   html?:     string;
   text?:     string;
@@ -25,6 +31,7 @@ export interface Project {
   tagline: string;
   title:   string;
   id:      string;
+  action: Action | null;
   description?: RichText;
   coverImage?: Image;
 }
@@ -33,6 +40,7 @@ export interface Achievement {
   tagline: string;
   title:   string;
   id:      string;
+  action: Action | null;
   description?: RichText;
   coverImage?: Image;
 }

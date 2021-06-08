@@ -32,38 +32,41 @@ export default function Home() {
         <title>Jakub Kopańko</title>
       </Head>
 
-      <div className="main section">
+      <div className="main section with-gradient">
         <section className="content intro">
           <div className="container">
-            <div className="about">
-              <p className="title">Jakub Kopańko, a full-stack developer<br/>and a great buddy.</p>
+            <div className="about gradient">
+              <p className="title ">Jakub Kopańko, a full-stack developer<br/>and a great buddy.</p>
               <p className="subtitle">In love with open source, filmmaking and breaking stuff.</p>
             </div>
           </div>
         </section>
-        <div className="container">
-          <div className="columns" css={css`padding-bottom: 70px;`}>
+
+        <div className="container" css={css`margin-bottom: 90px`}>
+          <div className="columns">
             <Box href="/notes" title="Notes" subtitle="Random lighthearted things and some advanced datamoshing guides."/>
             <Box href="/projects" title="Projects" subtitle="My personal projects and various adventures. Both successful and less so."/>
             <Box href="/achievements" title="Achievements" subtitle="My own accomplishments and various awards that I am proud of."/>
           </div>
-
+        </div>
+          
+        <div className="container">
           <h4 className="title is-3">Get in touch</h4>
           <span className="icon-text">
             <span className="icon">
-              <i className="ri-mail-line"></i>
+              <i className="ri-mail-line"/>
             </span>
             <a
-              className="mail"
-              data-a={account}
-              data-d={domain}
-              onClick={handleMail}
-            ></a>
+            className="mail"
+            data-a={account}
+            data-d={domain}
+            onClick={handleMail}
+            />
           </span>
-          <br></br>
+          <br/>
           <span className="icon-text">
             <span className="icon">
-              <i className="ri-key-2-line"></i>
+              <i className="ri-key-2-line"/>
             </span>
             <a href="/assets/key.pub.txt">
               My public key

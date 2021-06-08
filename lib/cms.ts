@@ -37,6 +37,7 @@ export async function getProjects(): Promise<Project[]> {
       tagline
       title
       id
+      action
       description {
         html
       }
@@ -54,6 +55,7 @@ export async function getAchievements(): Promise<Achievement[]> {
       id
       title
       tagline
+      action
       description {
         html
       }
