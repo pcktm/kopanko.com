@@ -33,13 +33,13 @@ export default function Navbar() {
               <a>
                 <div className="navbar-item pr-5">
                   <figure className="image is-64x64 is-square is-hidden-touch">
-                    <img className="is-rounded" src="/images/profile.jpg" />
+                    <img className="is-rounded" src="/images/profile.jpg" alt="" />
                   </figure>
 
                   <div className="media is-hidden-desktop">
                     <div className="media-left">
                       <figure className="image is-48x48 is-square">
-                        <img className="is-rounded" src="/images/profile.jpg" />
+                        <img className="is-rounded" src="/images/profile.jpg" alt="" />
                       </figure>
                     </div>
                   </div>
