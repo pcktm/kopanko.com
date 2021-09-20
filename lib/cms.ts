@@ -4,7 +4,7 @@ import { Achievement, Note, Project } from './DTOs';
 
 const client = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
   headers: {
-    authorization: `Bearer ${process.env.GRAPHCMS_PROD_AUTH_TOKEN}`,
+    authorization: `Bearer ${process.env.NODE_ENV === 'development' ? process.env.GRAPHCMS_DEV_AUTH_TOKEN : process.env.GRAPHCMS_PROD_AUTH_TOKEN}`,
   }
 });
 
@@ -38,6 +38,7 @@ export async function getProjects(): Promise<Project[]> {
       title
       id
       action
+      isMinor
       description {
         html
       }
@@ -56,6 +57,7 @@ export async function getAchievements(): Promise<Achievement[]> {
       title
       tagline
       action
+      isMinor
       description {
         html
       }

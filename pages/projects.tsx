@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Card from '../components/elements/card'
 import { getProjects } from '../lib/cms'
 import { Project } from '../lib/DTOs'
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react'
 
 function ProjectCard({project}: {project: Project}) {
   return (
@@ -18,10 +20,30 @@ function ProjectCard({project}: {project: Project}) {
   )
 }
 
+
+function MinorProject({item}: {item: Project}) {
+  return <>
+    {item.action.url.length > 0 ?
+      <a href={item.action.url} target="_blank">
+        <span className="icon-text">
+          <h5 className="title is-5" css={css`margin-bottom: 0px !important;`}>{item.title}</h5>
+            <span className="icon">
+              <i className="ri-external-link-line"></i>
+            </span>
+        </span>
+      </a>
+    : <h5 className="title is-5">{item.title}</h5>
+    }
+    <h6 className="subtitle is-6">{item.tagline}</h6>
+    <span dangerouslySetInnerHTML={{__html: item.description?.html}} className="content"></span>
+  </>
+}
+
 export default function Projects({ projects }: InferGetStaticPropsType<typeof getStaticProps>) {
-  
-  const h1 = projects.filter((p, i) => i % 2 === 0);
-  const h2 = projects.filter((p, i) => i % 2 !== 0);
+
+  const major = projects.filter(a => !a.isMinor);
+  const minor = projects.filter(a => a.isMinor);
+
   
   return (
     <div>
@@ -38,16 +60,27 @@ export default function Projects({ projects }: InferGetStaticPropsType<typeof ge
 
           <div className="columns is-multiline">
             <div className="column">
-              {h1.map(project => {
+              {major.filter((p, i) => i % 2 === 0).map(project => {
                 return <ProjectCard key={project.id} project={project} />
               })}
             </div>
             <div className="column">
-              {h2.map(project => {
+              {major.filter((p, i) => i % 2 !== 0).map(project => {
                 return <ProjectCard key={project.id} project={project} />
               })}
             </div>
           </div>
+
+          <br></br>
+          {minor.length > 0 && <h3 className="title is-3">More projects</h3>}
+          {
+            minor.map(project => {
+              return <>
+                <MinorProject item={project}></MinorProject>
+                <hr></hr>
+              </>
+            })
+          }
         </div>
       </div>
       

@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
     <meta name="twitter:site" content="@pcktm_" />
     <meta name="twitter:creator" content="@pcktm_" />
   </Head>
-
+  
   <Navbar />
 
   <Component {...pageProps} />

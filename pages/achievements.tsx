@@ -18,10 +18,18 @@ function AchievementCard({item}: {item: Achievement}) {
   )
 }
 
+function MinorAchievement({item}: {item: Achievement}) {
+  return <>
+    <h5 className="title is-5">{item.title}</h5>
+    <h6 className="subtitle is-6">{item.tagline}</h6>
+    <span dangerouslySetInnerHTML={{__html: item.description?.html}} className="content"></span>
+  </>
+}
+
 export default function Achievements({ achievements }: InferGetStaticPropsType<typeof getStaticProps>) {
   
-  const h1 = achievements.filter((p, i) => i % 2 === 0);
-  const h2 = achievements.filter((p, i) => i % 2 !== 0);
+  const major = achievements.filter(a => !a.isMinor);
+  const minor = achievements.filter(a => a.isMinor);
   
   return (
     <div>
@@ -38,16 +46,28 @@ export default function Achievements({ achievements }: InferGetStaticPropsType<t
 
           <div className="columns is-multiline">
             <div className="column">
-              {h1.map(achievement => {
+              {major.filter((p, i) => i % 2 === 0).map(achievement => {
                 return <AchievementCard key={achievement.id} item={achievement} />
               })}
             </div>
             <div className="column">
-              {h2.map(achievement => {
+              {major.filter((p, i) => i % 2 !== 0).map(achievement => {
                 return <AchievementCard key={achievement.id} item={achievement} />
               })}
             </div>
           </div>
+
+          <br></br>
+          {minor.length > 0 && <h3 className="title is-3">Older achievements</h3>}
+          {
+            minor.map(achievement => {
+              return <>
+                <MinorAchievement item={achievement}></MinorAchievement>
+                <hr></hr>
+              </>
+            })
+          }
+
         </div>
       </div>
     </div>

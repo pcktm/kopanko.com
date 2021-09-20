@@ -31,6 +31,7 @@ export interface Project {
   tagline: string;
   title:   string;
   id:      string;
+  isMinor: boolean;
   action: Action | null;
   description?: RichText;
   coverImage?: Image;
@@ -40,6 +41,7 @@ export interface Achievement {
   tagline: string;
   title:   string;
   id:      string;
+  isMinor: boolean;
   action: Action | null;
   description?: RichText;
   coverImage?: Image;
