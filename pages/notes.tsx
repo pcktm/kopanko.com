@@ -83,6 +83,7 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       notes: await getNotes(),
-    }
+    },
+    revalidate: 60*60,
   }
 }
