@@ -14,15 +14,15 @@ export async function request<T = any, V = Variables>(query: string, variables?:
 
 export async function getNotes(): Promise<Note[]> {
   const query = gql`query getNotes {
-    notes {
+    notes(orderBy: date_DESC) {
       id
-      slug
+      targetURL
       excerpt
       date
       tags
       title
       coverImage {
-        url(transformation: {image: {resize: {height: 480, width: 800, fit: crop}}})
+        url(transformation: {image: {resize: {height: 320, width: 640, fit: crop}}})
         height
         width
       }

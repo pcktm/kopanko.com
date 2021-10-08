@@ -1,11 +1,10 @@
 export interface Note {
   id:      string;
-  slug:    string;
-  excerpt: string;
-  date:    Date;
+  excerpt?: string;
+  date:    string;
   tags?:   string[];
   title:   string;
-  content?: RichText;
+  targetURL: string;
   coverImage?: Image;
 }
 
