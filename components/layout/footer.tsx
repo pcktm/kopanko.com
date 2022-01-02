@@ -5,10 +5,11 @@ export default function Footer() {
           <div className="level">
             <div className="level-left">
               <div className="level-item copy">
-                &copy; 2021 Jakub Kopańko
+                &copy; 2022 Jakub Kopańko
               </div>
             </div>
             <div className="level-right has-text-right">
+              {/* You are required to preserve this notice */}
               { !process.env.NEXT_PUBLIC_DISABLE_BRANDING &&
                 <p>
                   By <a href="https://kopanko.com">Jakub Kopańko</a> under AGPL-3.0.<br />
