@@ -31,6 +31,29 @@
   @media screen and (min-width: 769px) {
     padding-top: 0;
   }
+
+  .rainbow {
+    position: absolute;
+    z-index: -100;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    animation: huerotate 5s ease-in-out infinite;
+    animation-direction: alternate;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  @keyframes huerotate {
+    from {
+      filter: hue-rotate(-60deg);
+    }
+    to {
+      filter: hue-rotate(60deg);
+    }
+  }
 }
 
 .gradient {
@@ -38,28 +61,6 @@
 
   @media screen and (min-width: 769px) {
     padding: 60px 45px;
-    background: url('/images/gradient.png');
-    background-size: cover;
-    background-position: center center;
-    animation: huerotate 4s ease-in-out infinite;
-    animation-direction: alternate;
-  }
-
-  @keyframes huerotate {
-    from {
-      -webkit-filter: hue-rotate(-30deg);
-      -moz-filter: hue-rotate(-30deg);
-      -ms-filter: hue-rotate(-30deg);
-      -webkit-filter: hue-rotate(-30deg);
-      filter: hue-rotate(-30deg);
-    }
-    to {
-      -webkit-filter: hue-rotate(30deg);
-      -moz-filter: hue-rotate(30deg);
-      -ms-filter: hue-rotate(30deg);
-      -webkit-filter: hue-rotate(30deg);
-      filter: hue-rotate(30deg);
-    }
   }
 }
 

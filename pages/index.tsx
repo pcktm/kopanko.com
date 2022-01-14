@@ -3,6 +3,7 @@ import { jsx, css } from '@emotion/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import RainbowCanvas from '../components/elements/rainbowCanvas'
 
 function Box({title, subtitle, href}: {title: string, subtitle: string, href: string}) {
   return (
@@ -35,11 +36,13 @@ export default function Home() {
       <div className="main section with-gradient">
         <section className="content intro">
           <div className="container">
+            <RainbowCanvas className="rainbow"></RainbowCanvas>
             <div className="about gradient">
               <p className="title ">Jakub Kopańko, a full-stack developer<br/>and a great buddy.</p>
               <p className="subtitle">In love with open source, filmmaking and breaking stuff.</p>
             </div>
           </div>
+          
         </section>
 
         <div className="container" css={css`margin-bottom: 90px`}>
