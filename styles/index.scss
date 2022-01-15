@@ -40,6 +40,7 @@
     border-radius: 12px;
     animation: huerotate 5s ease-in-out infinite;
     animation-direction: alternate;
+    background-color: #d5d1f3;
 
     @media screen and (max-width: 768px) {
       display: none;
@@ -48,10 +49,10 @@
 
   @keyframes huerotate {
     from {
-      filter: hue-rotate(-60deg);
+      filter: hue-rotate(-30deg);
     }
     to {
-      filter: hue-rotate(60deg);
+      filter: hue-rotate(30deg);
     }
   }
 }
