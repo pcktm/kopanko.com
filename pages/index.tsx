@@ -35,7 +35,7 @@ export default function Home() {
 
       <div className="main section with-gradient">
         <section className="content intro">
-          <div className="container">
+          <div className="container is-colored">
             <RainbowCanvas className="rainbow"></RainbowCanvas>
             <div className="about gradient">
               <p className="title ">Jakub Kopańko, a full-stack developer<br/>and a great buddy.</p>
