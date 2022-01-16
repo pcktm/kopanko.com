@@ -5,6 +5,8 @@ import Footer from '../components/layout/footer'
 import React, { useEffect } from 'react'
 import Head from 'next/head'
 import { init } from "@socialgouv/matomo-next"
+import { SWRConfig } from 'swr'
+import axios from 'axios'
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -22,11 +24,15 @@ function MyApp({ Component, pageProps }) {
     <meta name="twitter:creator" content="@pcktm_" />
   </Head>
   
-  <Navbar />
-
-  <Component {...pageProps} />
-  
-  <Footer />
+  <SWRConfig 
+      value={{
+        fetcher: (resource) => axios.get(resource).then(res => res.data)
+      }}
+    >
+    <Navbar />
+    <Component {...pageProps} />
+    <Footer />
+  </SWRConfig>
   </>
 }
 

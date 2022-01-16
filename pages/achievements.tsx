@@ -61,10 +61,10 @@ export default function Achievements({ achievements }: InferGetStaticPropsType<t
           {minor.length > 0 && <h3 className="title is-3">Older achievements</h3>}
           {
             minor.map(achievement => {
-              return <>
+              return <div key={achievement.id}>
                 <MinorAchievement item={achievement}></MinorAchievement>
                 <hr></hr>
-              </>
+              </div>
             })
           }
 
