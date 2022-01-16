@@ -10,7 +10,12 @@ type TokenReponse = {
 }
 
 const basic = Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64');
-let count = 0;
+let cache: {title?: string; artist?: string; url?: string; lastUpdatedAt?: Date} = {
+  title: null,
+  artist: null,
+  url: null,
+  lastUpdatedAt: new Date(0),
+}
 
 const getAccessToken = async (): Promise<TokenReponse> => {
   const { data } = await axios.post('https://accounts.spotify.com/api/token',
@@ -28,17 +33,27 @@ const getAccessToken = async (): Promise<TokenReponse> => {
 };
 
 export const getNowPlaying = async () => {
+  if (cache.lastUpdatedAt.getTime() + 60000 > new Date().getTime()) {
+    return cache;
+  }
+
   const { access_token } = await getAccessToken();
-  const {data} = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+  const { data } = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
     headers: {
       Authorization: `Bearer ${access_token}`
     }
   });
-  if (!data.item) return null;
-  return {title: ellipsize(data.item.name, 30), artist: ellipsize(data.item.artists[0].name, 27), url: data.item.external_urls.spotify, count};
+
+  cache = {
+    lastUpdatedAt: new Date(),
+    title: ellipsize(data?.item?.name, 30) || null,
+    artist: ellipsize(data?.item?.artists[0]?.name, 27) || null,
+    url: data?.item?.external_urls?.spotify || null
+  };
+
+  return cache;
 }
 
 export default async function handler(req, res) {
   res.status(200).json(await getNowPlaying());
-  count++;
 }

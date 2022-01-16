@@ -4,7 +4,7 @@ import { useState } from 'react';
 import useSWR from 'swr'
 
 export default function Footer() {
-  const {data, error} = useSWR('/api/currently-playing');
+  const {data, error} = useSWR('/api/currently-playing', {refreshInterval: 30*1000});
 
   return (
       <footer className="footer">
@@ -23,8 +23,8 @@ export default function Footer() {
                 </span>
                 <span>
                   <span className="has-text-grey-dark">
-                    {data ? <a target="_blank" className="has-text-grey-dark" href={data.url}>{data.title}</a> : "Not Playing"}
-                  </span> – {data ? data.artist : "Spotify"}
+                    {data?.title ? <a target="_blank" className="has-text-grey-dark" href={data?.url}>{data.title}</a> : "Not Playing"}
+                  </span> – {data?.artist || "Spotify"}
                 </span>
               </span>
             </div>
