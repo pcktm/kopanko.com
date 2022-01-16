@@ -35,7 +35,7 @@ export const getNowPlaying = async () => {
     }
   });
   if (!data.item) return null;
-  return {title: ellipsize(data.item.name, 35), artist: ellipsize(data.item.artists[0].name, 30), url: data.item.external_urls.spotify, count};
+  return {title: ellipsize(data.item.name, 30), artist: ellipsize(data.item.artists[0].name, 27), url: data.item.external_urls.spotify, count};
 }
 
 export default async function handler(req, res) {
