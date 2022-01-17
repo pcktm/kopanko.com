@@ -36,17 +36,17 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            {/* You are required to preserve this notice */}
-            {!process.env.NEXT_PUBLIC_DISABLE_BRANDING &&
-              <p className='has-text-left ml-6'>
-                By <a href="https://kopanko.com">Jakub Kopańko</a> under AGPL-3.0.<br />
-                Source code available on <a href="https://github.com/pcktm/kopanko.com">GitHub</a>.
-              </p>
-            }
+            
           </div>
           <div className="level-right">
             <div className="level-item copy">
-              <p>&copy; 2022 Jakub Kopańko</p>
+              {/* You are required to preserve this notice */}
+              {!process.env.NEXT_PUBLIC_DISABLE_BRANDING &&
+                <p className='has-text-right ml-6'>
+                  By <a href="https://kopanko.com">Jakub Kopańko</a> under AGPL-3.0.<br />
+                  Source code available on <a href="https://github.com/pcktm/kopanko.com">GitHub</a>.
+                </p>
+              }
             </div>
           </div>
         </div>
