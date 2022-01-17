@@ -80,10 +80,24 @@
   }
 }
 
-.box.hover-shadow {
-  transition: all 0.07s ease-in-out;
+.gradient-bordered-box {
+  border-radius: .75rem;
+  
+  @media screen and (max-width: 768px) {
+    padding: .25rem;
+  }
+}
 
-  &:hover {
-    box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.15), 0 0px 0 1px rgba($scheme-invert, 0.02)
+.box {
+  @media screen and (max-width: 768px) {
+    border-radius: .5rem;
+  }
+
+  &.hover-shadow {
+    transition: all 0.07s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.15), 0 0px 0 1px rgba($scheme-invert, 0.02)
+    }
   }
 }

@@ -75,10 +75,10 @@ export default function Projects({ projects }: InferGetStaticPropsType<typeof ge
           {minor.length > 0 && <h3 className="title is-3">More projects</h3>}
           {
             minor.map(project => {
-              return <>
+              return <div key={project.id}>
                 <MinorProject item={project}></MinorProject>
                 <hr></hr>
-              </>
+              </div>
             })
           }
         </div>
