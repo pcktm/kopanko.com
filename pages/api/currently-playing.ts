@@ -46,8 +46,8 @@ export const getNowPlaying = async () => {
 
   cache = {
     lastUpdatedAt: new Date(),
-    title: ellipsize(data?.item?.name, 30) || null,
-    artist: ellipsize(data?.item?.artists[0]?.name, 27) || null,
+    title: ellipsize(data?.item?.name, 35) || null,
+    artist: ellipsize(data?.item?.artists[0]?.name, 40) || null,
     url: data?.item?.external_urls?.spotify || null
   };
 
