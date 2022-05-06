@@ -1,5 +1,10 @@
 .mail:after {
   content: attr(data-a) "@" attr(data-d) ".com";
+  color: hsl(229deg, 53%, 53%);
+}
+
+.mail:hover:after {
+  color: hsl(0deg, 0%, 29%);
 }
 
 ::-webkit-scrollbar {
