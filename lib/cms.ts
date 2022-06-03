@@ -24,8 +24,10 @@ export async function getNotes(): Promise<Note[]> {
   const query = gql`query getNotes {
     notes(orderBy: date_DESC) {
       id
+      slug
       targetURL
       excerpt
+      content
       date
       tags
       title
@@ -48,6 +50,37 @@ export async function getNotes(): Promise<Note[]> {
     }
   }
   return notes;
+}
+
+export async function getNote(slug: string | string[] | undefined): Promise<Note> {
+  const query = gql`query getNote($slug: String!) {
+    note(where: {slug: $slug}) {
+      id
+      slug
+      targetURL
+      excerpt
+      content
+      date
+      tags
+      title
+      coverImage {
+        url
+        height
+        width
+        placeholder: url(
+          transformation: {
+            image: { resize: { width: 10, height: 10, fit: clip } }
+          }
+        )
+      }
+    }
+  }`;
+
+  const {note} = await request<{note: Note}>(query, {slug});
+  if (note.coverImage?.placeholder) {
+    note.coverImage.placeholder = await imageURLToBase64(note.coverImage.placeholder);
+  }
+  return note;
 }
 
 export async function getProjects(): Promise<Project[]> {

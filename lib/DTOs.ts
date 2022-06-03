@@ -1,7 +1,9 @@
 export interface Note {
   id: string;
+  slug: string;
   excerpt?: string;
   date: string;
+  content: string;
   tags?: string[];
   title: string;
   targetURL: string;
