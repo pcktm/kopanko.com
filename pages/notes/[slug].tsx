@@ -26,9 +26,10 @@ export default function Note({note}: {note: DNote}) {
           {note.title}
         </title>
         <meta name="description" content={note.excerpt} />
+        <meta property="og:type" content="article" />
         <meta property="og:title" content={note.title} />
         <meta property="og:description" content={note.excerpt} />
-        <meta property="og:image" content={note.coverImage.url} />
+        <meta property="og:image" key="ogimage" content={note.coverImage.url} />
         {note.tags && <meta name="keywords" content={note.tags.join(', ')} />}
       </Head>
 

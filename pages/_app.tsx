@@ -21,7 +21,7 @@ function MyApp({Component, pageProps}: AppProps) {
         <link rel="icon" type="image/png" href="/logo.png" />
         { /* eslint-disable-next-line @next/next/no-css-tags */ }
         <link href="/assets/inter/inter.css" rel="stylesheet" />
-        <meta property="og:image" content="https://kopanko.com/images/og.png" />
+        <meta property="og:image" key="ogimage" content="https://kopanko.com/images/og.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@pcktm_" />
         <meta name="twitter:creator" content="@pcktm_" />
