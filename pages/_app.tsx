@@ -11,7 +11,7 @@ import Navbar from '../components/layout/navbar';
 
 function MyApp({Component, pageProps}: AppProps) {
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production') init({url: '//stats33.mydevil.net/', siteId: '120'});
+    if (process.env.NODE_ENV === 'production') init({url: '//stats33.mydevil.net/', siteId: '130'});
   }, []);
 
   return (
