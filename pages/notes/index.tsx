@@ -57,7 +57,7 @@ function LargePost({note, style}: {note: Note, style?: React.CSSProperties}) {
             </div>
             <div className="column">
               <p>{note.date}</p>
-              <h2 className="title is-2 is-size-3-mobile">{note.title}</h2>
+              <h2 className="title is-2 is-size-3-mobile has-text-weight-bold">{note.title}</h2>
               <h4 className="subtitle is-4">{ellipsize(note.excerpt, 145)}</h4>
               <p>{note?.tags?.map((v) => `#${v}`).join(', ')}</p>
             </div>

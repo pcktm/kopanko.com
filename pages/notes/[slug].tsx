@@ -33,15 +33,22 @@ export default function Note({note}: {note: DNote}) {
         {note.tags && <meta name="keywords" content={note.tags.join(', ')} />}
       </Head>
 
-      <div className={`main section ${styles.main}`}>
+      <section className={`main section ${styles.main}`}>
+
         <div className="container is-max-desktop">
-          <div
-            className="columns is-centered"
-            style={{
-              marginBottom: '35px',
-            }}
-          >
-            <div className="column is-three-quarters">
+          <div className="columns mb-6">
+            <div className="column is-two-thirds">
+              <h1 className="title is-1 is-size-2-mobile has-text-weight-bold">
+                {note.title}
+              </h1>
+              <h2 className="subtitle is-5 mt-1 has-text-weight-light">
+                {note.excerpt}
+              </h2>
+            </div>
+          </div>
+
+          <div className="columns is-centered">
+            <div className="column ">
               <div className="card">
                 <div className="card-image">
                   <Image
@@ -57,13 +64,8 @@ export default function Note({note}: {note: DNote}) {
               </div>
             </div>
           </div>
-          <h2 className="subtitle is-size-5-mobile is-4">
-            {note.date}
-          </h2>
-          <h1 className="title is-1 is-size-3-mobile mb-1">
-            {note.title}
-          </h1>
-          <p className="mb-5">{note?.tags?.map((v) => `#${v}`).join(', ')}</p>
+
+          <hr />
           <div className="content is-size-5 mb-4">
             <ReactMarkdown
               rehypePlugins={[rehypeHighlight]}
@@ -72,8 +74,20 @@ export default function Note({note}: {note: DNote}) {
               {note.content}
             </ReactMarkdown>
           </div>
+
+          <hr />
+
+          <div className="columns is-mobile">
+            <div className="column">
+              <p className="mb-1">{note?.tags?.map((v) => `#${v}`).join(', ')}</p>
+            </div>
+            <div className="column has-text-right">
+              <p className="mb-1">{note.date}</p>
+            </div>
+          </div>
+
         </div>
-      </div>
+      </section>
     </>
   );
 }
