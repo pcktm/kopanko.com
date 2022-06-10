@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import styles from 'styles/index.module.scss';
 import RainbowCanvas from '../components/elements/rainbowCanvas';
 
 function Box({
@@ -8,7 +9,7 @@ function Box({
   return (
     <div className="column">
       <Link href={href}>
-        <div className="gradient-bordered-box is-clickable" style={{background: gradient}}>
+        <div className={`${styles.borderGradient} is-clickable`} style={{background: gradient}}>
           <div className="box hover-shadow">
             <h4 className="title is-4">{title}</h4>
             <h6 className="subtitle is-6">{subtitle}</h6>
@@ -37,17 +38,22 @@ export default function Home() {
         <title>Jakub Kopańko</title>
       </Head>
 
-      <div className="main section with-gradient">
+      <div className={`main section ${styles.withGradient}`}>
         <section className="content intro">
-          <div className="container is-colored">
-            <RainbowCanvas className="rainbow" />
-            <div className="about gradient" style={{userSelect: 'none'}}>
-              <p className="title ">
+          <div className={`container ${styles.coloredContainer}`}>
+            <RainbowCanvas className={styles.rainbowCanvas} />
+            <div
+              className={`${styles.about} ${styles.gradient}`}
+              style={{userSelect: 'none'}}
+            >
+              <p className={`title ${styles.title}`}>
                 Jakub Kopańko, a full-stack developer
                 <br />
                 and a great buddy.
               </p>
-              <p className="subtitle">In love with open source, filmmaking and breaking stuff.</p>
+              <p className={`subtitle ${styles.subtitle}`}>
+                In love with open source, filmmaking and breaking stuff.
+              </p>
             </div>
           </div>
 
@@ -83,7 +89,7 @@ export default function Home() {
             </span>
             {/* eslint-disable-next-line */}
             <span
-              className="mail is-clickable"
+              className={`${styles.mail} is-clickable`}
               data-a={account}
               data-d={domain}
               onClick={handleMail}

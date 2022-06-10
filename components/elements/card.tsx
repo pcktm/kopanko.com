@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
-import {ReactElement} from 'react';
 import {Action, Image as DImage} from 'lib/DTOs';
 
 type Props = {
@@ -32,7 +30,15 @@ export default function Card({
             { action
             && (
             <a href={action.url} target="_blank" rel="noreferrer">
-              <button className="button is-light is-rounded call-to-action" type="button">
+              <button
+                className="button is-light is-rounded"
+                type="button"
+                style={{
+                  position: 'absolute',
+                  bottom: '-20px',
+                  right: '12px',
+                }}
+              >
                 <span className="icon">
                   <i className={action.icon} />
                 </span>

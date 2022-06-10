@@ -1,0 +1,25 @@
+.navbarIcon {
+  padding-right: 10px;
+}
+
+.navbarBurger {
+    width: 4rem;
+    height: 4rem;
+}
+
+.itemWithIcon {
+  padding: 0.5rem 1rem;
+  &:focus {
+    background-color: white;
+  }
+}
+
+.navbarItemName {
+  font-size: 20px;
+}
+
+.mainNavbar {
+  @media screen and (max-width: 768px) {
+    padding-bottom: 0;
+  }
+}

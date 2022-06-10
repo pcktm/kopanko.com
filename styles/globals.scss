@@ -3,10 +3,27 @@ $footer-padding: 3rem 1.5rem 3rem;
 
 @import '~bulma/bulma';
 @import './utilities.scss';
-@import './navbar.scss';
-@import './index.scss';
-@import './elements.scss';
 
-.main.section {
+.main .section {
   min-height: 75vh;
+}
+
+.navbar-item {
+  &:focus {
+    background-color: white;
+  }
+}
+
+.box {
+  @media screen and (max-width: 768px) {
+    border-radius: .5rem;
+  }
+  
+  &.hover-shadow {
+    transition: all 0.07s ease-in-out;
+  
+    &:hover {
+      box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.15), 0 0px 0 1px rgba($scheme-invert, 0.02)
+    }
+  }
 }

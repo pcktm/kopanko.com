@@ -4,15 +4,16 @@ import Link from 'next/link';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
 import profilePic from 'public/images/profile.jpg';
+import styles from 'styles/navbar.module.scss';
 
 function NavbarItem({
   text, href, icon, isActive,
 }: {text: string, href: string, icon: string | null, isActive: boolean}) {
   return (
     <Link href={href}>
-      <a className={`navbar-item ${icon ? 'with-icon' : ''} ${isActive ? 'is-active' : ''}`}>
-        <span className="navbar-item-name icon-text">
-          { icon && <span className="icon"><i className={icon} /></span> }
+      <a className={`navbar-item ${icon && styles.itemWithIcon} ${isActive ? 'is-active' : ''}`}>
+        <span className={`${styles.navbarItemName} icon-text`}>
+          { icon && <span className={styles.navbarIcon}><i className={icon} /></span> }
           {text}
         </span>
       </a>
@@ -29,7 +30,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="section main-navbar">
+    <header className={`section ${styles.mainNavbar}`}>
       <div className="container">
         <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
@@ -68,7 +69,7 @@ export default function Navbar() {
               role="button"
               tabIndex={0}
               onClick={toggleMenu}
-              className={`navbar-burger burger ${menuOpen ? 'is-active' : ''}`}
+              className={`navbar-burger ${styles.navbarBurger} ${menuOpen ? 'is-active' : ''}`}
               aria-label="menu"
               aria-expanded="false"
               data-target="navigation"
