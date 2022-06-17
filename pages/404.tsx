@@ -1,4 +1,6 @@
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from 'next';
 import Head from 'next/head';
+import styles from 'styles/errors.module.scss';
 
 export default function Error404() {
   const quotes = [
@@ -52,9 +54,8 @@ export default function Error404() {
                 This page could not be found.
               </p>
 
-              <hr />
-
-              <div className="is-clearfix">
+              <div className={`is-clearfix ${styles.quoteBox}`}>
+                <hr />
                 <p className="title is-3 has-text-weight-bold is-italic">
                   {chosenQuote.author && '“'}
                   {chosenQuote.quote}
