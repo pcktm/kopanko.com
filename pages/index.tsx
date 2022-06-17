@@ -70,13 +70,13 @@ export default function Home() {
               href="/projects"
               title="Projects"
               subtitle="My personal projects and various adventures. Both successful and less so."
-              gradient="linear-gradient(62deg, #FAACA8 0%, #DDD6F3 100%);"
+              gradient="linear-gradient(62deg, #FAACA8 0%, #DDD6F3 100%)"
             />
             <Box
               href="/achievements"
               title="Achievements"
               subtitle="My own accomplishments and various awards that I am proud of."
-              gradient="linear-gradient(90deg, #74ebd5, #acb6e5);"
+              gradient="linear-gradient(90deg, #74ebd5, #acb6e5)"
             />
           </div>
         </div>
