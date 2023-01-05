@@ -1,4 +1,3 @@
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from 'next';
 import Head from 'next/head';
 import styles from 'styles/errors.module.scss';
 
@@ -51,7 +50,7 @@ export default function Error404() {
             <div className="column is-three-fifths">
 
               <p className="title is-5 has-text-weight-light">
-                This page could not be found.
+                404: This page could not be found.
               </p>
 
               <div className={`is-clearfix ${styles.quoteBox}`}>

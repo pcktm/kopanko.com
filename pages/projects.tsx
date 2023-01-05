@@ -1,4 +1,4 @@
-import {InferGetStaticPropsType} from 'next';
+import {GetStaticPropsContext, InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Card from 'components/elements/card';
 import {getProjects} from 'lib/cms';
@@ -82,9 +82,9 @@ export default function Projects({projects}: InferGetStaticPropsType<typeof getS
   );
 }
 
-export const getStaticProps = async () => ({
+export const getStaticProps = async ({locale}: GetStaticPropsContext) => ({
   props: {
-    projects: await getProjects(),
+    projects: await getProjects({locale}),
   },
   revalidate: 60 * 60,
 });

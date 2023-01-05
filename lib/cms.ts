@@ -2,6 +2,10 @@ import {gql, GraphQLClient} from 'graphql-request';
 import {Variables} from 'graphql-request/dist/types';
 import {Achievement, Note, Project} from './DTOs';
 
+type Props = {
+  locale?: string;
+};
+
 const client = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT ?? '', {
   headers: {
     authorization: `Bearer ${process.env.NODE_ENV === 'development' ? process.env.GRAPHCMS_DEV_AUTH_TOKEN : process.env.GRAPHCMS_PROD_AUTH_TOKEN}`,
@@ -83,9 +87,9 @@ export async function getNote(slug: string | string[] | undefined): Promise<Note
   return note;
 }
 
-export async function getProjects(): Promise<Project[]> {
+export async function getProjects(props?: Props): Promise<Project[]> {
   const query = gql`query getProjects {
-    projects(orderBy: priority_ASC) {
+    projects(orderBy: priority_ASC, locales: [${props?.locale ?? 'en'}]) {
       tagline
       title
       id
@@ -94,7 +98,7 @@ export async function getProjects(): Promise<Project[]> {
       description {
         html
       }
-      coverImage {
+      coverImage(locales: en) {
         url
         width
         height
@@ -115,9 +119,9 @@ export async function getProjects(): Promise<Project[]> {
   return projects;
 }
 
-export async function getAchievements(): Promise<Achievement[]> {
+export async function getAchievements(props?: Props): Promise<Achievement[]> {
   const query = gql`query getAchievements {
-    achievements(orderBy: priority_ASC) {
+    achievements(orderBy: priority_ASC, locales: [${props?.locale ?? 'en'}]) {
       id
       title
       tagline
@@ -126,7 +130,7 @@ export async function getAchievements(): Promise<Achievement[]> {
       description {
         html
       }
-      coverImage {
+      coverImage(locales: en) {
         url
         width
         height

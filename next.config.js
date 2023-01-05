@@ -5,12 +5,11 @@ const nextConfig = {
   images: {
     domains: ['media.graphassets.com'],
   },
-  experimental: {
-    images: {
-      layoutRaw: true,
-    },
-    outputStandalone: true,
-  },
+  output: "standalone",
+  i18n: {
+    locales: ['en', 'pl'],
+    defaultLocale: 'en',
+  }
 };
 
 module.exports = nextConfig;

@@ -1,4 +1,4 @@
-import {InferGetStaticPropsType} from 'next';
+import {GetStaticPropsContext, InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import {getAchievements} from 'lib/cms';
 import Card from 'components/elements/card';
@@ -70,9 +70,9 @@ export default function Achievements({achievements}: InferGetStaticPropsType<typ
   );
 }
 
-export const getStaticProps = async () => ({
+export const getStaticProps = async ({locale}: GetStaticPropsContext) => ({
   props: {
-    achievements: await getAchievements(),
+    achievements: await getAchievements({locale}),
   },
   revalidate: 60 * 60,
 });

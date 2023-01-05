@@ -2,7 +2,6 @@ import '../styles/globals.scss';
 import 'remixicon/fonts/remixicon.css';
 import React, {useEffect} from 'react';
 import Head from 'next/head';
-import {init} from '@socialgouv/matomo-next';
 import {SWRConfig} from 'swr';
 import axios from 'axios';
 import {AppProps} from 'next/app';
@@ -10,10 +9,6 @@ import Footer from '../components/layout/footer';
 import Navbar from '../components/layout/navbar';
 
 function MyApp({Component, pageProps}: AppProps) {
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'production') init({url: '//stats33.mydevil.net/', siteId: '130'});
-  }, []);
-
   return (
     <>
       <Head>
@@ -25,6 +20,7 @@ function MyApp({Component, pageProps}: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@pcktm_" />
         <meta name="twitter:creator" content="@pcktm_" />
+        {typeof window !== 'undefined' && <script defer data-domain="kopanko.com" src="https://analytics.kopanko.com/js/script.js" />}
       </Head>
 
       <SWRConfig
