@@ -12,7 +12,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "copyfiles": "cp -R public .next/standalone && cp -R .next/static .next/standalone/static && cp .env.local .next/standalone/.env.local"
   },
   "dependencies": {
     "@koa/router": "^10.1.1",
