@@ -3,7 +3,10 @@ export interface Note {
   slug: string;
   excerpt?: string;
   date: string;
-  content: string;
+  richContent: {
+    json: any[];
+    references: any[];
+  };
   tags?: string[];
   title: string;
   targetURL: string;

@@ -31,7 +31,6 @@ export async function getNotes(): Promise<Note[]> {
       slug
       targetURL
       excerpt
-      content
       date
       tags
       title
@@ -63,7 +62,25 @@ export async function getNote(slug: string | string[] | undefined): Promise<Note
       slug
       targetURL
       excerpt
-      content
+      richContent {
+        json
+        references {
+          ... on Asset {
+            id
+            url
+            mimeType
+            width
+            height
+            placeholder: url(
+              transformation: {
+                document: { output: { format: png } }
+                image: { resize: { width: 10, height: 10, fit: clip } }
+                validateOptions: true
+              }
+            )
+          }
+        }
+      }
       date
       tags
       title
@@ -73,7 +90,9 @@ export async function getNote(slug: string | string[] | undefined): Promise<Note
         width
         placeholder: url(
           transformation: {
-            image: { resize: { width: 10, height: 10, fit: clip } }
+            image: {   
+              resize: { width: 10, height: 10, fit: clip }
+            }
           }
         )
       }
@@ -84,6 +103,17 @@ export async function getNote(slug: string | string[] | undefined): Promise<Note
   if (note.coverImage?.placeholder) {
     note.coverImage.placeholder = await imageURLToBase64(note.coverImage.placeholder);
   }
+  const promises = note.richContent.references.map(async (reference) => {
+    if (reference.placeholder) {
+      return {
+        ...reference,
+        placeholder: await imageURLToBase64(reference.placeholder),
+      };
+    }
+    return reference;
+  });
+  const newRefs = await Promise.all(promises);
+  note.richContent.references = newRefs as any;
   return note;
 }
 

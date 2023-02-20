@@ -1,20 +1,50 @@
+/* eslint-disable jsx-a11y/alt-text */
 import {getNote, getNotes} from 'lib/cms';
 import {Note as DNote} from 'lib/DTOs';
 import {GetStaticPaths, GetStaticProps} from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
-import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/tokyo-night-dark.css';
 import styles from 'styles/note.module.scss';
+import {RichText, NodeRendererType} from '@graphcms/rich-text-react-renderer';
+import CodeBlock from 'components/elements/codeBlock';
 
-const componentMaps = {
-  pre(props: any) {
-    return <pre style={{padding: '0 0', borderRadius: '4px'}} {...props} />;
+const customRenderers: NodeRendererType = {
+  Asset: {
+    image(props) {
+      if (!props.url) return null as any;
+      return (
+        <span className="columns is-centered">
+          <span className="column is-four-fifths is-flex is-justify-content-center">
+            <Image
+              className={styles.image}
+              src={props.url}
+              width={props.width}
+              height={props.height}
+              placeholder={props.placeholder ? 'blur' : 'empty'}
+              blurDataURL={props.placeholder}
+            />
+          </span>
+        </span>
+      );
+    },
   },
-  img(props: any) {
-    // eslint-disable-next-line jsx-a11y/alt-text
-    return <span className="is-flex is-justify-content-center"><img className={styles.image} {...props} /></span>;
+  img(props) {
+    if (!props.src) return null as any;
+    return (
+      <span className="columns is-centered">
+        <span className="column is-four-fifths-tablet is-flex is-justify-content-center">
+          <Image className={styles.image} src={props.src} width={props.width} height={props.height} />
+        </span>
+      </span>
+    );
+  },
+  code_block(props) {
+    return (
+      <CodeBlock>
+        {props.children}
+      </CodeBlock>
+    );
   },
 };
 
@@ -59,6 +89,8 @@ export default function Note({note}: {note: DNote}) {
                     placeholder="blur"
                     blurDataURL={note.coverImage.placeholder}
                     alt="Large article cover"
+                    quality={100}
+                    priority
                   />
                 </div>
               </div>
@@ -66,14 +98,13 @@ export default function Note({note}: {note: DNote}) {
           </div>
 
           <hr />
-          <div className="content is-size-5 mb-4">
-            <ReactMarkdown
-              rehypePlugins={[rehypeHighlight]}
-              components={componentMaps}
-            >
-              {note.content}
-            </ReactMarkdown>
-          </div>
+          <main className="content is-size-5 mb-4">
+            <RichText
+              content={note.richContent.json}
+              references={note.richContent.references}
+              renderers={customRenderers}
+            />
+          </main>
 
           <hr />
 

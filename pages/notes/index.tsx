@@ -7,23 +7,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 function LinkHOC({note, children}: {note: Note, children: React.ReactNode}) {
-  if (note.content) {
-    return (
-      <Link
-        href={`/notes/${note.slug}`}
-      >
-        {children}
-      </Link>
-    );
-  }
   return (
-    <a
-      href={note.targetURL}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      href={`/notes/${note.slug}`}
     >
       {children}
-    </a>
+    </Link>
   );
 }
 
