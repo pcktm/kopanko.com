@@ -104,7 +104,7 @@ export async function getNote(slug: string | string[] | undefined): Promise<Note
     note.coverImage.placeholder = await imageURLToBase64(note.coverImage.placeholder);
   }
   const promises = note.richContent.references.map(async (reference) => {
-    if (reference.placeholder && ['image/jpeg', 'image/png'].includes(reference.mimeType)) {
+    if (reference.placeholder) {
       return {
         ...reference,
         placeholder: await imageURLToBase64(reference.placeholder),
