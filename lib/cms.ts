@@ -71,6 +71,7 @@ export async function getNote(slug: string | string[] | undefined): Promise<Note
             mimeType
             width
             height
+            caption
             placeholder: url(
               transformation: {
                 document: { output: { format: png } }

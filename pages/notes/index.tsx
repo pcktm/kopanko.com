@@ -27,7 +27,7 @@ function LargePost({note, style}: {note: Note, style?: React.CSSProperties}) {
             color: 'inherit',
           }}
         >
-          <div className="columns is-variable is-4 is-vcentered">
+          <div className="columns is-desktop is-variable is-4 is-vcentered">
             <div className="column is-three-fifths">
               <div className="card">
                 <div className="card-image">
@@ -72,7 +72,7 @@ function SmallPost({note}: {note: Note}) {
         }}
       >
         <div className="columns is-vcentered">
-          <div className="column is-one-fifth">
+          <div className="column is-one-quarter">
             <div className="card">
               <div className="card-image">
                 <Image

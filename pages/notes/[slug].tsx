@@ -14,16 +14,23 @@ const customRenderers: NodeRendererType = {
     image(props) {
       if (!props.url) return null as any;
       return (
-        <span className="columns is-centered">
-          <span className="column is-four-fifths is-flex is-justify-content-center">
-            <Image
-              className={styles.image}
-              src={props.url}
-              width={props.width}
-              height={props.height}
-              placeholder={props.placeholder ? 'blur' : 'empty'}
-              blurDataURL={props.placeholder}
-            />
+        <span className="columns is-centered my-1">
+          <span className="column is-four-fifths is-flex is-flex-direction-column is-align-content-center is-justify-content-center">
+            <div className="is-flex is-justify-content-center">
+              <Image
+                className={styles.image}
+                src={props.url}
+                width={props.width}
+                height={props.height}
+                placeholder={props.placeholder ? 'blur' : 'empty'}
+                blurDataURL={props.placeholder}
+              />
+            </div>
+            {props.caption && (
+              <span className="mt-1 has-text-grey is-size-6 has-text-weight-light has-text-centered">
+                {props.caption}
+              </span>
+            )}
           </span>
         </span>
       );
@@ -44,6 +51,15 @@ const customRenderers: NodeRendererType = {
       <CodeBlock>
         {props.children}
       </CodeBlock>
+    );
+  },
+  table(props) {
+    return (
+      <div className="table-container">
+        <table className="table is-fullwidth">
+          {props.children}
+        </table>
+      </div>
     );
   },
 };
