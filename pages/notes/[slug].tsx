@@ -8,6 +8,7 @@ import 'highlight.js/styles/tokyo-night-dark.css';
 import styles from 'styles/note.module.scss';
 import {RichText, NodeRendererType} from '@graphcms/rich-text-react-renderer';
 import CodeBlock from 'components/elements/codeBlock';
+import Comments from 'components/elements/comments';
 
 const customRenderers: NodeRendererType = {
   Asset: {
@@ -121,6 +122,12 @@ export default function Note({note}: {note: DNote}) {
               renderers={customRenderers}
             />
           </main>
+
+          <hr />
+
+          <div>
+            <Comments term={note.title} />
+          </div>
 
           <hr />
 

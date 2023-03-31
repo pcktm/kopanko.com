@@ -16,6 +16,7 @@
     "copyfiles": "cp -R public .next/standalone && cp .env.local .next/standalone/.env.local && cp -R .next/static .next/standalone/.next"
   },
   "dependencies": {
+    "@giscus/react": "^2.2.8",
     "@graphcms/rich-text-react-renderer": "^0.6.1",
     "@koa/router": "^10.1.1",
     "axios": "^0.27.2",
