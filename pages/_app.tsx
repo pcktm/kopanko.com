@@ -5,6 +5,7 @@ import Head from 'next/head';
 import {SWRConfig} from 'swr';
 import axios from 'axios';
 import {AppProps} from 'next/app';
+import {Provider} from 'react-wrap-balancer';
 import Footer from '../components/layout/footer';
 import Navbar from '../components/layout/navbar';
 
@@ -29,7 +30,9 @@ function MyApp({Component, pageProps}: AppProps) {
         }}
       >
         <Navbar />
-        <Component {...pageProps} />
+        <Provider>
+          <Component {...pageProps} />
+        </Provider>
         <Footer />
       </SWRConfig>
     </>

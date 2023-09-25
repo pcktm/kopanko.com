@@ -7,8 +7,10 @@ import Image from 'next/image';
 import 'highlight.js/styles/tokyo-night-dark.css';
 import styles from 'styles/note.module.scss';
 import {RichText, NodeRendererType} from '@graphcms/rich-text-react-renderer';
+import Balancer from 'react-wrap-balancer';
 import CodeBlock from 'components/elements/codeBlock';
 import Comments from 'components/elements/comments';
+import ElectionCountdown from 'components/elements/electionsCountdown';
 
 const customRenderers: NodeRendererType = {
   Asset: {
@@ -63,6 +65,28 @@ const customRenderers: NodeRendererType = {
       </div>
     );
   },
+  a(props) {
+    const isExternal = new URL(props.href ?? '').hostname !== 'kopanko.com';
+
+    return (
+      <a href={props.href} target={isExternal ? '_blank' : '_self'} rel={isExternal ? 'noopener noreferrer' : ''}>
+        {props.children}
+      </a>
+    );
+  },
+  class(props) {
+    if (props.className === 'infobox') {
+      return (
+        <div className="notification is-info is-light">
+          {props.children}
+        </div>
+      );
+    }
+    if (props.className === 'elections-countdown') {
+      return <ElectionCountdown />;
+    }
+    return <div>{props.children}</div>;
+  },
 };
 
 export default function Note({note}: {note: DNote}) {
@@ -82,15 +106,20 @@ export default function Note({note}: {note: DNote}) {
 
       <section className={`main section ${styles.main}`}>
 
-        <div className="container is-max-desktop">
+        <main className="container is-max-desktop">
           <div className="columns mb-6">
             <div className="column is-two-thirds">
+
               <h1 className="title is-1 is-size-2-mobile has-text-weight-bold">
-                {note.title}
+                <Balancer>
+                  {note.title}
+                </Balancer>
               </h1>
+
               <h2 className="subtitle is-5 mt-1 has-text-weight-light">
                 {note.excerpt}
               </h2>
+
             </div>
           </div>
 
@@ -115,13 +144,13 @@ export default function Note({note}: {note: DNote}) {
           </div>
 
           <hr />
-          <main className="content is-size-5 mb-4">
+          <article className="content mb-4">
             <RichText
               content={note.richContent.json}
               references={note.richContent.references}
               renderers={customRenderers}
             />
-          </main>
+          </article>
 
           <hr />
 
@@ -140,7 +169,7 @@ export default function Note({note}: {note: DNote}) {
             </div>
           </div>
 
-        </div>
+        </main>
       </section>
     </>
   );

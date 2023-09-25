@@ -5,6 +5,7 @@ import {getNotes} from 'lib/cms';
 import {Note} from 'lib/DTOs';
 import Image from 'next/image';
 import Link from 'next/link';
+import Balancer from 'react-wrap-balancer';
 
 function LinkHOC({note, children}: {note: Note, children: React.ReactNode}) {
   return (
@@ -46,8 +47,16 @@ function LargePost({note, style}: {note: Note, style?: React.CSSProperties}) {
             </div>
             <div className="column">
               <p>{note.date}</p>
-              <h2 className="title is-2 is-size-3-mobile has-text-weight-bold">{note.title}</h2>
-              <h4 className="subtitle is-4">{ellipsize(note.excerpt, 145)}</h4>
+
+              <h2 className="title is-2 is-size-3-mobile has-text-weight-bold">
+                <Balancer>
+                  {note.title}
+                </Balancer>
+              </h2>
+              <h4 className="subtitle is-5">
+                <Balancer>{ellipsize(note.excerpt, 145)}</Balancer>
+              </h4>
+
               <p className="has-text-weight-light">{note?.tags?.map((v) => `#${v}`).join(', ')}</p>
             </div>
           </div>
@@ -89,7 +98,13 @@ function SmallPost({note}: {note: Note}) {
           </div>
           <div className="column is-three-fifths">
             <p>{note.date}</p>
-            <h4 className="title is-4">{note.title}</h4>
+
+            <h4 className="title is-4">
+              <Balancer>
+                {note.title}
+              </Balancer>
+            </h4>
+
             <h6 className="subtitle is-6">{ellipsize(note.excerpt, 170)}</h6>
           </div>
         </div>
