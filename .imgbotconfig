@@ -1,6 +1,0 @@
-{
-    "ignoredFiles": [
-        "*.nocompress.*",
-    ],
-    "aggressiveCompression": "true",
-}

@@ -1,1 +1,0 @@
-require(".next/standalone/server.js");

@@ -1,0 +1,54 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getAllNotes, getNoteBySlug } from "@lib/cms/notes";
+import Layout from "@layouts/Layout.astro";
+import RichTextRenderer from "@components/RichTextRenderer";
+import Comments from "@components/Comments";
+
+export const getStaticPaths = (async () => {
+  const allNotes = await getAllNotes();
+  return allNotes.map((note) => ({
+    params: {
+      slug: note.slug,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+const note = await getNoteBySlug(slug);
+---
+
+<Layout title={note.title} keywords={note.tags?.join(", ")}>
+  <div class="mx-auto mt-6">
+    <div class="font-redaction20 text-balance">
+      <h1 class="text-5xl">{note.title}</h1>
+    </div>
+    <div class="font-mono mt-3 text-md text-balance">
+      <p>{note.excerpt}</p>
+    </div>
+    <hr class="mt-6 border-b-1 border-zinc-700" />
+  </div>
+  <div class="mx-auto mt-6">
+    <div class="shadow-md rounded-xl overflow-hidden mx-auto">
+      <img
+        src={note.coverImage.url}
+        class="w-full"
+        height={note.coverImage.height || 400}
+        width={note.coverImage.width || 800}
+        style={note.coverImage.placeholder?.css}
+      />
+    </div>
+  </div>
+
+  <article
+    class="font-sans mt-8 prose prose-zinc prose-img:rounded-md dark:prose-invert mx-auto"
+  >
+    <RichTextRenderer
+      richContent={note.richContent.json}
+      references={note.richContent.references}
+    />
+  </article>
+  <div class="mx-auto mt-8 md:mt-14">
+    <Comments term={note.title} client:only />
+  </div>
+</Layout>

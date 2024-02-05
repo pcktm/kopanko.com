@@ -1,0 +1,34 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getAllNotes } from "@lib/cms/notes";
+
+const allNotes = await getAllNotes();
+---
+
+<Layout title="Notes">
+  <div class="flex flex-col space-y-8">
+    {
+      allNotes.map((note) => (
+        <a class="flex flex-col sm:flex-row gap-4" href={`/notes/${note.slug}`}>
+          <img
+            src={note.coverImage.url}
+            width={note.coverImage.width || 100}
+            height={note.coverImage.height || 100}
+            class="sm:w-24 sm:h-24 rounded-lg object-cover lg:w-32 lg:h-32"
+            style={note.coverImage.placeholder?.css}
+            loading="lazy"
+          />
+          <div class="flex flex-col gap-0.5">
+            <h2 class="text-2xl font-bold font-redaction20">{note.title}</h2>
+            <p class="font-mono text-sm">{note.excerpt}</p>
+            <div class="flex font-mono flex-row mt-1 gap-2 text-xs flex-wrap dark:text-zinc-400 text-zinc-700">
+              {note.tags?.map((tag) => (
+                <span>#{tag}</span>
+              ))}
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</Layout>
