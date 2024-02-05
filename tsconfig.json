@@ -1,15 +1,17 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "./node_modules/astro/tsconfigs/strict",
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
       "@lib/*": ["src/lib/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
     }
-  }
+  },
+  "include": ["src/**/*", "api/**/*"],
 }

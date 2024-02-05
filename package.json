@@ -28,6 +28,7 @@
     "@unpic/pixels": "^1.2.1",
     "@unpic/placeholder": "^0.1.2",
     "@unpic/react": "^0.1.8",
+    "@vercel/edge": "^1.1.1",
     "astro": "^4.2.3",
     "blurhash": "^2.0.5",
     "prism-react-renderer": "^2.3.1",
@@ -37,6 +38,19 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.10"
+    "@edge-runtime/types": "^2.2.8",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/node": "^20.11.16",
+    "vercel": "^33.4.1"
+  },
+  "overrides": {
+    "@vercel/node": {
+      "**/ts-node": "10.9.2",
+      "**/typescript": "5.3.3"
+    },
+    "vercel": {
+      "**/ts-node": "10.9.2",
+      "**/typescript": "5.3.3"
+    }
   }
 }
