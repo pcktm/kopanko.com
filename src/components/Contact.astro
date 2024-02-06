@@ -4,9 +4,15 @@ import key from '@hackernoon/pixel-icon-library/icons/SVG/regular/lock.svg?raw'
 
 const account = 'hi';
 const domain = 'kopanko.com';
+
+export interface Props {
+  class?: string;
+}
+
+const {class: className} = Astro.props;
 ---
 
-<div>
+<div class={className}>
   <h1 class="font-redaction20 text-3xl mb-2">Get in touch</h1>
   <ul class="font-mono">
     <li class="flex items-center mb-2 gap-2">
@@ -23,6 +29,7 @@ const domain = 'kopanko.com';
     </li>
   </ul>
 </div>
+
 <style>
   .mailto-link::after {
     content: attr(data-a) "@" attr(data-d);

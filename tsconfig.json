@@ -11,6 +11,7 @@
       "@lib/*": ["src/lib/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@assets/*": ["src/assets/*"]
     }
   },
   "include": ["src/**/*", "api/**/*"],

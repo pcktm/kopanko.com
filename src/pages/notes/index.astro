@@ -9,7 +9,7 @@ const otherNotes = allNotes.slice(1);
 
 <Layout title="Notes">
   <div class="flex flex-col gap-8">
-    <a class="flex flex-col gap-4 mb-4 sm:items-center" href={`/notes/${highlightedNote.slug}`}>
+    <a class="flex flex-col gap-4 mb-4 sm:mb-5 sm:items-center" href={`/notes/${highlightedNote.slug}`} data-astro-prefetch>
       <img
         src={highlightedNote.coverImage.url}
         width={highlightedNote.coverImage.width || 100}
@@ -30,7 +30,7 @@ const otherNotes = allNotes.slice(1);
     </a>
     {
       otherNotes.map((note) => (
-        <a class="flex flex-col sm:flex-row gap-4" href={`/notes/${note.slug}`}>
+        <a class="flex flex-col sm:flex-row gap-4" href={`/notes/${note.slug}`} data-astro-prefetch>
           <img
             src={note.coverImage.url}
             width={note.coverImage.width || 100}
