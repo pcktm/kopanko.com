@@ -18,7 +18,11 @@ const { slug } = Astro.params;
 const note = await getNoteBySlug(slug);
 ---
 
-<Layout title={note.title} keywords={note.tags?.join(", ")} description={note.excerpt}>
+<Layout
+  title={note.title}
+  keywords={note.tags?.join(", ")}
+  description={note.excerpt}
+>
   <div class="mx-auto mt-6">
     <div class="font-redaction20 text-balance">
       <h1 class="text-5xl">{note.title}</h1>
@@ -26,7 +30,7 @@ const note = await getNoteBySlug(slug);
     <div class="font-mono mt-3 text-md text-balance">
       <p>{note.excerpt}</p>
     </div>
-    <hr class="mt-6 border-b-1 border-zinc-700" />
+    <hr class="mt-6 border-b-1 border-stone-700" />
   </div>
   <div class="mx-auto mt-6">
     <div class="shadow-md rounded-xl overflow-hidden mx-auto">
@@ -41,14 +45,31 @@ const note = await getNoteBySlug(slug);
   </div>
 
   <article
-    class="font-sans mt-8 prose prose-zinc prose-img:rounded-md dark:prose-invert mx-auto"
+    class="font-sans mt-8 prose prose-stone prose-img:rounded-md dark:prose-invert mx-auto mb-8 md:mb-10"
   >
     <RichTextRenderer
       richContent={note.richContent.json}
       references={note.richContent.references}
     />
   </article>
-  <div class="mx-auto mt-8 md:mt-14">
+  <div class="text-sm text-stone-700 dark:text-stone-300 flex flex-col gap-1 sm:flex-row">
+    <div class="flex-1 flex gap-1 flex-wrap">
+      {
+        note.tags?.map(t => `#${t}`).join(", ")
+      }
+    </div>
+    <div>
+      {
+        new Date(note.date).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      }
+    </div>
+  </div>
+  <hr class="mt-3 border-b-1 border-stone-300 dark:border-stone-700" />
+  <div class="mx-auto mt-6 md:mt-10">
     <Comments term={note.title} client:only />
   </div>
 </Layout>

@@ -8,5 +8,6 @@ export default defineConfig({
   integrations: [tailwind(), react(), metaTags()],
   image: {
     domains: ["graphassets.com"]
-  }
+  },
+  prefetch: true,
 });

@@ -49,7 +49,7 @@ const customRenderers: NodeRendererType = {
             loading="lazy"
           />
           {props.caption && (
-            <span className="mt-2 dark:text-zinc-300 text-zinc-700 text-sm text-center">
+            <span className="mt-2 dark:text-stone-300 text-stone-700 text-sm text-center">
               {props.caption}
             </span>
           )}
@@ -103,7 +103,7 @@ const customRenderers: NodeRendererType = {
   class(props) {
     if (props.className === 'infobox') {
       return (
-        <div className="not-prose p-4 bg-zinc-800 items-center text-indigo-100 w-full rounded-sm flex lg:inline-flex">
+        <div className="not-prose p-4 bg-zinc-800 items-center text-zinc-100 w-full rounded-sm flex lg:inline-flex">
           <span className="w-8 h-8 fill-current flex-shrink-0 mr-4" dangerouslySetInnerHTML={{ __html: infoIcon }} />
           <span className="mr-2 text-sm text-left flex-auto">{props.children}</span>
         </div>
