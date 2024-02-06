@@ -18,7 +18,7 @@ const { slug } = Astro.params;
 const note = await getNoteBySlug(slug);
 ---
 
-<Layout title={note.title} keywords={note.tags?.join(", ")}>
+<Layout title={note.title} keywords={note.tags?.join(", ")} description={note.excerpt}>
   <div class="mx-auto mt-6">
     <div class="font-redaction20 text-balance">
       <h1 class="text-5xl">{note.title}</h1>

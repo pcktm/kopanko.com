@@ -1,0 +1,82 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Page not found" description="Page not found">
+  <div class="flex flex-col gap-6 pt-4">
+    <div class="flex flex-col justify-center items-center">
+      <h1 class="text-5xl xl:text-6xl font-redaction50">404</h1>
+      <h1 class="text-lg font-mono text-center">The page you are looking for does not exist.</h1>
+    </div>
+    <hr class="mb-8 border-b-1 border-zinc-700 dark:border-zinc-300 border-balance w-24 mx-auto" />
+    <div class="flex flex-col gap-2 opacity-0 items-center" id="quote">
+      <h1
+        class="text-xl font-bold font-redaction20 text-balance whitespace-pre-wrap text-center"
+        id="quote-text"
+      >
+        Some quote goes here
+      </h1>
+      <h2 class="text-md font-mono" id="quote-author"></h2>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const quotes = [
+    {
+      quote:
+        "The first rule of meaningless acts of violence against the social fabric is to have fun.",
+    },
+    {
+      quote:
+        "Be careful, lest in casting out your demon you exorcise the best thing in you.",
+      author: "Friedrich Nietzsche",
+    },
+    {
+      quote:
+        "They were artists, without a doubt. And up to a point, they had starved for their art.",
+      author: "Harlan Ellison",
+    },
+    {
+      quote:
+        "DEHUMANIZE YOURSELF AND FACE TO BLOODSHED. DEHUMANIZE YOURSELF AND FACE TO BLOODSHED.",
+    },
+    {
+      quote:
+        "Outwardly: dumbly, I shamble about, a thing that could never have been known as human...",
+      author: "Harlan Ellison",
+    },
+    {
+      quote:
+        "Inwardly: alone. Here. Living under the land, under the sea, in the belly of AM, whom we created...",
+      author: "Harlan Ellison",
+    },
+    {
+      quote: "Keep your head above the water \\ Drowning in you",
+      author: "Palace",
+    },
+    {
+      quote:
+        "I don't know where I'll be tomorrow \\ And I feel free \\ Just to be me",
+      author: "Skinshape",
+    },
+    {
+      quote:
+        "Cause now I know that all plans fade away \\ And so I'm only planning for today",
+      author: "Lewis Del Mar",
+    },
+  ];
+  const quoteText = document.getElementById("quote-text");
+  const quoteAuthor = document.getElementById("quote-author");
+  const quoteContainer = document.getElementById("quote");
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  if (quoteText && quoteAuthor) {
+    quoteText.textContent = randomQuote.quote.replace(/\\ /g, "\n");
+    if (randomQuote.author) {
+      quoteAuthor.textContent = `— ${randomQuote.author}`;
+    }
+  }
+  if (quoteContainer) {
+    quoteContainer.classList.remove("opacity-0");
+  }
+</script>

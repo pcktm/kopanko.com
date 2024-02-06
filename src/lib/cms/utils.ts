@@ -3,6 +3,9 @@ import { encode } from "blurhash";
 import { getPixels } from "@unpic/pixels";
 
 export const request = async <D>(query: string, variables?: Record<string, unknown>): Promise<D> => {
+  if (!import.meta.env.HYGRAPH_ENDPOINT || !import.meta.env.HYGRAPH_AUTH_TOKEN) {
+    throw new Error('HYGRAPH_ENDPOINT and HYGRAPH_AUTH_TOKEN must be set in .env');
+  }
   const data = await fetch(import.meta.env.HYGRAPH_ENDPOINT, {
     method: 'POST',
     headers: {
