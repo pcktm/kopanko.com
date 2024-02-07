@@ -1,22 +1,57 @@
 ---
 import AGHLogo from "@assets/agh-logo.svg?raw";
+import SmarttechLogo from "@assets/smarttech-logo.svg?raw";
+
+type Entry = {
+  logo: string;
+  subentries: {
+    date: string;
+    title: string;
+  }[];
+};
+
+const entries: Entry[] = [
+  {
+    logo: AGHLogo,
+    subentries: [
+      {
+        date: "2020 — 24",
+        title:
+          "Computer Science and Intelligent Systems B.Eng. Degree from AGH University of Kraków",
+      },
+    ],
+  },
+  {
+    logo: SmarttechLogo,
+    subentries: [
+      {
+        date: "Apr 2024 — Oct 24",
+        title: "Mid Node.js Developer working on Threathub.io",
+      },
+    ],
+  },
+];
 ---
 
 <div>
-  <h1 class="font-redaction20 text-3xl mb-4">Resumé</h1>
-  <div class="font-mono flex flex-col sm:flex-row sm:gap-6 gap-4 sm:items-center">
-    <div class="dark:fill-stone-200 sm:w-52 w-44">
-      <Fragment set:html={AGHLogo} />
-    </div>
-    <div class="flex flex-col gap-2">
-      <div>
-        <p class="dark:text-stone-200 font-bold">2020 — 24</p>
-        <p class="text-balance">Computer Science and Intelligent Systems B.Eng. Degree from AGH University of Kraków</p>
-      </div>
-      <!-- <div>
-        <p class="text-stone-300 font-bold">2024 — 26</p>
-        <p>Computer Science and Intelligent Systems, M.Eng.</p>
-      </div> -->
-    </div>
+  <h1 class="font-redaction20 text-3xl mb-3">Resumé</h1>
+  <div class="grid grid-cols-1 md:grid-cols-5 md:gap-x-6 md:gap-y-6 gap-1 md:items-center">
+    {
+      entries.map((entry, index) => (
+        <>
+          <div class="dark:fill-stone-200 w-40 md:w-full sm:col-span-2 md:col-span-1 mt-6 md:mt-0">
+            <Fragment set:html={entry.logo} />
+          </div>
+          <div class="flex flex-col gap-1 col-span-4">
+            {entry.subentries.map((subentry) => (
+              <div>
+                <p class="dark:text-stone-200 font-mono font-bold">{subentry.date}</p>
+                <p class="text-balance font-mono">{subentry.title}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      ))
+    }
   </div>
 </div>
