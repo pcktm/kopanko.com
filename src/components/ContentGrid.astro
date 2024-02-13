@@ -11,7 +11,7 @@ const { content } = Astro.props;
 <div class="sm:columns-2 gap-4 columns-1">
   {
     content.map((entry) => (
-      <div class="w-full mb-5 dark:bg-zinc-800 bg-white rounded-lg break-inside-avoid-column overflow-hidden">
+      <div class="w-full mb-5 shadow-sm border dark:border-zinc-800 dark:backdrop-brightness-110 light:bg-white rounded-lg break-inside-avoid-column overflow-hidden">
         <img
           style={entry.coverImage?.placeholder?.css}
           src={entry.coverImage?.url}
@@ -24,8 +24,8 @@ const { content } = Astro.props;
             {entry.title}
           </h1>
           <h2 class="text-sm font-mono">{entry.tagline}</h2>
-          <hr class="my-3 border-b-1 border-zinc-500" />
-          <div class="prose prose-sm dark:prose-stone dark:prose-invert">
+          {/* <hr class="my-3 border-b-1 border-zinc-500" /> */}
+          <div class="mt-2 prose prose-sm dark:prose-stone dark:prose-invert">
             <Fragment set:html={entry.description?.html} />
           </div>
         </div>

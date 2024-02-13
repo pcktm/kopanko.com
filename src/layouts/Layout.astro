@@ -38,7 +38,7 @@ const {
       import.meta.env.PROD ? <SpeedInsights /> : null
     }
   </head>
-  <body class="dark:bg-darkbg dark:text-stone-100 bg-stone-50 text-stone-950 mb-10" transition:animate="none">
+  <body class="dark:bg-darkbg dark:text-stone-100 bg-stone-50 text-stone-950 mb-10">
     <div class="container max-w-3xl mx-auto px-5 mt-16 md:mt-24">
       {
         hideNavbar ? null : (
@@ -273,5 +273,9 @@ const {
     font-feature-settings: "frac" on;
     font-feature-settings: "salt" on;
     font-feature-settings: "ss02" on;
+  }
+
+  .font-mono { 
+    font-variant-ligatures: none;
   }
 </style>
