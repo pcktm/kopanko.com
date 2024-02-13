@@ -1,5 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { getAchievements } from "@lib/cms/achievements";
+
+const achievements = await getAchievements();
 ---
 
 <Layout title="Achievements">
