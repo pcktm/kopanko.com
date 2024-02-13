@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import ContentGrid from "@components/ContentGrid.astro";
 import { getProjects } from "@lib/cms/projects";
 
 const projects = await getProjects();
@@ -7,33 +8,7 @@ const projects = await getProjects();
 
 <Layout title="Projects">
   <main>
-    <div class="sm:columns-2 gap-4 columns-1">
-      {
-        projects
-          .filter((p) => !p.isMinor)
-          .map((project) => (
-            <div class="w-full mb-5 dark:bg-zinc-800 bg-white rounded-lg break-inside-avoid-column overflow-hidden">
-              <img
-                style={project.coverImage?.placeholder?.css}
-                src={project.coverImage?.url}
-                width={project.coverImage?.width}
-                height={project.coverImage?.height}
-                class="w-full object-cover"
-              />
-              <div class="p-4">
-                <h1 class="text-xl font-redaction20 font-bold text-balance">
-                  {project.title}
-                </h1>
-                <h2 class="text-sm font-mono">{project.tagline}</h2>
-                <hr class="my-3 border-b-1 border-zinc-500" />
-                <div class="prose prose-sm dark:prose-stone dark:prose-invert">
-                  <Fragment set:html={project.description?.html} />
-                </div>
-              </div>
-            </div>
-          ))
-      }
-    </div>
+    <ContentGrid content={projects.filter((p) => !p.isMinor)} />
     <h2 class="text-2xl font-redaction20 font-bold text-balance mt-10 mb-3">
       More Projects
     </h2>
@@ -43,9 +18,7 @@ const projects = await getProjects();
           .filter((p) => p.isMinor)
           .map((project) => (
             <>
-              <h1
-                class="text-xl sm:text-2xl font-redaction20 font-bold text-balance"
-              >
+              <h1 class="text-xl sm:text-2xl font-redaction20 font-bold text-balance">
                 {project.title}
               </h1>
               <h2 class="text-sm font-mono mb-2">{project.tagline}</h2>

@@ -1,0 +1,35 @@
+---
+import type { Achievement, Project } from "@lib/cms/types";
+
+export type Props = {
+  content: Achievement[] | Project[];
+};
+
+const { content } = Astro.props;
+---
+
+<div class="sm:columns-2 gap-4 columns-1">
+  {
+    content.map((entry) => (
+      <div class="w-full mb-5 dark:bg-zinc-800 bg-white rounded-lg break-inside-avoid-column overflow-hidden">
+        <img
+          style={entry.coverImage?.placeholder?.css}
+          src={entry.coverImage?.url}
+          width={entry.coverImage?.width}
+          height={entry.coverImage?.height}
+          class="w-full object-cover"
+        />
+        <div class="p-4">
+          <h1 class="text-xl font-redaction20 font-bold text-balance">
+            {entry.title}
+          </h1>
+          <h2 class="text-sm font-mono">{entry.tagline}</h2>
+          <hr class="my-3 border-b-1 border-zinc-500" />
+          <div class="prose prose-sm dark:prose-stone dark:prose-invert">
+            <Fragment set:html={entry.description?.html} />
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

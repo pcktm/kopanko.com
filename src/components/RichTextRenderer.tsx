@@ -13,7 +13,6 @@ function CodeBlock({ children }: { children: any }) {
         theme={themes.dracula}
         code={code}
         language="tsx"
-
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre style={style} className={className}>
@@ -120,7 +119,7 @@ const customRenderers: NodeRendererType = {
     //   return <ElectionCountdown />;
     // }
     return <div>{props.children}</div>;
-  },
+  }
 };
 
 export default function RichTextRenderer({ richContent, references }: { richContent: RichTextProps["content"], references: RichTextProps["references"] }) {

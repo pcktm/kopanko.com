@@ -1,10 +1,13 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import ContentGrid from "@components/ContentGrid.astro";
 import { getAchievements } from "@lib/cms/achievements";
 
 const achievements = await getAchievements();
 ---
 
 <Layout title="Achievements">
-  Achievements
+  <main>
+    <ContentGrid content={achievements.filter((p) => !p.isMinor)} />
+  </main>
 </Layout>
