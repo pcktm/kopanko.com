@@ -1066,6 +1066,11 @@
   dependencies:
     "@types/ms" "*"
 
+"@types/ellipsize@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@types/ellipsize/-/ellipsize-0.1.3.tgz#9ffc3eb6aee914ca90452175008910581804b822"
+  integrity sha512-vqpqIWkpXxZ6fd0rosZ7zuP8GQ+/u6S7enoLdYVVn7urOSEfYlmKDZ3z2FiA+1cNQoa8GJZpodglY9RK0RbKHg==
+
 "@types/estree@1.0.5", "@types/estree@^1.0.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.5.tgz#a6ce3e556e00fd9895dd872dd172ad0d4bd687f4"
@@ -2313,6 +2318,11 @@ electron-to-chromium@^1.4.648:
   version "1.4.667"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.667.tgz#2767d998548e5eeeaf8bdaffd67b56796bfbed3d"
   integrity sha512-66L3pLlWhTNVUhnmSA5+qDM3fwnXsM6KAqE36e2w4KN0g6pkEtlT5bs41FQtQwVwKnfhNBXiWRLPs30HSxd7Kw==
+
+ellipsize@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/ellipsize/-/ellipsize-0.5.1.tgz#2ac8bba69b2190d629cc5065a9c2bf28d99f237e"
+  integrity sha512-0jEAyuIRU6U8MN0S5yUqIrkK/AQWkChh642N3zQuGV57s9bsUWYLc0jJOoDIUkZ2sbEL3ySq8xfq71BvG4q3hw==
 
 emmet@^2.4.3:
   version "2.4.6"
