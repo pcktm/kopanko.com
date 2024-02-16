@@ -1,26 +1,26 @@
-import { RichText } from '@graphcms/rich-text-react-renderer';
-import type { NodeRendererType, RichTextProps } from '@graphcms/rich-text-react-renderer';
-import { useMemo } from 'react';
+import { RichText } from "@graphcms/rich-text-react-renderer";
+import type {
+  NodeRendererType,
+  RichTextProps,
+} from "@graphcms/rich-text-react-renderer";
+import { useMemo } from "react";
 import { Highlight, themes } from "prism-react-renderer";
-import fileIcon from '@hackernoon/pixel-icon-library/icons/SVG/regular/save.svg?raw';
-import infoIcon from '@hackernoon/pixel-icon-library/icons/SVG/regular/info-circle.svg?raw';
+import fileIcon from "@hackernoon/pixel-icon-library/icons/SVG/regular/save.svg?raw";
+import infoIcon from "@hackernoon/pixel-icon-library/icons/SVG/regular/info-circle.svg?raw";
 
 function CodeBlock({ children }: { children: any }) {
-  const code = useMemo(() => children?.props?.content?.map((c: any) => c?.text).join(''), [children]);
+  const code = useMemo(
+    () => children?.props?.content?.map((c: any) => c?.text).join(""),
+    [children],
+  );
   return (
     <div className="font-mono">
-      <Highlight
-        theme={themes.dracula}
-        code={code}
-        language="tsx"
-      >
+      <Highlight theme={themes.dracula} code={code} language="tsx">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre style={style} className={className}>
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line })}>
-                <span className="pr-4 select-none opacity-50">
-                  {i + 1}
-                </span>
+                <span className="select-none pr-4 opacity-50">{i + 1}</span>
                 {line.map((token, key) => (
                   <span key={key} {...getTokenProps({ token })} />
                 ))}
@@ -38,28 +38,31 @@ const customRenderers: NodeRendererType = {
     image(props) {
       if (!props.url) return null as any;
       return (
-        <div className="flex flex-col items-center mt-6 overflow-hidden">
+        <div className="mt-6 flex flex-col items-center overflow-hidden">
           <img
             src={props.url}
             width={props.width}
             height={props.height}
-            className="rounded-md not-prose"
+            className="not-prose rounded-md"
             style={props.placeholder.jsx}
             loading="lazy"
           />
           {props.caption && (
-            <span className="mt-2 dark:text-stone-300 text-stone-700 text-sm text-center">
+            <span className="mt-2 text-center text-sm text-stone-700 dark:text-stone-300">
               {props.caption}
             </span>
           )}
         </div>
       );
     },
-    'application/pdf': (props) => {
+    "application/pdf": (props) => {
       console.log(props);
       return (
-        <div className="flex flex-row not-prose mb-3 items-center gap-2">
-          <span className="w-5 h-5 fill-current" dangerouslySetInnerHTML={{ __html: fileIcon }} />
+        <div className="not-prose mb-3 flex flex-row items-center gap-2">
+          <span
+            className="h-5 w-5 fill-current"
+            dangerouslySetInnerHTML={{ __html: fileIcon }}
+          />
           <a
             className="underline"
             href={props.url}
@@ -73,25 +76,23 @@ const customRenderers: NodeRendererType = {
     },
   },
   code_block(props) {
-    return (
-      <CodeBlock>
-        {props.children}
-      </CodeBlock>
-    );
+    return <CodeBlock>{props.children}</CodeBlock>;
   },
   table(props) {
     return (
       <div className="overflow-x-auto">
-        <table className="w-full not-prose">
-          {props.children}
-        </table>
+        <table className="not-prose w-full">{props.children}</table>
       </div>
     );
   },
   a(props) {
-    const isExternal = new URL(props.href ?? '').hostname !== 'kopanko.com';
+    const isExternal = new URL(props.href ?? "").hostname !== "kopanko.com";
     return (
-      <a href={props.href} target={isExternal ? '_blank' : '_self'} rel={isExternal ? 'noopener noreferrer' : ''}>
+      <a
+        href={props.href}
+        target={isExternal ? "_blank" : "_self"}
+        rel={isExternal ? "noopener noreferrer" : ""}
+      >
         {props.children}
       </a>
     );
@@ -100,15 +101,20 @@ const customRenderers: NodeRendererType = {
     return <h3 className="font-redaction20">{props.children}</h3>;
   },
   class(props) {
-    if (props.className === 'infobox') {
+    if (props.className === "infobox") {
       return (
-        <div className="not-prose p-4 bg-zinc-800 items-center text-zinc-100 w-full rounded-sm flex lg:inline-flex">
-          <span className="w-8 h-8 fill-current flex-shrink-0 mr-4" dangerouslySetInnerHTML={{ __html: infoIcon }} />
-          <span className="mr-2 text-sm text-left flex-auto">{props.children}</span>
+        <div className="not-prose flex w-full items-center rounded-sm bg-zinc-800 p-4 text-zinc-100 lg:inline-flex">
+          <span
+            className="mr-4 h-8 w-8 flex-shrink-0 fill-current"
+            dangerouslySetInnerHTML={{ __html: infoIcon }}
+          />
+          <span className="mr-2 flex-auto text-left text-sm">
+            {props.children}
+          </span>
         </div>
       );
     }
-    if (props.className === 'columns') {
+    if (props.className === "columns") {
       return (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {props.children}
@@ -119,10 +125,16 @@ const customRenderers: NodeRendererType = {
     //   return <ElectionCountdown />;
     // }
     return <div>{props.children}</div>;
-  }
+  },
 };
 
-export default function RichTextRenderer({ richContent, references }: { richContent: RichTextProps["content"], references: RichTextProps["references"] }) {
+export default function RichTextRenderer({
+  richContent,
+  references,
+}: {
+  richContent: RichTextProps["content"];
+  references: RichTextProps["references"];
+}) {
   return (
     <RichText
       content={richContent}

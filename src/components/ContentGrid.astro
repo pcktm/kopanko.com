@@ -8,10 +8,13 @@ export type Props = {
 const { content } = Astro.props;
 ---
 
-<div class="sm:columns-2 gap-4 columns-1">
+<div class="columns-1 gap-4 sm:columns-2">
   {
     content.map((entry) => (
-      <div class="w-full mb-5 shadow-sm border dark:border-zinc-800 dark:backdrop-brightness-110 light:bg-white rounded-lg break-inside-avoid-column overflow-hidden">
+      <div
+        class="light:bg-white mb-5 w-full break-inside-avoid-column
+        overflow-hidden rounded-lg border shadow-sm dark:border-zinc-800 dark:backdrop-brightness-110"
+      >
         <img
           style={entry.coverImage?.placeholder?.css}
           src={entry.coverImage?.url}
@@ -19,11 +22,12 @@ const { content } = Astro.props;
           height={entry.coverImage?.height}
           class="w-full object-cover"
         />
-        <div class="p-4 relative">
+        <div class="relative p-4">
           {entry.action && (
             <a
-              class="font-mono absolute -top-3 right-3 px-2 py-1 backdrop-blur-md text-sm bg-opacity-20
-              rounded-lg bg-stone-100 shadow-xs text-stone-100 backdrop-brightness-90 backdrop-contrast-125"
+              class="shadow-xs backdrop-brightness-130 absolute -top-3 right-3 rounded-lg bg-stone-100 bg-opacity-20 px-2
+              py-1 font-mono text-sm backdrop-blur-md backdrop-contrast-125
+              dark:text-stone-100 dark:backdrop-brightness-90"
               href={entry.action.url}
               target="_blank"
               rel="noopener"
@@ -31,12 +35,12 @@ const { content } = Astro.props;
               {entry.action.text}
             </a>
           )}
-          <h1 class="text-xl mt-1 font-redaction20 font-bold text-balance">
+          <h1 class="mt-1 text-balance font-redaction20 text-xl font-bold">
             {entry.title}
           </h1>
-          <h2 class="text-sm font-mono">{entry.tagline}</h2>
+          <h2 class="font-mono text-sm">{entry.tagline}</h2>
           {/* <hr class="my-3 border-b-1 border-zinc-500" /> */}
-          <div class="mt-2 prose prose-sm dark:prose-stone dark:prose-invert">
+          <div class="prose prose-sm mt-2 dark:prose-stone dark:prose-invert">
             <Fragment set:html={entry.description?.html} />
           </div>
         </div>

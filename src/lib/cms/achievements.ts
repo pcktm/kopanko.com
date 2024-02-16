@@ -7,7 +7,7 @@ type Props = {
 
 export async function getAchievements(props?: Props): Promise<Achievement[]> {
   const query = `query getAchievements {
-    achievements(orderBy: priority_ASC, locales: [${props?.locale ?? 'en'}]) {
+    achievements(orderBy: priority_ASC, locales: [${props?.locale ?? "en"}]) {
       id
       title
       tagline
@@ -28,12 +28,18 @@ export async function getAchievements(props?: Props): Promise<Achievement[]> {
       }
     }
   }`;
-  const {achievements} = await request<{achievements: Achievement[]}>(query);
-  const achievementsWithPlaceholder = await Promise.all(achievements.map(async (ach) => {
-    if (ach.coverImage?.placeholder) {
-      ach.coverImage.placeholder = await imageToCssPlaceholder(ach.coverImage.placeholder as any);
-    }
-    return ach;
-  }));
+  const { achievements } = await request<{ achievements: Achievement[] }>(
+    query,
+  );
+  const achievementsWithPlaceholder = await Promise.all(
+    achievements.map(async (ach) => {
+      if (ach.coverImage?.placeholder) {
+        ach.coverImage.placeholder = await imageToCssPlaceholder(
+          ach.coverImage.placeholder as any,
+        );
+      }
+      return ach;
+    }),
+  );
   return achievementsWithPlaceholder;
 }

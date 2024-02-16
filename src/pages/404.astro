@@ -4,14 +4,18 @@ import Layout from "@layouts/Layout.astro";
 
 <Layout title="Page not found" description="Page not found">
   <div class="flex flex-col gap-6 pt-4">
-    <div class="flex flex-col justify-center items-center">
-      <h1 class="text-5xl xl:text-6xl font-redaction50">404</h1>
-      <h1 class="text-lg font-mono text-center">The page you are looking for does not exist.</h1>
+    <div class="flex flex-col items-center justify-center">
+      <h1 class="font-redaction50 text-5xl xl:text-6xl">404</h1>
+      <h1 class="text-center font-mono text-lg">
+        The page you are looking for does not exist.
+      </h1>
     </div>
-    <hr class="mb-8 border-b-1 border-stone-700 dark:border-stone-300 border-balance w-24 mx-auto" />
-    <div class="flex flex-col gap-2 opacity-0 items-center" id="quote">
+    <hr
+      class="border-b-1 border-balance mx-auto mb-8 w-24 border-stone-700 dark:border-stone-300"
+    />
+    <div class="flex flex-col items-center gap-2 opacity-0" id="quote">
       <h1
-        class="text-xl font-bold font-redaction20 text-balance whitespace-pre-wrap text-center"
+        class="whitespace-pre-wrap text-balance text-center font-redaction20 text-xl font-bold"
         id="quote-text"
       >
         Some quote goes here

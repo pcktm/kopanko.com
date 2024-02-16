@@ -1,24 +1,24 @@
-import Giscus from '@giscus/react';
-import { useEffect, useState } from 'react';
+import Giscus from "@giscus/react";
+import { useEffect, useState } from "react";
 
 type CommentsProps = {
   term: string;
 };
 
-export default function Comments(
-  {
-    term,
-  }: CommentsProps,
-) {
-  const [theme, setTheme] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'transparent_dark' : 'light');
+export default function Comments({ term }: CommentsProps) {
+  const [theme, setTheme] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "transparent_dark"
+      : "light",
+  );
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const listener = (e: MediaQueryListEvent) => {
-      const newTheme = e.matches ? 'transparent_dark' : 'light';
+      const newTheme = e.matches ? "transparent_dark" : "light";
       setTheme(newTheme);
     };
-    mediaQuery.addEventListener('change', listener);
-    return () => mediaQuery.removeEventListener('change', listener);
+    mediaQuery.addEventListener("change", listener);
+    return () => mediaQuery.removeEventListener("change", listener);
   }, []);
   return (
     <Giscus

@@ -24,16 +24,16 @@ const note = await getNoteBySlug(slug);
   description={note.excerpt}
 >
   <div class="mx-auto mt-6">
-    <div class="font-redaction20 text-balance">
+    <div class="text-balance font-redaction20">
       <h1 class="text-5xl">{note.title}</h1>
     </div>
-    <div class="font-mono mt-3 text-md text-balance">
+    <div class="text-md mt-3 text-balance font-mono">
       <p>{note.excerpt}</p>
     </div>
-    <hr class="mt-6 border-b-1 border-stone-700" />
+    <hr class="border-b-1 mt-6 border-stone-700" />
   </div>
   <div class="mx-auto mt-6">
-    <div class="shadow-md rounded-xl overflow-hidden mx-auto">
+    <div class="mx-auto overflow-hidden rounded-xl shadow-md">
       <img
         src={note.coverImage.url}
         class="w-full"
@@ -44,18 +44,18 @@ const note = await getNoteBySlug(slug);
     </div>
   </div>
   <article
-    class="font-sans mt-8 prose prose-stone prose-img:rounded-md dark:prose-invert mx-auto mb-8 md:mb-10"
+    class="prose prose-stone mx-auto mb-8 mt-8 font-sans dark:prose-invert prose-img:rounded-md md:mb-10"
   >
     <RichTextRenderer
       richContent={note.richContent.json}
       references={note.richContent.references}
     />
   </article>
-  <div class="text-sm text-stone-700 dark:text-stone-300 flex flex-col gap-1 sm:flex-row">
-    <div class="flex-1 flex gap-1 flex-wrap">
-      {
-        note.tags?.map(t => `#${t}`).join(", ")
-      }
+  <div
+    class="flex flex-col gap-1 text-sm text-stone-700 sm:flex-row dark:text-stone-300"
+  >
+    <div class="flex flex-1 flex-wrap gap-1">
+      {note.tags?.map((t) => `#${t}`).join(", ")}
     </div>
     <div>
       {
@@ -67,7 +67,7 @@ const note = await getNoteBySlug(slug);
       }
     </div>
   </div>
-  <hr class="mt-3 border-b-1 border-stone-300 dark:border-stone-700" />
+  <hr class="border-b-1 mt-3 border-stone-300 dark:border-stone-700" />
   <div class="mx-auto mt-6 md:mt-10">
     <Comments term={note.title} client:only />
   </div>

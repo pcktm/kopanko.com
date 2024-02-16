@@ -19,6 +19,10 @@ const entries: Entry[] = [
         title:
           "Computer Science and Intelligent Systems B.Eng. Degree from AGH University of Kraków",
       },
+      {
+        date: "2024 — 26",
+        title: "Computer Science and Intelligent Systems M.Eng. Degree",
+      },
     ],
   },
   {
@@ -34,18 +38,22 @@ const entries: Entry[] = [
 ---
 
 <div>
-  <h1 class="font-redaction20 text-3xl mb-3">Resumé</h1>
-  <div class="grid grid-cols-1 md:grid-cols-5 md:gap-x-6 md:gap-y-6 gap-1 md:items-center">
+  <h1 class="mb-3 font-redaction20 text-3xl">Resumé</h1>
+  <div
+    class="grid grid-cols-1 gap-1 md:grid-cols-5 md:items-center md:gap-x-6 md:gap-y-7"
+  >
     {
       entries.map((entry, index) => (
         <>
-          <div class="dark:fill-stone-200 w-40 md:w-full sm:col-span-2 md:col-span-1 mt-6 md:mt-0">
+          <div class="mt-6 w-40 sm:col-span-2 md:col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
             <Fragment set:html={entry.logo} />
           </div>
-          <div class="flex flex-col gap-1 col-span-4">
-            {entry.subentries.map((subentry) => (
+          <div class="col-span-4 flex flex-col gap-3">
+            {entry.subentries.map((subentry, index) => (
               <div>
-                <p class="dark:text-stone-200 font-mono font-bold">{subentry.date}</p>
+                <p class="font-mono font-bold dark:text-stone-200">
+                  {subentry.date}
+                </p>
                 <p class="text-balance font-mono">{subentry.title}</p>
               </div>
             ))}

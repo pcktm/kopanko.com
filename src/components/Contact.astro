@@ -1,31 +1,36 @@
 ---
-import envelope from '@hackernoon/pixel-icon-library/icons/SVG/regular/envelope.svg?raw'
-import key from '@hackernoon/pixel-icon-library/icons/SVG/regular/lock.svg?raw'
+import envelope from "@hackernoon/pixel-icon-library/icons/SVG/regular/envelope.svg?raw";
+import key from "@hackernoon/pixel-icon-library/icons/SVG/regular/lock.svg?raw";
 
-const account = 'hi';
-const domain = 'kopanko.com';
+const account = "hi";
+const domain = "kopanko.com";
 
 export interface Props {
   class?: string;
 }
 
-const {class: className} = Astro.props;
+const { class: className } = Astro.props;
 ---
 
 <div class={className}>
-  <h1 class="font-redaction20 text-3xl mb-2">Get in touch</h1>
+  <h1 class="mb-2 font-redaction20 text-3xl">Get in touch</h1>
   <ul class="font-mono">
-    <li class="flex items-center mb-2 gap-2">
-      <div class="w-5 h-5 fill-current">
-        <Fragment set:html={envelope}/>
+    <li class="mb-2 flex items-center gap-2">
+      <div class="h-5 w-5 fill-current">
+        <Fragment set:html={envelope} />
       </div>
-      <span class="hover:underline mailto-link cursor-pointer" data-a={account} data-d={domain} />
+      <span
+        class="mailto-link cursor-pointer hover:underline"
+        data-a={account}
+        data-d={domain}></span>
     </li>
-    <li class="flex items-center mb-2 gap-2">
-      <div class="w-5 h-5 fill-current">
-        <Fragment set:html={key}/>
+    <li class="mb-2 flex items-center gap-2">
+      <div class="h-5 w-5 fill-current">
+        <Fragment set:html={key} />
       </div>
-      <a href="/0x5B241D4445E1847B-pub.asc" class="hover:underline">My public key</a>
+      <a href="/0x5B241D4445E1847B-pub.asc" class="hover:underline"
+        >My public key</a
+      >
     </li>
   </ul>
 </div>
@@ -37,20 +42,20 @@ const {class: className} = Astro.props;
 </style>
 
 <script>
-const mailtoLinks = document.querySelectorAll('.mailto-link');
-for (const link of mailtoLinks) {
-  link.addEventListener('click', (e) => {
-    if (!e?.target) {
-      return;
-    }
-    const target = e.target as HTMLElement;
-    const account = target.getAttribute('data-a');
-    const domain = target.getAttribute('data-d');
-    if (!account || !domain) {
-      return;
-    }
-    const mailto = `mailto:${account}@${domain}`;
-    window.location.href = mailto;
-  });
-}
+  const mailtoLinks = document.querySelectorAll(".mailto-link");
+  for (const link of mailtoLinks) {
+    link.addEventListener("click", (e) => {
+      if (!e?.target) {
+        return;
+      }
+      const target = e.target as HTMLElement;
+      const account = target.getAttribute("data-a");
+      const domain = target.getAttribute("data-d");
+      if (!account || !domain) {
+        return;
+      }
+      const mailto = `mailto:${account}@${domain}`;
+      window.location.href = mailto;
+    });
+  }
 </script>

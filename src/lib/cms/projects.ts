@@ -7,7 +7,7 @@ type Props = {
 
 export async function getProjects(props?: Props): Promise<Project[]> {
   const query = `query getProjects {
-    projects(orderBy: priority_ASC, locales: [${props?.locale ?? 'en'}]) {
+    projects(orderBy: priority_ASC, locales: [${props?.locale ?? "en"}]) {
       tagline
       title
       id
@@ -28,13 +28,16 @@ export async function getProjects(props?: Props): Promise<Project[]> {
       }
     }
   }`;
-  const {projects} = await request<{projects: Project[]}>(query);
-  const projectsWithPlaceholder = await Promise.all(projects.map(async (project) => {
-    if (project.coverImage?.placeholder) {
-      project.coverImage.placeholder = await imageToCssPlaceholder(project.coverImage.placeholder as any);
-    }
-    return project;
-  }));
+  const { projects } = await request<{ projects: Project[] }>(query);
+  const projectsWithPlaceholder = await Promise.all(
+    projects.map(async (project) => {
+      if (project.coverImage?.placeholder) {
+        project.coverImage.placeholder = await imageToCssPlaceholder(
+          project.coverImage.placeholder as any,
+        );
+      }
+      return project;
+    }),
+  );
   return projectsWithPlaceholder;
 }
-

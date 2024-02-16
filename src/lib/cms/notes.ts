@@ -23,16 +23,19 @@ export async function getAllNotes(): Promise<Note[]> {
       }
     }
   }`;
-  const {notes} = await request<{notes: Note[]}>(query);
-  const notesWithPlaceholder = await Promise.all(notes.map(async (note) => {
-    if (note.coverImage?.placeholder) {
-      note.coverImage.placeholder = await imageToCssPlaceholder(note.coverImage.placeholder as any);
-    }
-    return note;
-  }));
+  const { notes } = await request<{ notes: Note[] }>(query);
+  const notesWithPlaceholder = await Promise.all(
+    notes.map(async (note) => {
+      if (note.coverImage?.placeholder) {
+        note.coverImage.placeholder = await imageToCssPlaceholder(
+          note.coverImage.placeholder as any,
+        );
+      }
+      return note;
+    }),
+  );
   return notesWithPlaceholder;
 }
-
 
 export async function getNoteBySlug(slug: string): Promise<Note> {
   const query = `query getNote($slug: String!) {
@@ -80,9 +83,11 @@ export async function getNoteBySlug(slug: string): Promise<Note> {
     }
   }`;
 
-  const {note} = await request<{note: Note}>(query, {slug});
+  const { note } = await request<{ note: Note }>(query, { slug });
   if (note.coverImage?.placeholder) {
-    note.coverImage.placeholder = await imageToCssPlaceholder(note.coverImage.placeholder as any);
+    note.coverImage.placeholder = await imageToCssPlaceholder(
+      note.coverImage.placeholder as any,
+    );
   }
   const promises = note.richContent.references.map(async (reference) => {
     if (reference.placeholder) {

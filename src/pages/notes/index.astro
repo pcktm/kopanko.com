@@ -9,40 +9,50 @@ const otherNotes = allNotes.slice(1);
 
 <Layout title="Notes">
   <div class="flex flex-col gap-8">
-    <a class="flex flex-col gap-4 mb-4 sm:mb-5 sm:items-center" href={`/notes/${highlightedNote.slug}`} data-astro-prefetch>
+    <a
+      class="mb-4 flex flex-col gap-4 sm:mb-5 sm:items-center"
+      href={`/notes/${highlightedNote.slug}`}
+      data-astro-prefetch
+    >
       <img
         src={highlightedNote.coverImage.url}
         width={highlightedNote.coverImage.width || 100}
         height={highlightedNote.coverImage.height || 100}
-        class="rounded-lg object-cover sm:max-w-xl shadow-md"
+        class="rounded-lg object-cover shadow-md sm:max-w-xl"
         style={highlightedNote.coverImage.placeholder?.css}
         loading="lazy"
       />
       <div class="flex flex-col gap-1 sm:text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold font-redaction20">{highlightedNote.title}</h2>
+        <h2 class="font-redaction20 text-2xl font-bold sm:text-3xl">
+          {highlightedNote.title}
+        </h2>
         <p class="font-mono text-sm">{highlightedNote.excerpt}</p>
-        <div class="flex font-mono flex-row mt-1 gap-2 text-xs flex-wrap dark:text-stone-300 text-stone-700 sm:justify-center">
-          {highlightedNote.tags?.map((tag) => (
-            <span>#{tag}</span>
-          ))}
+        <div
+          class="mt-1 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-700 sm:justify-center dark:text-stone-300"
+        >
+          {highlightedNote.tags?.map((tag) => <span>#{tag}</span>)}
         </div>
       </div>
     </a>
     {
       otherNotes.map((note) => (
-        <a class="flex flex-col sm:flex-row gap-4" href={`/notes/${note.slug}`} data-astro-prefetch>
+        <a
+          class="flex flex-col gap-4 sm:flex-row"
+          href={`/notes/${note.slug}`}
+          data-astro-prefetch
+        >
           <img
             src={note.coverImage.url}
             width={note.coverImage.width || 100}
             height={note.coverImage.height || 100}
-            class="sm:w-24 sm:h-24 rounded-lg object-cover lg:w-48 lg:h-32"
+            class="rounded-lg object-cover sm:h-24 sm:w-24 lg:h-32 lg:w-48"
             style={note.coverImage.placeholder?.css}
             loading="lazy"
           />
           <div class="flex flex-col gap-0.5">
-            <h2 class="text-2xl font-bold font-redaction20">{note.title}</h2>
+            <h2 class="font-redaction20 text-2xl font-bold">{note.title}</h2>
             <p class="font-mono text-sm">{note.excerpt}</p>
-            <div class="flex font-mono flex-row mt-1 gap-2 text-xs flex-wrap dark:text-stone-300 text-stone-700">
+            <div class="mt-1 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-700 dark:text-stone-300">
               {note.tags?.map((tag) => (
                 <span>#{tag}</span>
               ))}
