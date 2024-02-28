@@ -38,6 +38,9 @@ const {
     {
       import.meta.env.PROD ? <SpeedInsights /> : null
     }
+    {
+      import.meta.env.PROD ? <script defer data-domain="kopanko.com" src="https://analytics.kopanko.com/js/script.js"></script> : null
+    }
   </head>
   <body class="dark:bg-darkbg dark:text-stone-100 bg-stone-50 text-stone-950 mb-10">
     <div class="container max-w-3xl mx-auto px-5 mt-16 md:mt-24">
