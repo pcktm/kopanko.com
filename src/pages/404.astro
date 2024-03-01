@@ -3,17 +3,19 @@ import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout title="Page not found" description="Page not found">
-  <div class="flex flex-col gap-6 pt-4">
-    <div class="flex flex-col items-center justify-center">
-      <h1 class="font-redaction50 text-5xl xl:text-6xl">404</h1>
-      <h1 class="text-center font-mono text-lg">
+  <div class="flex flex-col gap-10 pt-4">
+    <div class="flex flex-col items-center gap-2 text-center">
+      <h1 class="text-balance font-redaction50 text-5xl xl:text-6xl">
+        404 Not Found
+      </h1>
+      <h1 class="text-balance font-mono text-lg">
         The page you are looking for does not exist.
       </h1>
     </div>
-    <hr
-      class="border-b-1 border-balance mx-auto mb-8 w-24 border-stone-700 dark:border-stone-300"
-    />
-    <div class="flex flex-col items-center gap-2 opacity-0" id="quote">
+    <div
+      class="flex min-h-64 flex-col items-center justify-center gap-2 border p-4 opacity-0"
+      id="quote"
+    >
       <h1
         class="whitespace-pre-wrap text-balance text-center font-redaction20 text-xl font-bold"
         id="quote-text"
@@ -43,16 +45,11 @@ import Layout from "@layouts/Layout.astro";
     },
     {
       quote:
-        "DEHUMANIZE YOURSELF AND FACE TO BLOODSHED. DEHUMANIZE YOURSELF AND FACE TO BLOODSHED.",
+        "DEHUMANIZE YOURSELF AND FACE TO BLOODSHED. DEHUMANIZE YOURSELF AND FACE TO BLOODSHED. DEHUMANIZE YOURSELF AND FACE TO BLOODSHED.",
     },
     {
       quote:
         "Outwardly: dumbly, I shamble about, a thing that could never have been known as human...",
-      author: "Harlan Ellison",
-    },
-    {
-      quote:
-        "Inwardly: alone. Here. Living under the land, under the sea, in the belly of AM, whom we created...",
       author: "Harlan Ellison",
     },
     {
@@ -68,6 +65,15 @@ import Layout from "@layouts/Layout.astro";
       quote:
         "Cause now I know that all plans fade away \\ And so I'm only planning for today",
       author: "Lewis Del Mar",
+    },
+    {
+      quote:
+        "The beginner's luck, now don't mess it up \\ If you get too stuck just bluff",
+      author: "King Gizzard & The Lizard Wizard",
+    },
+    {
+      quote: "I won't be there \\ I won't play fair",
+      author: "Skinshape",
     },
   ];
   const quoteText = document.getElementById("quote-text");

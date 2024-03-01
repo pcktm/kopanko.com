@@ -2,6 +2,7 @@
 import AGHLogo from "@assets/agh-logo.svg?raw";
 import SmarttechLogo from "@assets/smarttech-logo.svg?raw";
 import ZwierciadlaLogo from "@assets/zwierciadla-logo.svg?raw";
+import LineBar from "@components/LineBar.astro";
 
 type Entry = {
   logo: string;
@@ -31,7 +32,8 @@ const entries: Entry[] = [
     subentries: [
       {
         date: "Apr 2023 — Currently",
-        title: "Mid Node.js Developer (AWS) working on Threathub.io",
+        title:
+          "Mid-level Node.js Developer (AWS) working on Threathub.io. Occasionally engaged in DevOps.",
       },
     ],
   },
@@ -40,7 +42,8 @@ const entries: Entry[] = [
     subentries: [
       {
         date: "2018 — 2019",
-        title: "Chief Coordinator of the 16th edition of Zwierciadła Theatre Festival",
+        title:
+          "Chief Coordinator of the 16th edition of Zwierciadła Theatre Festival",
       },
     ],
   },
@@ -48,7 +51,9 @@ const entries: Entry[] = [
 ---
 
 <div>
-  <h1 class="md:mb-3 font-redaction20 text-3xl">Resumé</h1>
+  <div class="md:mb-3">
+    <h1 class="font-redaction20 text-3xl">Resumé</h1>
+  </div>
   <div
     class="grid grid-cols-1 gap-1 md:grid-cols-5 md:items-center md:gap-x-6 md:gap-y-8"
   >
