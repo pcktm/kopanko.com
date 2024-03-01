@@ -2,7 +2,7 @@
 import Navbar from "@components/Navbar.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import "@fontsource/space-mono";
-import '../styles/fonts.css';
+import "../styles/fonts.css";
 
 interface Props {
   title?: string;
@@ -28,22 +28,31 @@ const {
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{!!title ? `${title} — Jakub Kopańko` : "Jakub Kopańko"}</title>
-    <meta property="og:title" content={!!title ? `${title} — Jakub Kopańko` : "Jakub Kopańko"} />
+    <meta
+      property="og:title"
+      content={!!title ? `${title} — Jakub Kopańko` : "Jakub Kopańko"}
+    />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://kopanko.com/images/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@pcktm_" />
     <meta name="twitter:creator" content="@pcktm_" />
     {!!keywords ? <meta name="keywords" content={keywords} /> : null}
+    {import.meta.env.PROD ? <SpeedInsights /> : null}
     {
-      import.meta.env.PROD ? <SpeedInsights /> : null
-    }
-    {
-      import.meta.env.PROD ? <script defer data-domain="kopanko.com" src="https://analytics.kopanko.com/js/script.js"></script> : null
+      import.meta.env.PROD ? (
+        <script
+          defer
+          data-domain="kopanko.com"
+          src="https://analytics.kopanko.com/js/script.js"
+        />
+      ) : null
     }
   </head>
-  <body class="dark:bg-darkbg dark:text-stone-100 bg-stone-50 text-stone-950 mb-10">
-    <div class="container max-w-3xl mx-auto px-5 mt-16 md:mt-24">
+  <body
+    class="mb-10 bg-stone-50 text-stone-950 dark:bg-darkbg dark:text-stone-100"
+  >
+    <div class="container mx-auto mt-16 max-w-3xl px-5 md:mt-24">
       {
         hideNavbar ? null : (
           <div class="mb-10 md:mb-12">
@@ -56,7 +65,19 @@ const {
   </body>
 </html>
 <style is:global>
-  .font-mono { 
+  .font-mono {
     font-variant-ligatures: none;
   }
 </style>
+
+<script>
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>
