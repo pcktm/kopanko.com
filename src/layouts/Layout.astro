@@ -9,13 +9,15 @@ interface Props {
   hideNavbar?: boolean;
   keywords?: string;
   description?: string;
+  ogImageUrl?: string;
 }
 
 const {
   title,
   hideNavbar,
   keywords,
-  description = "I'm Jakub Kopańko, a full-stack developer, backend expert and open source enthusiast.",
+  description = "Fueled by a zest for the lighter side of life, Jakub is an engineer by day and ultra-low-budget cinema enthusiast by night.",
+  ogImageUrl = "https://kopanko.com/og.png",
 } = Astro.props;
 ---
 
@@ -33,7 +35,7 @@ const {
       content={!!title ? `${title} — Jakub Kopańko` : "Jakub Kopańko"}
     />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://kopanko.com/images/og.png" />
+    <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@pcktm_" />
     <meta name="twitter:creator" content="@pcktm_" />
