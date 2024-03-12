@@ -24,7 +24,7 @@ type CurrentlyPlaying =
   | CurrentlyPlayingCond<false>;
 
 async function fetchCurrentlyPlaying() {
-  const res = await fetch("http://workers.kopanko.com/currently-playing");
+  const res = await fetch("https://workers.kopanko.com/currently-playing");
   const data = await res.json();
   return data as CurrentlyPlaying;
 }
