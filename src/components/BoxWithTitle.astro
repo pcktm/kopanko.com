@@ -1,0 +1,21 @@
+---
+interface Props {
+  title?: string;
+  class?: string;
+  fullWidth?: boolean;
+}
+
+const { title, class: className, fullWidth = false } = Astro.props;
+---
+<div class="flex">
+  <div class:list={["relative rounded-lg border border-gray-200 px-4 pb-4 pt-6", className, fullWidth && "w-full"]}>
+    {title && (
+      <p class="absolute -top-2 bg-stone-50 px-3 font-mono text-xs text-gray-500 dark:bg-darkbg dark:text-stone-200">
+        {title}
+      </p>
+    )}
+    <div class="z-10">
+      <slot />
+    </div>
+  </div>
+</div>

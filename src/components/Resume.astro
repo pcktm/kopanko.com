@@ -2,6 +2,10 @@
 import AGHLogo from "@assets/agh-logo.svg?raw";
 import SmarttechLogo from "@assets/smarttech-logo.svg?raw";
 import ZwierciadlaLogo from "@assets/zwierciadla-logo.svg?raw";
+import URSSLogo from "@assets/urss-logo-short.svg?raw";
+import CampusLogo from "@assets/campus-agh-logo.svg?raw";
+import HackAghLogo from "@assets/hackagh-logo.svg?raw";
+import BoxWithTitle from "./BoxWithTitle.astro";
 
 type Entry = {
   logo: string;
@@ -10,6 +14,11 @@ type Entry = {
     title: string;
   }[];
 };
+
+type SmallLogo = {
+  logo: string;
+  altText: string;
+}
 
 const entries: Entry[] = [
   {
@@ -47,6 +56,21 @@ const entries: Entry[] = [
     ],
   },
 ];
+
+const smallLogos: SmallLogo[] = [
+  {
+    logo: CampusLogo,
+    altText: "Campus AGH",
+  },
+  {
+    logo: HackAghLogo,
+    altText: "Hack AGH",
+  },
+  {
+    logo: URSSLogo,
+    altText: "Uczelniana Rada Samorządu Studentów AGH",
+  },
+];
 ---
 
 <div>
@@ -76,4 +100,17 @@ const entries: Entry[] = [
       ))
     }
   </div>
+  <BoxWithTitle title="non-profit work" class="mt-10">
+    <div
+      class="px-2 py-1 flex flex-row flex-wrap gap-4 md:gap-8 items-center"
+    >
+      {
+        smallLogos.map((smallLogo, index) => (
+          <div class="w-20 dark:fill-stone-300 fill-stone-800">
+            <Fragment set:html={smallLogo.logo} />
+          </div>
+        ))
+      }
+    </div>
+  </BoxWithTitle>
 </div>
