@@ -1,11 +1,14 @@
 ---
+import BoxWithTitle from "./BoxWithTitle.astro";
+import {Icon} from "astro-icon/components";
+
 import AGHLogo from "@assets/agh-logo.svg?raw";
 import SmarttechLogo from "@assets/smarttech-logo.svg?raw";
 import ZwierciadlaLogo from "@assets/zwierciadla-logo.svg?raw";
 import URSSLogo from "@assets/urss-logo-short.svg?raw";
 import CampusLogo from "@assets/campus-agh-logo.svg?raw";
 import HackAghLogo from "@assets/hackagh-logo.svg?raw";
-import BoxWithTitle from "./BoxWithTitle.astro";
+
 
 type Entry = {
   logo: string;
@@ -13,6 +16,8 @@ type Entry = {
     date: string;
     title: string;
   }[];
+  icons?: string[];
+  dividerAfter?: boolean;
 };
 
 type SmallLogo = {
@@ -34,6 +39,7 @@ const entries: Entry[] = [
         title: "Computer Science and Intelligent Systems M.Eng. Degree",
       },
     ],
+    dividerAfter: true,
   },
   {
     logo: SmarttechLogo,
@@ -41,8 +47,13 @@ const entries: Entry[] = [
       {
         date: "Apr 2023 — Now",
         title:
-          "Mid-level Node.js Developer (AWS) working on Threathub.io. Occasionally engaged in DevOps.",
+          "Mid-level software engineer at the forefront of cybersecurity with ThreatHub, leading advancements in threat intelligence and vulnerability management.",
       },
+    ],
+    icons: [
+      "logos:typescript-icon", "logos:nodejs-icon", "logos:aws-amplify", "logos:aws-lambda",
+      "logos:aws-step-functions", "logos:terraform-icon", "logos:postgresql", "logos:mongodb-icon",
+      "logos:graphql", "logos:jira"
     ],
   },
   {
@@ -77,24 +88,39 @@ const smallLogos: SmallLogo[] = [
   <div class="md:mb-3">
     <h1 class="font-redaction20 text-3xl">Resumé</h1>
   </div>
+    <!-- gap every 2-nd should be larger -->
   <div
-    class="grid grid-cols-1 gap-1 md:grid-cols-5 md:items-center md:gap-x-6 md:gap-y-8"
+    class="grid grid-cols-1 gap-1 md:grid-cols-5 md:items-center md:gap-x-6 md:gap-y-9"
   >
     {
       entries.map((entry, index) => (
         <>
-          <div class="mt-6 w-40 sm:col-span-2 md:col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
+          <div class="mt-8 w-40 sm:col-span-2 md:col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
             <Fragment set:html={entry.logo} />
           </div>
           <div class="col-span-4 flex flex-col gap-3">
             {entry.subentries.map((subentry, index) => (
               <div>
-                <p class="font-mono font-bold dark:text-stone-200">
+                <p class="font-semibold text-sm dark:text-stone-200">
                   {subentry.date}
                 </p>
-                <p class="text-balance font-mono">{subentry.title}</p>
+                <p class="text-balance mt-0.5 text-md font-mono">
+                  {subentry.title}
+                </p>
+                {entry.icons && (
+                  <div class="mt-3">
+                    <div class="flex flex-row gap-3 flex-wrap">
+                      {entry.icons.map((icon) => (
+                        <Icon name={icon} size="24" />
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
+            {entry.dividerAfter && (
+              <div class="border-t border-stone-200 max-w-sm dark:border-stone-400 mt-4"></div>
+            )}
           </div>
         </>
       ))
@@ -105,7 +131,7 @@ const smallLogos: SmallLogo[] = [
       class="px-2 py-1 flex flex-row flex-wrap gap-4 md:gap-8 items-center"
     >
       {
-        smallLogos.map((smallLogo, index) => (
+        smallLogos.map((smallLogo) => (
           <div class="w-20 dark:fill-stone-300 fill-stone-800">
             <Fragment set:html={smallLogo.logo} />
           </div>
