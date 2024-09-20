@@ -39,7 +39,6 @@ const entries: Entry[] = [
         title: "Computer Science and Intelligent Systems M.Eng. Degree",
       },
     ],
-    dividerAfter: true,
   },
   {
     logo: SmarttechLogo,
@@ -95,16 +94,16 @@ const smallLogos: SmallLogo[] = [
     {
       entries.map((entry, index) => (
         <>
-          <div class="mt-8 w-40 sm:col-span-2 md:col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
+          <div class="mt-8 w-40 col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
             <Fragment set:html={entry.logo} />
           </div>
-          <div class="col-span-4 flex flex-col gap-3">
+          <div class="col-span-1 flex flex-col gap-3 mt-3 md:mt-0 md:col-span-4">
             {entry.subentries.map((subentry, index) => (
-              <div>
-                <p class="font-semibold text-sm dark:text-stone-200">
+              <div class="even:mt-1">
+                <p class="font-semibold text-md dark:text-stone-200">
                   {subentry.date}
                 </p>
-                <p class="text-balance mt-0.5 text-md font-mono">
+                <p class="text-balance mt-1 md:mt-0.5 text-md font-mono">
                   {subentry.title}
                 </p>
                 {entry.icons && (
@@ -118,15 +117,15 @@ const smallLogos: SmallLogo[] = [
                 )}
               </div>
             ))}
-            {entry.dividerAfter && (
-              <div class="border-t border-stone-200 max-w-sm dark:border-stone-400 mt-4"></div>
-            )}
           </div>
+          {entry.dividerAfter && (
+            <hr class="border-t border-stone-300 max-w-xs dark:border-stone-500 md:col-span-5 col-span-1 mt-6 md:mt-0" />
+          )}
         </>
       ))
     }
   </div>
-  <BoxWithTitle title="non-profit work" class="mt-10">
+  <BoxWithTitle title="non-profit work" class="mt-14">
     <div
       class="px-2 py-1 flex flex-row flex-wrap gap-4 md:gap-8 items-center"
     >
