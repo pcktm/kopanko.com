@@ -20,6 +20,7 @@ export async function getProjects(props?: Props): Promise<Project[]> {
         url
         width
         height
+        caption
         placeholder: url(
           transformation: {
             image: { resize: { width: 10, height: 10, fit: clip } }

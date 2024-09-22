@@ -41,15 +41,11 @@ const {
     <meta name="twitter:creator" content="@pcktm_" />
     {!!keywords ? <meta name="keywords" content={keywords} /> : null}
     {import.meta.env.PROD ? <SpeedInsights /> : null}
-    <!-- {
+    {
       import.meta.env.PROD ? (
-        <script
-          defer
-          data-domain="kopanko.com"
-          src="https://analytics.kopanko.com/js/script.js"
-        />
+        <script defer is:inline src="https://cloud.umami.is/script.js" data-website-id="86c7e91b-6ecd-4b50-87b4-03080b4e734e"></script>
       ) : null
-    } -->
+    }
   </head>
   <body
     class="mb-10 bg-stone-50 text-stone-950 dark:bg-darkbg dark:text-stone-100"

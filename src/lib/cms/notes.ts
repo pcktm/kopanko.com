@@ -1,5 +1,5 @@
 import type { Note } from "./types";
-import { imageToCssPlaceholder, request } from "./utils";
+import { imageToCssPlaceholder, request, cacheRemoteImage } from "./utils";
 
 export async function getAllNotes(): Promise<Note[]> {
   const query = `query getNotes {
@@ -30,6 +30,10 @@ export async function getAllNotes(): Promise<Note[]> {
         note.coverImage.placeholder = await imageToCssPlaceholder(
           note.coverImage.placeholder as any,
         );
+        if (note.coverImage) {
+          const cachedImg = await cacheRemoteImage(note.coverImage.url);
+          note.coverImage.url = cachedImg.src;
+        }
       }
       return note;
     }),
@@ -88,15 +92,21 @@ export async function getNoteBySlug(slug: string): Promise<Note> {
     note.coverImage.placeholder = await imageToCssPlaceholder(
       note.coverImage.placeholder as any,
     );
+    if (note.coverImage) {
+      const cachedImg = await cacheRemoteImage(note.coverImage.url);
+      note.coverImage.url = cachedImg.src;
+    }
   }
   const promises = note.richContent.references.map(async (reference) => {
+    const cachedImg = await cacheRemoteImage(reference.url);
+    reference.url = cachedImg.src;
     if (reference.placeholder) {
       return {
         ...reference,
+        url: cachedImg.src,
         placeholder: await imageToCssPlaceholder(reference.placeholder),
       };
     }
-    return reference;
   });
   const newRefs = await Promise.all(promises);
   note.richContent.references = newRefs;

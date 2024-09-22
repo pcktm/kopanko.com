@@ -1,6 +1,8 @@
 import { blurhashToCssGradientString } from "@unpic/placeholder";
 import { encode } from "blurhash";
 import { getPixels } from "@unpic/pixels";
+import { getImage } from "astro:assets";
+import type { GetImageResult, ImageTransform } from "astro";
 
 export const request = async <D>(
   query: string,
@@ -55,4 +57,12 @@ export async function imageToCssPlaceholder(url: string): Promise<
     };
   }
   return undefined;
+}
+
+export async function cacheRemoteImage(url: string, format: ImageTransform['format'] = 'webp'): Promise<GetImageResult> {
+  return getImage({
+    src: url,
+    format,
+    inferSize: true,
+  });
 }

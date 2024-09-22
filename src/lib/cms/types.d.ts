@@ -21,8 +21,9 @@ export interface ImagePlaceholder {
 export interface Image {
   url: string;
   placeholder?: ImagePlaceholder;
-  height?: number;
-  width?: number;
+  height: number;
+  width: number;
+  caption?: string;
 }
 
 export type Action = {

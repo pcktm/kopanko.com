@@ -8,7 +8,11 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), react(), metaTags(), icon()],
   image: {
-    domains: ["graphassets.com"]
+    domains: ["graphassets.com"],
+    remotePatterns: [{
+      protocol: 'https',
+      hostname: '**.graphassets.com',
+    }]
   },
   prefetch: true,
 });

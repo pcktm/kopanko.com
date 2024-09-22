@@ -1,5 +1,6 @@
 ---
 import type { Achievement, Project } from "@lib/cms/types";
+import { Image } from "astro:assets";
 
 export type Props = {
   content: Achievement[] | Project[];
@@ -15,13 +16,14 @@ const { content } = Astro.props;
         class="light:bg-white mb-5 w-full break-inside-avoid-column
         overflow-hidden rounded-lg border shadow-sm dark:border-zinc-800 dark:backdrop-brightness-110"
       >
-        <img
-          style={entry.coverImage?.placeholder?.css}
-          src={entry.coverImage?.url}
-          width={entry.coverImage?.width}
-          height={entry.coverImage?.height}
-          class="w-full object-cover"
-        />
+        {entry.coverImage && (
+          <Image
+            style={entry.coverImage?.placeholder?.css}
+            src={{src: entry.coverImage.url, height: entry.coverImage.height, width: entry.coverImage.width, format: "webp"}}
+            class="w-full object-cover"
+            alt={entry.coverImage.caption ?? ""}
+          />
+        )}
         <div class="relative p-4">
           {entry.action && (
             <a

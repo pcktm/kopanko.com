@@ -20,6 +20,7 @@ export async function getAchievements(props?: Props): Promise<Achievement[]> {
         url
         width
         height
+        caption
         placeholder: url(
           transformation: {
             image: { resize: { width: 10, height: 10, fit: clip } }
