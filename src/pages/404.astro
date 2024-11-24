@@ -2,27 +2,25 @@
 import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout title="Page not found" description="Page not found">
-  <div class="flex flex-col gap-10 pt-4">
-    <div class="flex flex-col items-center gap-2 text-center">
-      <h1 class="text-balance font-redaction50 text-5xl xl:text-6xl">
-        404 Not Found
-      </h1>
-      <h1 class="text-balance font-mono text-lg">
-        The page you are looking for does not exist.
-      </h1>
-    </div>
-    <div
-      class="flex min-h-64 flex-col items-center justify-center gap-2 border p-4 opacity-0"
-      id="quote"
-    >
-      <h1
-        class="whitespace-pre-wrap text-balance text-center font-redaction20 text-xl font-bold"
-        id="quote-text"
-      >
-        Some quote goes here
-      </h1>
-      <h2 class="text-md font-mono" id="quote-author"></h2>
+<Layout title="Page not found" description="Page not found" breadcrumb="portfolio.sh\n[ERROR 404] Portfolio kernel unreachable">
+  <div class="pt-4">
+    <div class="font-mono tracking-widest text-sm whitespace-pre-line">
+      <span class="text-red-500">[ERROR 404] Portfolio kernel unreachable!</span>
+
+      <br />
+      :: neural-log://inspirational.quotes[23]:
+      <div id="quote" class="opacity-0">
+        <span id="quote-text">
+          Loading inspirational quote...
+        </span>
+        <br />
+        <span class="text-md font-mono" id="quote-author"></h2>
+      </div>
+      [INFO] :: Memory dump complete. [9.8% integrity remaining]
+      <br />
+      <span class="text-red-500">System meltdown imminent. Abort? [Y/n]</span>
+      <br />
+      <span class="animate-blink">&#9608;</span>
     </div>
   </div>
 </Layout>
@@ -81,7 +79,7 @@ import Layout from "@layouts/Layout.astro";
   const quoteContainer = document.getElementById("quote");
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
   if (quoteText && quoteAuthor) {
-    quoteText.textContent = randomQuote.quote.replace(/\\ /g, "\n");
+    quoteText.textContent = `"${randomQuote.quote.replace(/\\ /g, "\n")}"`;
     if (randomQuote.author) {
       quoteAuthor.textContent = `— ${randomQuote.author}`;
     }

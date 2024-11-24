@@ -1,6 +1,6 @@
 ---
 import Navbar from "@components/Navbar.astro";
-import SpeedInsights from "@vercel/speed-insights/astro";
+import Breadcrumb from "@components/Breadcrumb.astro";
 import "@fontsource/space-mono";
 import "../styles/fonts.css";
 
@@ -10,6 +10,7 @@ interface Props {
   keywords?: string;
   description?: string;
   ogImageUrl?: string;
+  breadcrumb?: string;
 }
 
 const {
@@ -18,7 +19,9 @@ const {
   keywords,
   description = "Fueled by a zest for the lighter side of life, Jakub is an engineer by day and ultra-low-budget cinema enthusiast by night.",
   ogImageUrl = "https://kopanko.com/og.png",
+  breadcrumb = "portfolio.sh",
 } = Astro.props;
+
 ---
 
 <!doctype html>
@@ -40,7 +43,6 @@ const {
     <meta name="twitter:site" content="@pcktm_" />
     <meta name="twitter:creator" content="@pcktm_" />
     {!!keywords ? <meta name="keywords" content={keywords} /> : null}
-    {import.meta.env.PROD ? <SpeedInsights /> : null}
     {
       import.meta.env.PROD ? (
         <script defer is:inline src="https://cloud.umami.is/script.js" data-website-id="86c7e91b-6ecd-4b50-87b4-03080b4e734e"></script>
@@ -60,8 +62,10 @@ const {
       }
       <slot />
     </div>
+    <Breadcrumb text={breadcrumb} />
   </body>
 </html>
+
 <style is:global>
   .font-mono {
     font-variant-ligatures: none;

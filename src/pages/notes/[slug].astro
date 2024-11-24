@@ -23,6 +23,7 @@ const note = await getNoteBySlug(slug);
   keywords={note.tags?.join(", ")}
   description={note.excerpt}
   ogImageUrl={note.coverImage.url}
+  breadcrumb={"notes.sh " + note.id.slice(-4)}
 >
   <div class="mx-auto mt-6">
     <div class="text-balance font-redaction20">

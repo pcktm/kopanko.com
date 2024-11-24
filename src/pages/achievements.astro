@@ -6,7 +6,7 @@ import { getAchievements } from "@lib/cms/achievements";
 const achievements = await getAchievements();
 ---
 
-<Layout title="Achievements">
+<Layout title="Achievements" breadcrumb="achievements.sh">
   <main>
     <ContentGrid content={achievements.filter((p) => !p.isMinor)} />
   </main>

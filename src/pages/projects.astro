@@ -6,7 +6,7 @@ import { getProjects } from "@lib/cms/projects";
 const projects = await getProjects();
 ---
 
-<Layout title="Projects">
+<Layout title="Projects" breadcrumb="projects.sh">
   <main>
     <ContentGrid content={projects.filter((p) => !p.isMinor)} />
     <h2 class="mb-3 mt-10 text-balance font-redaction20 text-2xl font-bold">
