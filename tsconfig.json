@@ -14,5 +14,6 @@
       "@assets/*": ["src/assets/*"]
     }
   },
-  "include": ["src/**/*", "api/**/*"],
+  "include": ["src/**/*", "api/**/*", ".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
 }
