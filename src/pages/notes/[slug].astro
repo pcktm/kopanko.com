@@ -25,7 +25,7 @@ const note = await getNoteBySlug(slug);
   ogImageUrl={note.coverImage.url}
   breadcrumb={"notes.sh " + note.id.slice(-4)}
 >
-  <div class="mx-auto mt-6 prose not-prose">
+  <div class="mx-auto mt-6 prose not-prose text-current">
     <div class="text-balance font-redaction20">
       <h1 class="text-4xl font-bold">{note.title}</h1>
     </div>
