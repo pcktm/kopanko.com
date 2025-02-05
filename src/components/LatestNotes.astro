@@ -9,7 +9,7 @@ const notes = await getAllNotes();
   <h1 class="font-redaction20 text-3xl md:mb-3">Latest notes</h1>
   <div class="relative">
     <div
-      class="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-r from-transparent to-stone-50 dark:to-darkbg"
+      class="pointer-events-none absolute right-0 top-0 h-full w-32 bg-linear-to-r from-transparent to-stone-50 dark:to-darkbg"
     >
     </div>
     <div class="flex gap-4 overflow-x-scroll pb-3" id="scrollable">
@@ -17,7 +17,7 @@ const notes = await getAllNotes();
         notes.map((note) => (
           <a
             href={`/notes/${note.slug}`}
-            class="scrollable-item max-w-40 flex-none overflow-hidden rounded border sm:max-w-64 dark:border-zinc-700"
+            class="scrollable-item max-w-40 flex-none overflow-hidden rounded-sm border sm:max-w-64 dark:border-zinc-700"
           >
             <div class="flex flex-col">
               <img
@@ -28,7 +28,7 @@ const notes = await getAllNotes();
                 src={note.coverImage.url}
               />
               <div class="p-4">
-                <h2 class="overflow-ellipsis text-balance font-redaction20 text-lg">
+                <h2 class="text-ellipsis text-balance font-redaction20 text-lg">
                   {ellipsize(note.title, 50)}
                 </h2>
               </div>

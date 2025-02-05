@@ -41,7 +41,7 @@ export default function CurrentlyListeningTo() {
     <div className="font-mono">
       <div className="flex items-center gap-4">
         <span
-          className="h-5 w-5 flex-shrink-0 fill-current"
+          className="h-5 w-5 shrink-0 fill-current"
           dangerouslySetInnerHTML={{ __html: musicIcon }}
         />
         <div>

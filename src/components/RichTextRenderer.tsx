@@ -103,9 +103,9 @@ const customRenderers: NodeRendererType = {
   class(props) {
     if (props.className === "infobox") {
       return (
-        <div className="not-prose flex w-full items-center rounded-sm bg-zinc-800 p-4 text-zinc-100 lg:inline-flex">
+        <div className="not-prose flex w-full items-center rounded-xs bg-zinc-800 p-4 text-zinc-100 lg:inline-flex">
           <span
-            className="mr-4 h-8 w-8 flex-shrink-0 fill-current"
+            className="mr-4 h-8 w-8 shrink-0 fill-current"
             dangerouslySetInnerHTML={{ __html: infoIcon }}
           />
           <span className="mr-2 flex-auto text-left text-sm">
