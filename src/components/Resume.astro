@@ -129,17 +129,18 @@ entries.forEach((entry) => {
                 <p class="text-balance mt-1 md:mt-0.5 text-md font-mono">
                   {subentry.title}
                 </p>
-                {entry.icons && (
-                  <div class="mt-3">
-                    <div class="flex flex-row gap-3 flex-wrap">
-                      {entry.icons.map((icon) => (
-                        <Icon class="fill-current dark:fill-stone-200" name={icon} size="24" title={iconNameToTooltip[icon]} />
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
+
+            {entry.icons && (
+              <div>
+                <div class="flex flex-row gap-3 flex-wrap">
+                  {entry.icons.map((icon) => (
+                    <Icon class="fill-current dark:fill-stone-200" name={icon} size="24" title={iconNameToTooltip[icon]} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           {entry.dividerAfter && (
             <hr class="border-t border-stone-300 max-w-xs dark:border-stone-500 md:col-span-5 col-span-1 mt-6 md:mt-0" />

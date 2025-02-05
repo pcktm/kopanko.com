@@ -9,31 +9,35 @@ const otherNotes = allNotes.slice(1);
 
 <Layout title="Notes" breadcrumb="notes.sh">
   <div class="flex flex-col gap-8">
-    <a
-      class="mb-4 flex flex-col gap-4 sm:mb-5 sm:items-center"
-      href={`/notes/${highlightedNote.slug}`}
-      data-astro-prefetch
-    >
-      <img
-        src={highlightedNote.coverImage.url}
-        width={highlightedNote.coverImage.width || 100}
-        height={highlightedNote.coverImage.height || 100}
-        class="rounded-lg object-cover shadow-md sm:max-w-xl"
-        style={highlightedNote.coverImage.placeholder?.css}
-        loading="lazy"
-      />
-      <div class="flex flex-col gap-1 sm:text-center">
-        <h2 class="font-redaction20 text-2xl font-bold sm:text-3xl">
-          {highlightedNote.title}
-        </h2>
-        <p class="font-mono text-sm">{highlightedNote.excerpt}</p>
-        <div
-          class="mt-1 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-700 sm:justify-center dark:text-stone-300"
+    {
+      highlightedNote && (
+        <a
+          class="mb-4 flex flex-col gap-4 sm:mb-5 sm:items-center"
+          href={`/notes/${highlightedNote.slug}`}
+          data-astro-prefetch
         >
-          {highlightedNote.tags?.map((tag) => <span>#{tag}</span>)}
-        </div>
-      </div>
-    </a>
+          <img
+            src={highlightedNote.coverImage.url}
+            width={highlightedNote.coverImage.width || 100}
+            height={highlightedNote.coverImage.height || 100}
+            class="rounded-lg object-cover shadow-md sm:max-w-xl"
+            style={highlightedNote.coverImage.placeholder?.css}
+            loading="lazy"
+          />
+          <div class="flex flex-col gap-1 sm:text-center">
+            <h2 class="font-redaction20 text-2xl font-bold sm:text-3xl">
+              {highlightedNote.title}
+            </h2>
+            <p class="font-mono text-sm">{highlightedNote.excerpt}</p>
+            <div class="mt-1 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-700 sm:justify-center dark:text-stone-300">
+              {highlightedNote.tags?.map((tag) => (
+                <span>#{tag}</span>
+              ))}
+            </div>
+          </div>
+        </a>
+      )
+    }
     {
       otherNotes.map((note) => (
         <a

@@ -56,7 +56,6 @@ const customRenderers: NodeRendererType = {
       );
     },
     "application/pdf": (props) => {
-      console.log(props);
       return (
         <div className="not-prose mb-3 flex flex-row items-center gap-2">
           <span

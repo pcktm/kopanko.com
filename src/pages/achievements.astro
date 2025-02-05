@@ -8,6 +8,15 @@ const achievements = await getAchievements();
 
 <Layout title="Achievements" breadcrumb="achievements.sh">
   <main>
+    <div class="mb-8">
+      <h1 class="text-balance font-redaction20 text-2xl font-bold">
+        My achievements
+      </h1>
+      <p class="font-mono text-sm text-balance">
+        Stuff I’m proud of — big wins, small wins, and everything in between.
+      </p>
+    </div>
+
     <ContentGrid content={achievements.filter((p) => !p.isMinor)} />
   </main>
 </Layout>

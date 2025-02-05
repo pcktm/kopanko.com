@@ -25,15 +25,15 @@ const note = await getNoteBySlug(slug);
   ogImageUrl={note.coverImage.url}
   breadcrumb={"notes.sh " + note.id.slice(-4)}
 >
-  <div class="mx-auto mt-6">
+  <div class="mx-auto mt-6 prose not-prose">
     <div class="text-balance font-redaction20">
-      <h1 class="text-5xl">{note.title}</h1>
+      <h1 class="text-4xl font-bold">{note.title}</h1>
     </div>
     <div class="text-md mt-3 text-balance font-mono">
       <p>{note.excerpt}</p>
     </div>
-    <hr class="border-b-1 mt-6 border-stone-700" />
   </div>
+
   <div class="mx-auto mt-6">
     <div class="mx-auto overflow-hidden rounded-xl shadow-md">
       <img
@@ -45,6 +45,11 @@ const note = await getNoteBySlug(slug);
       />
     </div>
   </div>
+
+  <div class="prose not-prose mx-auto mt-8">
+    <hr class="border-b-0.5 border-stone-700" />
+  </div>
+  
   <article
     class="prose prose-stone mx-auto mb-8 mt-8 font-sans dark:prose-invert prose-img:rounded-md md:mb-10"
   >

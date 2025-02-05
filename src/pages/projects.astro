@@ -9,7 +9,17 @@ const projects = await getProjects();
 
 <Layout title="Projects" breadcrumb="projects.sh">
   <main>
+    <div class="mb-8">
+      <h1 class="text-balance font-redaction20 text-2xl font-bold">
+        My projects
+      </h1>
+      <p class="font-mono text-sm text-balance">
+        A bunch of things I’ve done that I think are pretty cool.
+      </p>
+    </div>
+
     <ContentGrid content={projects.filter((p) => !p.isMinor)} />
+
     <h2 class="mb-3 mt-10 text-balance font-redaction20 text-2xl font-bold">
       More Projects
     </h2>
