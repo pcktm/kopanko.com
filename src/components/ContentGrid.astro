@@ -29,7 +29,7 @@ const { content } = Astro.props;
             <a
               class="shadow-xs backdrop-brightness-130 absolute -top-3 right-3 rounded-lg bg-stone-100 bg-opacity-20 px-2
               py-1 font-mono text-sm backdrop-blur-md backdrop-contrast-125
-              dark:text-stone-100 dark:backdrop-brightness-90"
+              dark:text-stone-900 dark:backdrop-brightness-90"
               href={entry.action.url}
               target="_blank"
               rel="noopener"
@@ -42,7 +42,7 @@ const { content } = Astro.props;
           </h1>
           <h2 class="font-mono text-sm">{entry.tagline}</h2>
           {/* <hr class="my-3 border-b-1 border-zinc-500" /> */}
-          <div class="prose prose-sm mt-2 dark:prose-stone dark:prose-invert">
+          <div class="prose prose-sm mt-2 dark:prose-invert">
             <Fragment set:html={entry.description?.html} />
           </div>
         </div>
