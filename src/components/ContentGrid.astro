@@ -42,7 +42,7 @@ const { content } = Astro.props;
           </h1>
           <h2 class="font-mono text-sm">{entry.tagline}</h2>
           {/* <hr class="my-3 border-b-1 border-zinc-500" /> */}
-          <div class="prose prose-sm mt-2 dark:prose-invert">
+          <div class="prose prose-sm mt-2 prose-stone dark:prose-invert">
             <Fragment set:html={entry.description?.html} />
           </div>
         </div>
