@@ -8,6 +8,7 @@ import ZwierciadlaLogo from "@assets/zwierciadla-logo.svg?raw";
 import URSSLogo from "@assets/urss-logo-short.svg?raw";
 import CampusLogo from "@assets/campus-agh-logo.svg?raw";
 import HackAghLogo from "@assets/hackagh-logo.svg?raw";
+import ActiveCampaignLogo from "@assets/ac-logo.svg?raw";
 
 type Entry = {
   logo: string;
@@ -25,18 +26,20 @@ type SmallLogo = {
 }
 
 const iconNameToTooltip: Record<string, string> = {
-  "logos:typescript-icon": "TypeScript",
-  "logos:nodejs-icon": "Node.js",
-  "logos:aws-lambda": "AWS Lambda",
-  "logos:aws-step-functions": "AWS Step Functions",
-  "logos:elasticsearch": "Elasticsearch",
-  "logos:terraform-icon": "Terraform",
-  "logos:postgresql": "PostgreSQL",
-  "logos:mongodb-icon": "MongoDB",
-  "logos:graphql": "GraphQL",
-  "logos:jira": "Jira",
-  "logos:openai-icon": "OpenAI",
-  "logos:python": "Python",
+  "simple-icons:typescript": "TypeScript",
+  "simple-icons:nodedotjs": "Node.js",
+  "simple-icons:awslambda": "AWS Lambda",
+  "simple-icons:amazonaws": "Amazon Web Services",
+  "simple-icons:elasticsearch": "Elasticsearch",
+  "simple-icons:terraform": "Terraform",
+  "simple-icons:postgresql": "PostgreSQL",
+  "simple-icons:mongodb": "MongoDB",
+  "simple-icons:graphql": "GraphQL",
+  "simple-icons:jira": "Jira",
+  "simple-icons:openai": "OpenAI",
+  "simple-icons:python": "Python",
+  "simple-icons:react": "React",
+  "simple-icons:fastapi": "FastAPI",
 };
 
 const entries: Entry[] = [
@@ -55,18 +58,31 @@ const entries: Entry[] = [
     ],
   },
   {
+    logo: ActiveCampaignLogo,
+    subentries: [
+      {
+        date: "Mar 2025 — present",
+        title:
+          "Full-stack engineer at ActiveCampaign, building cutting-edge AI-powered marketing automation and CRM solutions.",
+      },
+    ],
+    icons: [
+      "simple-icons:python", "simple-icons:typescript", "simple-icons:react", "simple-icons:awslambda",
+    ]
+  },
+  {
     logo: SmarttechLogo,
     subentries: [
       {
         date: "Apr 2023 — Jan 2025",
         title:
-          "Mid-level software engineer at the forefront of cybersecurity with ThreatHub, leading advancements in threat intelligence and vulnerability management.",
+          "Mid-level backend engineer at ThreatHub, driving innovation in cybersecurity through advanced threat intelligence and vulnerability management.",
       },
     ],
     icons: [
-      "logos:typescript-icon", "logos:nodejs-icon", "logos:aws-lambda",
-      "logos:aws-step-functions", "logos:python",  "logos:elasticsearch", "logos:terraform-icon",
-      "logos:postgresql", "logos:mongodb-icon","logos:graphql", "logos:openai-icon", "logos:jira"
+      "simple-icons:typescript", "simple-icons:nodedotjs", "simple-icons:python", "simple-icons:awslambda",
+      "simple-icons:amazonaws", "simple-icons:elasticsearch", "simple-icons:terraform",
+      "simple-icons:postgresql", "simple-icons:mongodb","simple-icons:graphql", "simple-icons:openai", "simple-icons:jira"
     ],
   },
   {
@@ -112,15 +128,15 @@ entries.forEach((entry) => {
     <h1 class="font-redaction20 text-3xl">Resumé</h1>
   </div>
   <div
-    class="grid grid-cols-1 gap-1 md:grid-cols-5 md:items-center md:gap-x-6 md:gap-y-9"
+    class="grid grid-cols-1 gap-1 md:grid-cols-5 md:items-center md:gap-x-10 md:gap-y-9"
   >
     {
       entries.map((entry, index) => (
         <>
-          <div class="mt-8 w-40 col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
+          <div class="mt-8 w-45 col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
             <Fragment set:html={entry.logo} />
           </div>
-          <div class="col-span-1 flex flex-col gap-3 mt-3 md:mt-0 md:col-span-4">
+          <div class="col-span-1 flex flex-col gap-3.5 mt-3 md:mt-0 md:col-span-4">
             {entry.subentries.map((subentry, index) => (
               <div class="even:mt-1">
                 <p class="font-semibold text-md dark:text-stone-200">
@@ -134,7 +150,7 @@ entries.forEach((entry) => {
 
             {entry.icons && (
               <div>
-                <div class="flex flex-row gap-3 flex-wrap">
+                <div class="flex flex-row gap-4 flex-wrap max-w-sm">
                   {entry.icons.map((icon) => (
                     <Icon class="fill-current dark:fill-stone-200" name={icon} size="24" title={iconNameToTooltip[icon]} />
                   ))}

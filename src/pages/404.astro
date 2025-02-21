@@ -4,23 +4,28 @@ import Layout from "@layouts/Layout.astro";
 
 <Layout title="Page not found" description="Page not found" breadcrumb="portfolio.sh\n[ERROR 404] Portfolio kernel unreachable">
   <div class="pt-4">
-    <div class="font-mono tracking-widest text-sm whitespace-pre-line">
-      <span class="text-red-500">[ERROR 404] Portfolio kernel unreachable!</span>
-
-      <br />
-      :: neural-log://inspirational.quotes[23]:
-      <div id="quote" class="opacity-0">
-        <span id="quote-text">
-          Loading inspirational quote...
-        </span>
-        <br />
-        <span class="text-md font-mono" id="quote-author"></h2>
+    <div class="font-mono tracking-widest text-sm text-white bg-stone-950 rounded-md overflow-hidden">
+      <div class="w-full bg-amber-500 text-stone-950 px-4 py-0.5 flex">
+        <div class="flex-1">
+          MAINFRAME ACCESS POINT
+        </div>
       </div>
-      [INFO] :: Memory dump complete. [9.8% integrity remaining]
-      <br />
-      <span class="text-red-500">System meltdown imminent. Abort? [Y/n]</span>
-      <br />
-      <span class="animate-blink">&#9608;</span>
+      <div class="whitespace-pre-line p-4">
+        <span class="text-red-500">[ERROR 404] Portfolio kernel unreachable!</span>
+
+        <br />
+        :: neural-log://inspirational.quotes[23]:
+        <div id="quote" class="opacity-0">
+          <span id="quote-text">
+            Loading inspirational quote...
+          </span>
+          <br />
+          <span class="text-md font-mono" id="quote-author"></h2>
+        </div>
+        <br />
+        <span class="text-red-500">System meltdown imminent. Abort? [Y/n]</span>
+        <span class="animate-blink">&#9608;</span>
+      </div>
     </div>
   </div>
 </Layout>
@@ -87,4 +92,14 @@ import Layout from "@layouts/Layout.astro";
   if (quoteContainer) {
     quoteContainer.classList.remove("opacity-0");
   }
+
+  document.addEventListener("keydown", (event) => {
+    if (event?.key?.toLowerCase() === "y" || event?.key === "Enter") {
+      window.location.href = "/";
+    }
+
+    if (event?.key?.toLowerCase() === "n") {
+      window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    }
+  });
 </script>
