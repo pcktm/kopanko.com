@@ -40,6 +40,9 @@ const iconNameToTooltip: Record<string, string> = {
   "simple-icons:python": "Python",
   "simple-icons:react": "React",
   "simple-icons:fastapi": "FastAPI",
+  "simple-icons:affinitydesigner": "Affinity Designer",
+  "simple-icons:wordpress": "Wordpress",
+  "simple-icons:javascript": "JavaScript"
 };
 
 const entries: Entry[] = [
@@ -61,7 +64,7 @@ const entries: Entry[] = [
     logo: ActiveCampaignLogo,
     subentries: [
       {
-        date: "Mar 2025 — present",
+        date: "2025 — now",
         title:
           "Full-stack engineer at ActiveCampaign, building cutting-edge AI-powered marketing automation and CRM solutions.",
       },
@@ -74,7 +77,7 @@ const entries: Entry[] = [
     logo: SmarttechLogo,
     subentries: [
       {
-        date: "Apr 2023 — Jan 2025",
+        date: "2023 — 25",
         title:
           "Mid-level backend engineer at ThreatHub, driving innovation in cybersecurity through advanced threat intelligence and vulnerability management.",
       },
@@ -92,8 +95,11 @@ const entries: Entry[] = [
         date: "2018 — 2019",
         title:
           "Chief Coordinator of the 16th edition of Zwierciadła Theatre Festival",
-      },
+      }
     ],
+    icons: [
+      "simple-icons:wordpress", "simple-icons:javascript", "simple-icons:affinitydesigner"
+    ]
   },
 ];
 
@@ -128,29 +134,29 @@ entries.forEach((entry) => {
     <h1 class="font-redaction20 text-3xl">Resumé</h1>
   </div>
   <div
-    class="grid grid-cols-1 gap-1 md:grid-cols-5 md:items-center md:gap-x-10 md:gap-y-9"
+    class="mt-8 grid grid-cols-1 md:grid-cols-5 md:items-start md:gap-x-10 md:gap-y-10"
   >
     {
       entries.map((entry, index) => (
         <>
-          <div class="mt-8 w-45 col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
+          <div class="mt-10 w-45 col-span-1 md:mt-0 md:w-full dark:fill-stone-200">
             <Fragment set:html={entry.logo} />
           </div>
           <div class="col-span-1 flex flex-col gap-3.5 mt-3 md:mt-0 md:col-span-4">
             {entry.subentries.map((subentry, index) => (
-              <div class="even:mt-1">
-                <p class="font-semibold text-md dark:text-stone-200">
+              <p class="even:mt-1 text-balance">
+                <span class="font-semibold mr-2">
                   {subentry.date}
-                </p>
-                <p class="text-balance mt-1 md:mt-0.5 text-md font-mono">
+                </span>
+                <span class="font-mono">
                   {subentry.title}
-                </p>
-              </div>
+                </span>
+              </p>
             ))}
 
             {entry.icons && (
               <div>
-                <div class="flex flex-row gap-4 flex-wrap max-w-sm">
+                <div class="flex flex-row gap-4 mt-1 flex-wrap">
                   {entry.icons.map((icon) => (
                     <Icon class="fill-current dark:fill-stone-200" name={icon} size="24" title={iconNameToTooltip[icon]} />
                   ))}
