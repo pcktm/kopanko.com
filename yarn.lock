@@ -475,26 +475,6 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.24.2.tgz#34aa0b52d0fbb1a654b596acfa595f0c7b77a77b"
   integrity sha512-7VTgWzgMGvup6aSqDPLiW5zHaxYJGTO4OokMjIlrCtf+VpEL+cXKtCvg723iguPYI5oaUNdS+/V7OU2gvXVWEg==
 
-"@fontsource/crimson-text@^5.0.8":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/crimson-text/-/crimson-text-5.1.1.tgz#799c26198f5a234ae49b22aa2bc786a5865e2106"
-  integrity sha512-2SDsSJT3whYIFUTVCJAIkQHVGmMkx7ns4Pm1R5DTWIPuwdz7Yji9pNG5QEBAoA4ce/I248Dir9jmSsVAfDRCUg==
-
-"@fontsource/inter@^5.0.16":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-5.1.1.tgz#401803b6ac4c877f5be94088aa89147ed5a2bd85"
-  integrity sha512-weN3E+rq0Xb3Z93VHJ+Rc7WOQX9ETJPTAJ+gDcaMHtjft67L58sfS65rAjC5tZUXQ2FdZ/V1/sSzCwZ6v05kJw==
-
-"@fontsource/space-grotesk@^5.0.16":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/space-grotesk/-/space-grotesk-5.1.1.tgz#3d8ba03898e7eaefaea08463a3ba6499bf2ba010"
-  integrity sha512-6uOS8WhMEl6lbykGvkSjxRLs/1lDvfSKyXAau7ONVPzUYBmB1E+JQ3C0du7NDp75xUZ+330xPc9/ep8uFgIXBg==
-
-"@fontsource/space-mono@^5.0.18":
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/@fontsource/space-mono/-/space-mono-5.1.2.tgz#ea3ed51b0078c4b5708373de3ee444687ed71c33"
-  integrity sha512-4EtHA1IZQ8hI7Gyc0hP3gPEZUfet4oqUg722J8WD8TalHwxvsy5sNQw0i08TDMu5gZjkLOtp5wPVScx+l9iSiw==
-
 "@giscus/react@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@giscus/react/-/react-2.4.0.tgz#43fa5fbdcca9d44f532e6c61c46878da3476909c"

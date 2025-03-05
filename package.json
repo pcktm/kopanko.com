@@ -12,10 +12,6 @@
   "dependencies": {
     "@astrojs/check": "0.9.4",
     "@astrojs/react": "4.2.0",
-    "@fontsource/crimson-text": "^5.0.8",
-    "@fontsource/inter": "^5.0.16",
-    "@fontsource/space-grotesk": "^5.0.16",
-    "@fontsource/space-mono": "^5.0.18",
     "@giscus/react": "^2.4.0",
     "@graphcms/rich-text-react-renderer": "^0.6.1",
     "@hackernoon/pixel-icon-library": "^1.0.1",

@@ -1,8 +1,3 @@
----
-import moon from "@hackernoon/pixel-icon-library/icons/SVG/regular/moon.svg?raw";
-import sun from "@hackernoon/pixel-icon-library/icons/SVG/regular/sun.svg?raw";
----
-
 <div
   class="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-0"
 >
@@ -23,32 +18,5 @@ import sun from "@hackernoon/pixel-icon-library/icons/SVG/regular/sun.svg?raw";
     <a class="hover:underline" href="/achievements" data-astro-prefetch>
       Achievements
     </a>
-    <span class="inline select-none md:hidden"></span>
-    <!-- <button class="dark-mode-button" aria-label="Toggle dark mode">
-      <div class="hidden h-5 w-5 fill-current dark:block">
-        <Fragment set:html={sun} />
-      </div>
-      <div class="block h-5 w-5 fill-current dark:hidden">
-        <Fragment set:html={moon} />
-      </div>
-    </button> -->
   </nav>
 </div>
-
-<!-- <script>
-  const darkModeButton = document.querySelector(".dark-mode-button");
-
-  if (!darkModeButton) {
-    throw new Error("Dark mode button not found");
-  }
-
-  darkModeButton.addEventListener("click", () => {
-    if (document.documentElement.classList.contains("dark")) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
-  });
-</script> -->
