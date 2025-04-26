@@ -77,6 +77,13 @@ const customRenderers: NodeRendererType = {
   code_block(props) {
     return <CodeBlock>{props.children}</CodeBlock>;
   },
+  code(props) {
+    return (
+      <span className="rounded-sm bg-zinc-800 px-1 py-0.5 text-sm font-mono text-zinc-100">
+        {props.children}
+      </span>
+    );
+  },
   table(props) {
     return (
       <div className="overflow-x-auto">
