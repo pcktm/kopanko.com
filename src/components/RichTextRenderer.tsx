@@ -79,7 +79,7 @@ const customRenderers: NodeRendererType = {
   },
   code(props) {
     return (
-      <span className="rounded-sm bg-zinc-800 px-1 py-0.5 text-sm font-mono text-zinc-100">
+      <span className="rounded-sm dark:bg-zinc-800 px-1 py-0.5 text-sm font-mono dark:text-zinc-100 text-zinc-800 bg-zinc-200">
         {props.children}
       </span>
     );
