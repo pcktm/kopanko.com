@@ -49,7 +49,7 @@ const otherNotes = allNotes.slice(1);
             src={note.coverImage.url}
             width={note.coverImage.width || 100}
             height={note.coverImage.height || 100}
-            class="rounded-lg object-cover sm:h-24 sm:w-24 lg:h-32 lg:w-48"
+            class="rounded-lg object-cover aspect-wxga max-w-full sm:max-w-48"
             style={note.coverImage.placeholder?.css}
             loading="lazy"
           />

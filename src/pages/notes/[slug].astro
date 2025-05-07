@@ -52,6 +52,7 @@ const note = await getNoteBySlug(slug);
   
   <article
     class="prose prose-stone mx-auto mb-8 mt-8 font-sans dark:prose-invert prose-img:rounded-md md:mb-10"
+    id="content"
   >
     <RichTextRenderer
       richContent={note.richContent.json}
@@ -79,3 +80,12 @@ const note = await getNoteBySlug(slug);
     <Comments term={note.title} client:only />
   </div>
 </Layout>
+
+<script>
+  const images = document.querySelectorAll('#content img') as NodeListOf<HTMLImageElement>;
+  images.forEach(image => {
+    image.addEventListener('load', () => {
+      image.style.background = 'none';
+    });
+  });
+</script>

@@ -43,7 +43,7 @@ const customRenderers: NodeRendererType = {
             src={props.url}
             width={props.width}
             height={props.height}
-            className="not-prose rounded-md"
+            className={`not-prose rounded-md aspect-[${props.width / props.height}] object-contain max-h-[500px] lg:max-h-full`}
             style={props.placeholder.jsx}
             loading="lazy"
           />
