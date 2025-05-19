@@ -3,35 +3,9 @@ import type {
   NodeRendererType,
   RichTextProps,
 } from "@graphcms/rich-text-react-renderer";
-import { useMemo } from "react";
-import { Highlight, themes } from "prism-react-renderer";
 import fileIcon from "@hackernoon/pixel-icon-library/icons/SVG/regular/save.svg?raw";
 import infoIcon from "@hackernoon/pixel-icon-library/icons/SVG/regular/info-circle.svg?raw";
-
-function CodeBlock({ children }: { children: any }) {
-  const code = useMemo(
-    () => children?.props?.content?.map((c: any) => c?.text).join(""),
-    [children],
-  );
-  return (
-    <div className="font-mono">
-      <Highlight theme={themes.dracula} code={code} language="tsx">
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre style={style} className={className}>
-            {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line })}>
-                <span className="select-none pr-4 opacity-50">{i + 1}</span>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        )}
-      </Highlight>
-    </div>
-  );
-}
+import CodeBlock from "./CodeBlock";
 
 const customRenderers: NodeRendererType = {
   Asset: {
