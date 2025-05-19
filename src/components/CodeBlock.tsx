@@ -59,7 +59,7 @@ export default function CodeBlock({ children }: { children: any }) {
               {tokens.map((line, i) => (
                 <div key={i} {...getLineProps({ line })}>
                   {
-                    config.lineNumbers && <span className="select-none pr-4 opacity-50">{i + 1}</span>
+                    config.lineNumbers && <span className="select-none pr-4 opacity-50 min-w-8.5 inline-block">{i + 1}</span>
                   }
                   {line.map((token, key) => (
                     <span key={key} {...getTokenProps({ token })} />
