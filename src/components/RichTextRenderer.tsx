@@ -3,8 +3,8 @@ import type {
   NodeRendererType,
   RichTextProps,
 } from "@graphcms/rich-text-react-renderer";
-import fileIcon from "@hackernoon/pixel-icon-library/icons/SVG/regular/save.svg?raw";
-import infoIcon from "@hackernoon/pixel-icon-library/icons/SVG/regular/info-circle.svg?raw";
+import fileIcon from "../icons/save.svg?raw";
+import infoIcon from "../icons/info-circle.svg?raw";
 import CodeBlock from "./CodeBlock";
 
 const customRenderers: NodeRendererType = {

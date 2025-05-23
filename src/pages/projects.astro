@@ -2,7 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import ContentGrid from "@components/ContentGrid.astro";
 import { getProjects } from "@lib/cms/projects";
-import externalLinkIcon from "@hackernoon/pixel-icon-library/icons/SVG/regular/external-link.svg?raw";
+import { Icon } from "astro-icon/components";
 
 const projects = await getProjects();
 ---
@@ -35,9 +35,7 @@ const projects = await getProjects();
                     <h1 class="text-balance font-redaction20 text-xl font-bold sm:text-2xl hover:underline">
                       {project.title}
                     </h1>
-                    <div class="h-3 w-3 fill-current">
-                      <Fragment set:html={externalLinkIcon} />
-                    </div>
+                    <Icon name="external-link" class="h-3 w-3 fill-current"/>
                   </a>
                 ) : (
                   <h1 class="text-balance font-redaction20 text-xl font-bold sm:text-2xl">
