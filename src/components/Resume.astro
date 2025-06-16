@@ -9,6 +9,7 @@ import URSSLogo from "@assets/urss-logo-short.svg?raw";
 import CampusLogo from "@assets/campus-agh-logo.svg?raw";
 import HackAghLogo from "@assets/hackagh-logo.svg?raw";
 import ActiveCampaignLogo from "@assets/ac-logo.svg?raw";
+import FeedbackBubble from "./FeedbackBubble.astro";
 
 type Entry = {
   logo: string;
@@ -18,6 +19,10 @@ type Entry = {
   }[];
   icons?: string[];
   dividerAfter?: boolean;
+  feedback?: {
+    quote: string;
+    signature: string;
+  }[];
 };
 
 type SmallLogo = {
@@ -87,6 +92,16 @@ const entries: Entry[] = [
       "simple-icons:amazonaws", "simple-icons:elasticsearch", "simple-icons:terraform",
       "simple-icons:postgresql", "simple-icons:mongodb","simple-icons:graphql", "simple-icons:openai", "simple-icons:jira"
     ],
+    feedback: [
+      {
+        quote: "Few engineers I’ve encountered in my career possess Jakub's exceptional ability to understand intricate problems and apply a highly analytical mindset.",
+        signature: "— Edi, CTO at Smarttech"
+      },
+      {
+        quote: "If you are looking for an experienced and independent developer with an open mind full of ideas, you don’t need to look any further.",
+        signature: "— Miłosz, Tech Lead at Smarttech",
+      }
+    ]
   },
   {
     logo: ZwierciadlaLogo,
@@ -130,7 +145,7 @@ entries.forEach((entry) => {
 ---
 
 <div>
-  <div class="md:mb-10">
+  <div class="md:mb-10 print:mb-6">
     <h1 class="font-redaction20 text-3xl">Resumé</h1>
   </div>
   <div
@@ -161,6 +176,22 @@ entries.forEach((entry) => {
                     <Icon class="fill-current dark:fill-stone-200" name={icon} size="24" title={iconNameToTooltip[icon]} />
                   ))}
                 </div>
+              </div>
+            )}
+
+            {entry.feedback && (
+              <div class="mt-4 flex flex-col gap-5">
+                {entry.feedback.map((feedback, index) => (
+                  <div class:list={[
+                    index % 2 === 0 ? "mr-10" : "ml-10",
+                  ]}>
+                    <FeedbackBubble
+                      quote={feedback.quote}
+                      signature={feedback.signature}
+                      spikeDirection={index % 2 !== 0 ? 'bottom-left' : 'bottom-right'}
+                    />
+                  </div>
+                ))}
               </div>
             )}
           </div>

@@ -1,0 +1,165 @@
+---
+interface Props {
+  quote: string;
+  signature: string;
+  class?: string;
+  spikeDirection?: "bottom-left" | "bottom-right" | "top-left" | "top-right";
+}
+
+const {
+  quote,
+  signature,
+  class: className,
+  spikeDirection = "bottom-left",
+} = Astro.props;
+
+// Map spike directions to CSS classes
+const spikeClass = {
+  "bottom-left": "bottom",
+  "bottom-right": "bottom-right",
+  "top-left": "top",
+  "top-right": "top-right",
+}[spikeDirection];
+---
+
+<div
+  class:list={[
+    "bubble relative box-border inline-block size-fit max-w-md font-mono text-sm leading-normal",
+    spikeClass,
+    className,
+  ]}
+>
+  <blockquote class="quote-text justify-around">
+    {quote}
+  </blockquote>
+  <div class="m-0 text-right text-xs text-stone-500 dark:text-stone-300">
+    {signature}
+  </div>
+</div>
+
+<style>
+  @reference "../styles/global.css";
+
+  :root {
+    --px: 3px;
+    --bubble-color: theme("colors.stone.50");
+    --border-color: theme("colors.stone.400");
+
+    @variant dark {
+      --bubble-color: theme("colors.darkbg");
+      --border-color: theme("colors.stone.300");
+    }
+  }
+
+  .bubble {
+    background-color: var(--bubble-color);
+    padding: calc(3 * var(--px));
+    margin: calc(3 * var(--px));
+    box-shadow:
+      0 calc(-1 * var(--px)) var(--bubble-color),
+      0 calc(-2 * var(--px)) var(--border-color),
+      var(--px) 0 var(--bubble-color),
+      var(--px) calc(-1 * var(--px)) var(--border-color),
+      calc(2 * var(--px)) 0 var(--border-color),
+      0 var(--px) var(--bubble-color),
+      0 calc(2 * var(--px)) var(--border-color),
+      calc(-1 * var(--px)) 0 var(--bubble-color),
+      calc(-1 * var(--px)) var(--px) var(--border-color),
+      calc(-2 * var(--px)) 0 var(--border-color),
+      calc(-1 * var(--px)) calc(-1 * var(--px)) var(--border-color),
+      var(--px) var(--px) var(--border-color);
+  }
+
+  .quote-text {
+    margin: 0 0 calc(2 * var(--px)) 0;
+  }
+
+  .bubble::after {
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    height: var(--px);
+    width: var(--px);
+  }
+
+  /* Bottom spike (default) */
+  .bubble.bottom::after {
+    bottom: calc(-2 * var(--px));
+    left: calc(8 * var(--px));
+    box-shadow:
+      0 var(--px) var(--border-color),
+      0 calc(2 * var(--px)) var(--border-color),
+      0 calc(3 * var(--px)) var(--border-color),
+      0 calc(4 * var(--px)) var(--border-color),
+      calc(-1 * var(--px)) calc(3 * var(--px)) var(--border-color),
+      calc(-2 * var(--px)) calc(2 * var(--px)) var(--border-color),
+      calc(-3 * var(--px)) var(--px) var(--border-color),
+      calc(-1 * var(--px)) var(--px) var(--bubble-color),
+      calc(-2 * var(--px)) var(--px) var(--bubble-color),
+      calc(-1 * var(--px)) calc(2 * var(--px)) var(--bubble-color),
+      calc(-1 * var(--px)) 0 var(--bubble-color),
+      calc(-2 * var(--px)) 0 var(--bubble-color),
+      calc(-3 * var(--px)) 0 var(--bubble-color);
+  }
+
+  /* Bottom-right spike */
+  .bubble.bottom-right::after {
+    bottom: calc(-2 * var(--px));
+    right: calc(8 * var(--px));
+    box-shadow:
+      0 var(--px) var(--border-color),
+      0 calc(2 * var(--px)) var(--border-color),
+      0 calc(3 * var(--px)) var(--border-color),
+      0 calc(4 * var(--px)) var(--border-color),
+      var(--px) calc(3 * var(--px)) var(--border-color),
+      calc(2 * var(--px)) calc(2 * var(--px)) var(--border-color),
+      calc(3 * var(--px)) var(--px) var(--border-color),
+      var(--px) var(--px) var(--bubble-color),
+      calc(2 * var(--px)) var(--px) var(--bubble-color),
+      var(--px) calc(2 * var(--px)) var(--bubble-color),
+      var(--px) 0 var(--bubble-color),
+      calc(2 * var(--px)) 0 var(--bubble-color),
+      calc(3 * var(--px)) 0 var(--bubble-color);
+  }
+
+  /* Top spike */
+  .bubble.top::after {
+    top: calc(-2 * var(--px));
+    left: calc(8 * var(--px));
+    box-shadow:
+      0 calc(-1 * var(--px)) var(--border-color),
+      0 calc(-2 * var(--px)) var(--border-color),
+      0 calc(-3 * var(--px)) var(--border-color),
+      0 calc(-4 * var(--px)) var(--border-color),
+      calc(-1 * var(--px)) calc(-3 * var(--px)) var(--border-color),
+      calc(-2 * var(--px)) calc(-2 * var(--px)) var(--border-color),
+      calc(-3 * var(--px)) calc(-1 * var(--px)) var(--border-color),
+      calc(-1 * var(--px)) calc(-1 * var(--px)) var(--bubble-color),
+      calc(-2 * var(--px)) calc(-1 * var(--px)) var(--bubble-color),
+      calc(-1 * var(--px)) calc(-2 * var(--px)) var(--bubble-color),
+      calc(-1 * var(--px)) 0 var(--bubble-color),
+      calc(-2 * var(--px)) 0 var(--bubble-color),
+      calc(-3 * var(--px)) 0 var(--bubble-color);
+  }
+
+  /* Top-right spike */
+  .bubble.top-right::after {
+    top: calc(-2 * var(--px));
+    right: calc(8 * var(--px));
+    box-shadow:
+      0 calc(-1 * var(--px)) var(--border-color),
+      0 calc(-2 * var(--px)) var(--border-color),
+      0 calc(-3 * var(--px)) var(--border-color),
+      0 calc(-4 * var(--px)) var(--border-color),
+      var(--px) calc(-3 * var(--px)) var(--border-color),
+      calc(2 * var(--px)) calc(-2 * var(--px)) var(--border-color),
+      calc(3 * var(--px)) calc(-1 * var(--px)) var(--border-color),
+      var(--px) calc(-1 * var(--px)) var(--bubble-color),
+      calc(2 * var(--px)) calc(-1 * var(--px)) var(--bubble-color),
+      var(--px) calc(-2 * var(--px)) var(--bubble-color),
+      var(--px) 0 var(--bubble-color),
+      calc(2 * var(--px)) 0 var(--bubble-color),
+      calc(3 * var(--px)) 0 var(--bubble-color);
+  }
+</style>

@@ -9,10 +9,10 @@ import BoxWithTitle from "@components/BoxWithTitle.astro";
 ---
 
 <Layout>
-  <div class="-mt-5 mb-10">
+  <div class="-mt-5 mb-10 print:mb-8 print:-mt-6">
     <Hero />
   </div>
-  <BoxWithTitle class="mb-10" title="now playing d-_-b" fullWidth>
+  <BoxWithTitle class="mb-10 print:hidden" title="now playing d-_-b" fullWidth>
     <CurrentlyListeningTo client:load />
   </BoxWithTitle>
   <main class="flex flex-col gap-10">
