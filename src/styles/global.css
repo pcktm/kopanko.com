@@ -2,15 +2,14 @@
 
 @plugin '@tailwindcss/typography';
 
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-writer-duo);
+  --font-redaction20: var(--font-redaction-20);
+  --font-redaction50: var(--font-redaction-50);
+}
+
 @theme {
-  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-mono: 'iA Writer Duo', ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, 'Liberation Mono', 'Courier New', monospace;
-  --font-redaction20: Redaction_20, ui-serif, Georgia, Cambria,
-    'Times New Roman', Times, serif;
-  --font-redaction50: Redaction_50, ui-serif, Georgia, Cambria,
-    'Times New Roman', Times, serif;
 
   --color-darkbg: #111313;
 
@@ -65,5 +64,12 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "cpsp" on;
+    font-feature-settings: "frac" on;
+    font-feature-settings: "salt" on;
+    font-feature-settings: "ss02" on;
   }
 }

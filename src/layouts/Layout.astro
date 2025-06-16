@@ -1,7 +1,7 @@
 ---
+import { Font } from 'astro:assets';
 import Navbar from "@components/Navbar.astro";
 import Breadcrumb from "@components/Breadcrumb.astro";
-import "../styles/fonts.css";
 import "../styles/global.css";
 
 interface Props {
@@ -33,6 +33,10 @@ const {
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{!!title ? `${title} — Jakub Kopańko` : "Jakub Kopańko"}</title>
+    <Font cssVariable="--font-inter" />
+    <Font cssVariable="--font-redaction-50" />
+    <Font cssVariable="--font-redaction-20" preload />
+    <Font cssVariable="--font-writer-duo" preload />
     <meta
       property="og:title"
       content={!!title ? `${title} — Jakub Kopańko` : "Jakub Kopańko"}
