@@ -17,10 +17,18 @@ type CurrentlyPlaying = {
   isPlaying: false;
 };
 
-async function fetchCurrentlyPlaying() {
-  const res = await fetch("https://workers.kopanko.com/currently-playing");
-  const data = await res.json();
-  return data as CurrentlyPlaying;
+async function fetchCurrentlyPlaying(): Promise<CurrentlyPlaying> {
+  try {
+    const res = await fetch("https://workers.kopanko.com/currently-playing");
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const data = await res.json();
+    return data as CurrentlyPlaying;
+  } catch (error) {
+    console.warn("Failed to fetch currently playing data:", error);
+    return { isPlaying: false };
+  }
 }
 
 const AlbumArtBase = ({ children }: { children: React.ReactNode }) => (
@@ -56,6 +64,12 @@ export default function CurrentlyListeningTo() {
 
   useEffect(() => {
     fetchCurrentlyPlaying().then(setCurrentlyPlaying);
+    
+    const interval = setInterval(() => {
+      fetchCurrentlyPlaying().then(setCurrentlyPlaying);
+    }, 30000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const formatArtists = (artists: string[]) =>
