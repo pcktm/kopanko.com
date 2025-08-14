@@ -64,7 +64,7 @@ export default function CurrentlyListeningTo() {
 
   useEffect(() => {
     fetchCurrentlyPlaying().then(setCurrentlyPlaying);
-    
+
     const interval = setInterval(() => {
       fetchCurrentlyPlaying().then(setCurrentlyPlaying);
     }, 30000);

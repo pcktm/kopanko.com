@@ -2,6 +2,7 @@
 import { Font } from 'astro:assets';
 import Navbar from "@components/Navbar.astro";
 import Breadcrumb from "@components/Breadcrumb.astro";
+import Footer from "@components/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -51,7 +52,7 @@ const {
     }
   </head>
   <body
-    class="mb-10 bg-stone-50 text-stone-950 dark:bg-darkbg dark:text-stone-100"
+    class="pb-4 bg-stone-50 text-stone-950 dark:bg-darkbg dark:text-stone-100"
   >
     <div class="container mx-auto mt-16 max-w-3xl px-5 md:mt-24 print:mt-12">
       {
@@ -63,7 +64,8 @@ const {
       }
       <slot />
     </div>
-    <Breadcrumb text={breadcrumb} />
+    <Footer />
+    <!-- <Breadcrumb text={breadcrumb} /> -->
   </body>
 </html>
 
