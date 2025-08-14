@@ -2,25 +2,29 @@
 import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout title="Page not found" description="Page not found" breadcrumb="portfolio.sh\n[ERROR 404] Portfolio kernel unreachable">
+<Layout
+  title="Page not found"
+  description="Page not found"
+  breadcrumb="portfolio.sh\n[ERROR 404] Portfolio kernel unreachable"
+>
   <div class="pt-4">
-    <div class="font-mono tracking-widest text-sm text-white bg-stone-950 rounded-md overflow-hidden">
-      <div class="w-full bg-amber-500 text-stone-950 px-4 py-0.5 flex">
-        <div class="flex-1">
-          MAINFRAME ACCESS POINT
-        </div>
+    <div
+      class="overflow-hidden rounded-md bg-stone-950 font-mono text-sm tracking-widest text-white"
+    >
+      <div class="flex w-full bg-amber-500 px-4 py-0.5 text-stone-950">
+        <div class="flex-1">MAINFRAME ACCESS POINT</div>
       </div>
-      <div class="whitespace-pre-line p-4">
-        <span class="text-red-500">[ERROR 404] Portfolio kernel unreachable!</span>
+      <div class="p-4 whitespace-pre-line">
+        <span class="text-red-500"
+          >[ERROR 404] Portfolio kernel unreachable!</span
+        >
 
         <br />
         :: neural-log://inspirational.quotes[23]:
         <div id="quote" class="opacity-0">
-          <span id="quote-text">
-            Loading inspirational quote...
-          </span>
+          <span id="quote-text"> Loading inspirational quote... </span>
           <br />
-          <span class="text-md font-mono" id="quote-author"></h2>
+          <span class="text-md font-mono" id="quote-author"></span>
         </div>
         <br />
         <span class="text-red-500">System meltdown imminent. Abort? [Y/n]</span>

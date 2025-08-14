@@ -12,14 +12,16 @@ const { content } = Astro.props;
 <div class="columns-1 gap-4 sm:columns-2">
   {
     content.map((entry) => (
-      <div
-        class="light:bg-white mb-5 w-full break-inside-avoid-column
-        overflow-hidden rounded-lg border shadow-sm dark:border-zinc-800 dark:backdrop-brightness-110"
-      >
+      <div class="light:bg-white mb-5 w-full break-inside-avoid-column overflow-hidden rounded-lg border shadow-sm dark:border-zinc-800 dark:backdrop-brightness-110">
         {entry.coverImage && (
           <Image
             style={entry.coverImage?.placeholder?.css}
-            src={{src: entry.coverImage.url, height: entry.coverImage.height, width: entry.coverImage.width, format: "webp"}}
+            src={{
+              src: entry.coverImage.url,
+              height: entry.coverImage.height,
+              width: entry.coverImage.width,
+              format: "webp",
+            }}
             class="w-full object-cover"
             alt={entry.coverImage.caption ?? ""}
           />
@@ -27,9 +29,7 @@ const { content } = Astro.props;
         <div class="relative p-4">
           {entry.action && (
             <a
-              class="shadow-xs backdrop-brightness-130 absolute -top-3 right-3 rounded-lg bg-stone-100 bg-opacity-20 px-2
-              py-1 font-mono text-sm backdrop-blur-md backdrop-contrast-125
-              dark:text-stone-900 dark:backdrop-brightness-90"
+              class="bg-opacity-20 absolute -top-3 right-3 rounded-lg bg-stone-100 px-2 py-1 font-mono text-sm shadow-xs backdrop-blur-md backdrop-brightness-130 backdrop-contrast-125 dark:text-stone-900 dark:backdrop-brightness-90"
               href={entry.action.url}
               target="_blank"
               rel="noopener"
@@ -37,12 +37,12 @@ const { content } = Astro.props;
               {entry.action.text}
             </a>
           )}
-          <h1 class="mt-1 text-balance font-redaction20 text-xl font-bold">
+          <h1 class="font-redaction20 mt-1 text-xl font-bold text-balance">
             {entry.title}
           </h1>
           <h2 class="font-mono text-sm">{entry.tagline}</h2>
           {/* <hr class="my-3 border-b-1 border-zinc-500" /> */}
-          <div class="prose prose-sm mt-2 prose-stone dark:prose-invert">
+          <div class="prose prose-sm prose-stone dark:prose-invert mt-2">
             <Fragment set:html={entry.description?.html} />
           </div>
         </div>

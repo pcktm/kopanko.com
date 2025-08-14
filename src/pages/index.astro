@@ -4,20 +4,21 @@ import Hero from "@components/Hero.astro";
 import Contact from "@components/Contact.astro";
 import Resume from "@components/Resume.astro";
 import FeaturedNotes from "@components/FeaturedNotes.astro";
-
 ---
 
 <Layout>
-  <div class="-mt-5 mb-10 print:mb-8 print:-mt-6">
+  <div class="-mt-5 mb-10 print:-mt-6 print:mb-8">
     <Hero />
   </div>
   <main class="flex flex-col gap-10">
     <Resume />
-    <FeaturedNotes slugs={[
-      "you-want-how-much-for-that-effect",
-      "always-winning-at-juwenalia-hacking-rewards-from-the-festival-apps-mini-games",
-      "finding-a-needle-in-the-image-stack"
-    ]} />
+    <FeaturedNotes
+      slugs={[
+        "you-want-how-much-for-that-effect",
+        "always-winning-at-juwenalia-hacking-rewards-from-the-festival-apps-mini-games",
+        "finding-a-needle-in-the-image-stack",
+      ]}
+    />
     <Contact />
   </main>
 </Layout>

@@ -25,11 +25,11 @@ const note = await getNoteBySlug(slug);
   ogImageUrl={note.coverImage.url}
   breadcrumb={"notes.sh " + note.id.slice(-4)}
 >
-  <div class="mx-auto mt-6 prose not-prose text-current">
-    <div class="text-balance font-redaction20">
+  <div class="prose not-prose mx-auto mt-6 text-current">
+    <div class="font-redaction20 text-balance">
       <h1 class="text-4xl font-bold">{note.title}</h1>
     </div>
-    <div class="text-md mt-3 text-balance font-mono">
+    <div class="text-md mt-3 font-mono text-balance">
       <p>{note.excerpt}</p>
     </div>
   </div>
@@ -49,9 +49,9 @@ const note = await getNoteBySlug(slug);
   <div class="prose not-prose mx-auto mt-8">
     <hr class="border-b-0.5 border-stone-700" />
   </div>
-  
+
   <article
-    class="prose prose-stone mx-auto mb-8 mt-8 font-sans dark:prose-invert prose-img:rounded-md md:mb-10"
+    class="prose prose-stone dark:prose-invert prose-img:rounded-md mx-auto mt-8 mb-8 font-sans md:mb-10"
     id="content"
   >
     <RichTextRenderer
@@ -75,17 +75,19 @@ const note = await getNoteBySlug(slug);
       }
     </div>
   </div>
-  <hr class="border-b-1 mt-3 border-stone-300 dark:border-stone-700" />
+  <hr class="mt-3 border-b-1 border-stone-300 dark:border-stone-700" />
   <div class="mx-auto mt-6 md:mt-10">
     <Comments term={note.title} client:only />
   </div>
 </Layout>
 
 <script>
-  const images = document.querySelectorAll('#content img') as NodeListOf<HTMLImageElement>;
-  images.forEach(image => {
-    image.addEventListener('load', () => {
-      image.style.background = 'none';
+  const images = document.querySelectorAll(
+    "#content img",
+  ) as NodeListOf<HTMLImageElement>;
+  images.forEach((image) => {
+    image.addEventListener("load", () => {
+      image.style.background = "none";
     });
   });
 </script>

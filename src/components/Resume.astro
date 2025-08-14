@@ -1,6 +1,6 @@
 ---
 import BoxWithTitle from "./BoxWithTitle.astro";
-import {Icon} from "astro-icon/components";
+import { Icon } from "astro-icon/components";
 
 import AGHLogo from "@assets/agh-logo.svg?raw";
 import SmarttechLogo from "@assets/smarttech-logo.svg?raw";
@@ -28,7 +28,7 @@ type Entry = {
 type SmallLogo = {
   logo: string;
   altText: string;
-}
+};
 
 const iconNameToTooltip: Record<string, string> = {
   "simple-icons:typescript": "TypeScript",
@@ -47,7 +47,7 @@ const iconNameToTooltip: Record<string, string> = {
   "simple-icons:fastapi": "FastAPI",
   "simple-icons:affinitydesigner": "Affinity Designer",
   "simple-icons:wordpress": "Wordpress",
-  "simple-icons:javascript": "JavaScript"
+  "simple-icons:javascript": "JavaScript",
 };
 
 const entries: Entry[] = [
@@ -75,8 +75,11 @@ const entries: Entry[] = [
       },
     ],
     icons: [
-      "simple-icons:python", "simple-icons:typescript", "simple-icons:react", "simple-icons:awslambda",
-    ]
+      "simple-icons:python",
+      "simple-icons:typescript",
+      "simple-icons:react",
+      "simple-icons:awslambda",
+    ],
   },
   {
     logo: SmarttechLogo,
@@ -88,20 +91,31 @@ const entries: Entry[] = [
       },
     ],
     icons: [
-      "simple-icons:typescript", "simple-icons:nodedotjs", "simple-icons:python", "simple-icons:awslambda",
-      "simple-icons:amazonaws", "simple-icons:elasticsearch", "simple-icons:terraform",
-      "simple-icons:postgresql", "simple-icons:mongodb","simple-icons:graphql", "simple-icons:openai", "simple-icons:jira"
+      "simple-icons:typescript",
+      "simple-icons:nodedotjs",
+      "simple-icons:python",
+      "simple-icons:awslambda",
+      "simple-icons:amazonaws",
+      "simple-icons:elasticsearch",
+      "simple-icons:terraform",
+      "simple-icons:postgresql",
+      "simple-icons:mongodb",
+      "simple-icons:graphql",
+      "simple-icons:openai",
+      "simple-icons:jira",
     ],
     feedback: [
       {
-        quote: "Few engineers I’ve encountered in my career possess Jakub's exceptional ability to understand intricate problems and apply a highly analytical mindset.",
-        signature: "— Edi, CTO at Smarttech"
+        quote:
+          "Few engineers I’ve encountered in my career possess Jakub's exceptional ability to understand intricate problems and apply a highly analytical mindset.",
+        signature: "— Edi, CTO at Smarttech",
       },
       {
-        quote: "If you are looking for an experienced and independent developer with an open mind full of ideas, you don’t need to look any further.",
+        quote:
+          "If you are looking for an experienced and independent developer with an open mind full of ideas, you don’t need to look any further.",
         signature: "— Miłosz, Tech Lead at Smarttech",
-      }
-    ]
+      },
+    ],
   },
   {
     logo: ZwierciadlaLogo,
@@ -110,11 +124,13 @@ const entries: Entry[] = [
         date: "2018 — 2019",
         title:
           "Chief Coordinator of the 16th edition of Zwierciadła Theatre Festival",
-      }
+      },
     ],
     icons: [
-      "simple-icons:wordpress", "simple-icons:javascript", "simple-icons:affinitydesigner"
-    ]
+      "simple-icons:wordpress",
+      "simple-icons:javascript",
+      "simple-icons:affinitydesigner",
+    ],
   },
 ];
 
@@ -154,26 +170,27 @@ entries.forEach((entry) => {
     {
       entries.map((entry, index) => (
         <>
-          <div class="mt-10 w-45 col-span-1 md:mt-1.5 md:w-full dark:fill-stone-200">
+          <div class="col-span-1 mt-10 w-45 md:mt-1.5 md:w-full dark:fill-stone-200">
             <Fragment set:html={entry.logo} />
           </div>
-          <div class="col-span-1 flex flex-col gap-3.5 mt-3 md:mt-0 md:col-span-4">
+          <div class="col-span-1 mt-3 flex flex-col gap-3.5 md:col-span-4 md:mt-0">
             {entry.subentries.map((subentry, index) => (
-              <p class="even:mt-1 text-balance">
-                <span class="font-semibold mr-2">
-                  {subentry.date}
-                </span>
-                <span class="font-mono">
-                  {subentry.title}
-                </span>
+              <p class="text-balance even:mt-1">
+                <span class="mr-2 font-semibold">{subentry.date}</span>
+                <span class="font-mono">{subentry.title}</span>
               </p>
             ))}
 
             {entry.icons && (
               <div>
-                <div class="flex flex-row gap-4 mt-1 flex-wrap">
+                <div class="mt-1 flex flex-row flex-wrap gap-4">
                   {entry.icons.map((icon) => (
-                    <Icon class="fill-current dark:fill-stone-200" name={icon} size="24" title={iconNameToTooltip[icon]} />
+                    <Icon
+                      class="fill-current dark:fill-stone-200"
+                      name={icon}
+                      size="24"
+                      title={iconNameToTooltip[icon]}
+                    />
                   ))}
                 </div>
               </div>
@@ -182,13 +199,13 @@ entries.forEach((entry) => {
             {entry.feedback && (
               <div class="mt-4 flex flex-col gap-5">
                 {entry.feedback.map((feedback, index) => (
-                  <div class:list={[
-                    index % 2 === 0 ? "mr-10" : "ml-10",
-                  ]}>
+                  <div class:list={[index % 2 === 0 ? "mr-10" : "ml-10"]}>
                     <FeedbackBubble
                       quote={feedback.quote}
                       signature={feedback.signature}
-                      spikeDirection={index % 2 !== 0 ? 'top-left' : 'top-right'}
+                      spikeDirection={
+                        index % 2 !== 0 ? "top-left" : "top-right"
+                      }
                     />
                   </div>
                 ))}
@@ -196,19 +213,17 @@ entries.forEach((entry) => {
             )}
           </div>
           {entry.dividerAfter && (
-            <hr class="border-t border-stone-300 max-w-xs dark:border-stone-500 md:col-span-5 col-span-1 mt-6 md:mt-0" />
+            <hr class="col-span-1 mt-6 max-w-xs border-t border-stone-300 md:col-span-5 md:mt-0 dark:border-stone-500" />
           )}
         </>
       ))
     }
   </div>
   <BoxWithTitle title="non-profit work" class="mt-14">
-    <div
-      class="px-2 py-1 flex flex-row flex-wrap gap-4 md:gap-8 items-center"
-    >
+    <div class="flex flex-row flex-wrap items-center gap-4 px-2 py-1 md:gap-8">
       {
         smallLogos.map((smallLogo) => (
-          <div class="w-20 dark:fill-stone-300 fill-stone-800">
+          <div class="w-20 fill-stone-800 dark:fill-stone-300">
             <Fragment set:html={smallLogo.logo} />
           </div>
         ))

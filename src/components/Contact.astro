@@ -17,27 +17,43 @@ const { class: className } = Astro.props;
   </div>
   <ul class="mt-3 font-mono">
     <li class="mb-2 flex items-center gap-2">
-      <Icon name="envelope" class="h-5 w-5 fill-current"/>
+      <Icon name="envelope" class="h-5 w-5 fill-current" />
       <span
         class="mailto-link cursor-pointer hover:underline"
         data-a={account}
         data-d={domain}></span>
     </li>
     <li class="mb-2 flex items-center gap-2">
-      <Icon name="github" class="h-5 w-5 fill-current"/>
-      <a href="https://github.com/pcktm/" class="hover:underline" target="_blank" rel="noopener noreferrer" data-umami-event="github click">
+      <Icon name="github" class="h-5 w-5 fill-current" />
+      <a
+        href="https://github.com/pcktm/"
+        class="hover:underline"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-umami-event="github click"
+      >
         @pcktm
       </a>
     </li>
     <li class="mb-2 flex items-center gap-2">
-      <Icon name="linkedin" class="h-5 w-5 fill-current"/>
-      <a href="https://www.linkedin.com/in/pcktm/" class="hover:underline" target="_blank" rel="noopener noreferrer" data-umami-event="linkedin click">
+      <Icon name="linkedin" class="h-5 w-5 fill-current" />
+      <a
+        href="https://www.linkedin.com/in/pcktm/"
+        class="hover:underline"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-umami-event="linkedin click"
+      >
         /in/pcktm
       </a>
     </li>
     <li class="mb-2 flex items-center gap-2">
-      <Icon name="lock-alt" class="h-5 w-5 fill-current"/>
-      <a href="/0x5B241D4445E1847B-pub.asc" class="hover:underline" data-umami-event="public-key click">
+      <Icon name="lock-alt" class="h-5 w-5 fill-current" />
+      <a
+        href="/0x5B241D4445E1847B-pub.asc"
+        class="hover:underline"
+        data-umami-event="public-key click"
+      >
         My public key
       </a>
     </li>
