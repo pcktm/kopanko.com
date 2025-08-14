@@ -1,0 +1,63 @@
+---
+import { getAllNotes } from "@lib/cms/notes";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  slugs: string[];
+  class?: string;
+}
+
+const { slugs, class: className } = Astro.props;
+
+const notes = await getAllNotes();
+const orderedNotes = slugs
+  .map((slug) => notes.find((note) => note.slug === slug)!)
+  .filter(Boolean);
+---
+
+<div class:list={[className, "print:hidden"]}>
+  <div class="mb-3">
+    <h1 class="font-redaction20 text-3xl">Featured notes</h1>
+  </div>
+  <div class="relative">
+    <div
+      class="dark:to-darkbg pointer-events-none absolute top-0 right-0 h-full w-12 bg-linear-to-r from-transparent to-stone-50"
+    >
+    </div>
+    <div class="flex gap-4 overflow-x-scroll pb-3" id="scrollable">
+      {
+        orderedNotes.map((note) => (
+          <a
+            href={`/notes/${note.slug}`}
+            class="scrollable-item max-w-64 flex-none overflow-hidden rounded-sm border dark:border-zinc-700"
+          >
+            <div class="flex flex-col overflow-hidden">
+              <img
+                class="h-36 object-cover object-center"
+                height={note.coverImage.height}
+                width={note.coverImage.width}
+                style={note.coverImage.placeholder?.css}
+                src={note.coverImage.url}
+              />
+              <div class="max-h-36 truncate overflow-hidden p-4 text-ellipsis">
+                <h2 class="font-redaction20 text-md text-balance">
+                  {note.title}
+                </h2>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+      <div class="z-10 w-16 flex-none">
+        <div class="flex h-full items-center justify-center">
+          <a
+            href="/notes"
+            class="rounded-full bg-stone-200 p-3 text-gray-500 hover:text-gray-900"
+          >
+            <Icon name="angle-right-solid" class="h-5 w-5 fill-current" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
