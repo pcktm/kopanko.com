@@ -9,16 +9,34 @@
     </h1>
   </div>
   <nav
-    class="navbar text-md text-md flex flex-wrap items-center justify-center gap-2 font-mono md:flex-nowrap md:gap-4 print:hidden"
+    class="navbar flex flex-wrap items-center justify-center gap-1 font-mono text-sm md:flex-nowrap md:gap-3 print:hidden"
   >
-    <a class="hover:underline" href="/notes" data-astro-prefetch> Notes </a>
-    <span class="inline select-none md:hidden"> &middot; </span>
-    <a class="hover:underline" href="/projects" data-astro-prefetch>
-      Projects
+    <div class="flex items-center gap-1 text-stone-500 dark:text-stone-400 text-xs">
+      <span class="text-green-600 dark:text-green-400">></span>
+      <span>cd</span>
+    </div>
+    <a 
+      class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-1" 
+      href="/notes" 
+      data-astro-prefetch
+    >
+      ./notes
     </a>
-    <span class="inline select-none md:hidden"> &middot; </span>
-    <a class="hover:underline" href="/achievements" data-astro-prefetch>
-      Achievements
+    <span class="text-stone-400 dark:text-stone-500">|</span>
+    <a 
+      class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-1" 
+      href="/projects" 
+      data-astro-prefetch
+    >
+      ./projects
+    </a>
+    <span class="text-stone-400 dark:text-stone-500">|</span>
+    <a 
+      class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-1" 
+      href="/achievements" 
+      data-astro-prefetch
+    >
+      ./achievements
     </a>
   </nav>
 </div>

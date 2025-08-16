@@ -19,45 +19,83 @@ const orderedNotes = slugs
   <div class="mb-3">
     <h1 class="font-redaction20 text-3xl">Featured notes</h1>
   </div>
-  <div class="relative">
-    <div
-      class="dark:to-darkbg pointer-events-none absolute top-0 right-0 h-full w-12 bg-linear-to-r from-transparent to-stone-50"
-    >
-    </div>
-    <div class="flex gap-4 overflow-x-scroll" id="scrollable">
-      {
-        orderedNotes.map((note) => (
+  
+  <div class="flex gap-3 overflow-x-auto pb-2" style="scrollbar-width: none; -ms-overflow-style: none;">
+    {
+      orderedNotes.map((note, index) => (
+        <div class="featured-note flex-none w-52 border border-stone-300 bg-stone-50 dark:border-stone-600 dark:bg-stone-900/30">
           <a
             href={`/notes/${note.slug}`}
-            class="scrollable-item max-w-64 flex-none overflow-hidden rounded-sm border dark:border-zinc-700"
+            class="block"
+            data-astro-prefetch
           >
-            <div class="flex flex-col overflow-hidden">
-              <img
-                class="h-36 object-cover object-center"
-                height={note.coverImage.height}
-                width={note.coverImage.width}
-                style={note.coverImage.placeholder?.css}
-                src={note.coverImage.url}
-              />
-              <div class="max-h-36 truncate overflow-hidden p-4 text-ellipsis">
-                <h2 class="font-redaction20 text-md text-balance">
-                  {note.title}
-                </h2>
+            <!-- Image -->
+            <img
+              class="h-32 w-full object-cover"
+              height={note.coverImage.height}
+              width={note.coverImage.width}
+              style={note.coverImage.placeholder?.css}
+              src={note.coverImage.url}
+              loading="lazy"
+            />
+            
+            <!-- Content -->
+            <div class="p-3 h-20">
+              <div class="mb-2 flex items-center gap-2 font-mono text-xs text-stone-500 dark:text-stone-400">
+                <span class="text-yellow-600 dark:text-yellow-400">*</span>
+                <span>[{String(index + 1).padStart(2, '0')}]</span>
               </div>
+              <h2 class="font-mono text-sm font-bold leading-tight line-clamp-2">
+                {note.title}
+              </h2>
             </div>
           </a>
-        ))
-      }
-      <div class="z-10 w-16 flex-none">
-        <div class="flex h-full items-center justify-center">
-          <a
-            href="/notes"
-            class="rounded-full bg-stone-200 p-3 text-gray-500 hover:text-gray-900"
-          >
-            <Icon name="angle-right-solid" class="h-5 w-5 fill-current" />
-          </a>
         </div>
-      </div>
+      ))
+    }
+    
+    <!-- View all link -->
+    <div class="featured-note flex-none w-52 border border-stone-300 bg-stone-50 dark:border-stone-600 dark:bg-stone-900/30 flex items-center justify-center">
+      <a 
+        href="/notes" 
+        class="font-mono text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 text-center p-4"
+        data-astro-prefetch
+      >
+        <div class="text-xl mb-2">→</div>
+        <div>view all</div>
+      </a>
     </div>
   </div>
 </div>
+
+<style>
+.featured-note {
+  position: relative;
+}
+
+.featured-note::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 1px dotted #a1a1aa;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.featured-note:hover::before {
+  opacity: 1;
+}
+
+.dark .featured-note::before {
+  border-color: #52525b;
+}
+
+/* Hide scrollbar but keep functionality */
+div::-webkit-scrollbar {
+  display: none;
+}
+</style>

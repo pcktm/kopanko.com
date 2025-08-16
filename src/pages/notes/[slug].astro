@@ -26,7 +26,7 @@ const note = await getNoteBySlug(slug);
   breadcrumb={"notes.sh " + note.id.slice(-4)}
 >
   <div class="terminal-post sm:border sm:border-stone-300 sm:bg-stone-50 p-0 sm:p-8 sm:dark:border-stone-700 sm:dark:bg-stone-900/40">
-    <!-- Post header -->
+
     <div class="mb-6 border-b border-stone-200 pb-6 dark:border-stone-700">
       <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-2">
         <span class="text-yellow-600 dark:text-yellow-400">#</span> metadata
@@ -55,7 +55,6 @@ const note = await getNoteBySlug(slug);
       </div>
     </div>
 
-    <!-- Cover image with terminal-style caption -->
     <div class="mb-8">
       <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-2">
         <span class="text-blue-600 dark:text-blue-400">></span> cover_image.jpg
@@ -71,12 +70,10 @@ const note = await getNoteBySlug(slug);
       </div>
     </div>
 
-    <!-- Content separator -->
     <div class="mb-6 font-mono text-xs text-stone-500 dark:text-stone-400">
       <span class="text-cyan-600 dark:text-cyan-400">//</span> content
     </div>
 
-    <!-- Article content -->
     <article
       class="prose prose-stone dark:prose-invert prose-img:rounded-md mb-8 font-sans md:mb-10 max-w-none"
       id="content"
@@ -87,15 +84,50 @@ const note = await getNoteBySlug(slug);
       />
     </article>
 
-    <!-- Terminal-style footer -->
     <div class="border-t border-stone-200 pt-6 dark:border-stone-700">
+      {note.links && note.links.length > 0 && (
+        <div class="mb-6 border-b border-stone-200 pb-6 dark:border-stone-700">
+          <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-3">
+            <span class="text-purple-600 dark:text-purple-400">@</span> references
+          </div>
+          <div class="flex flex-col gap-2">
+            {note.links.map((link, index) => {
+              const isArray = Array.isArray(link);
+              const url = isArray ? link[0] : link;
+              const title = isArray ? link[1] : null;
+              const displayUrl = new URL(url).hostname;
+              
+              return (
+                <div class="flex items-center gap-3 font-mono text-sm">
+                  <span class="text-stone-400 dark:text-stone-500 text-xs">
+                    [{String(index + 1).padStart(2, '0')}]
+                  </span>
+                  <a 
+                    href={url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200"
+                  >
+                    <span class="text-green-600 dark:text-green-400">→</span> 
+                    {title ? (
+                      <span class="text-stone-500 dark:text-stone-400">{title}: </span><span>{displayUrl}</span>
+                    ) : (
+                      <span>{displayUrl}</span>
+                    )}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       <div class="font-mono text-xs text-stone-500 dark:text-stone-400">
         <span class="text-green-600 dark:text-green-400">$</span> EOF
       </div>
     </div>
   </div>
 
-  <!-- Comments section -->
   <div class="mt-8">
     <div class="mb-4 font-mono text-xs text-stone-500 dark:text-stone-400">
       <div class="flex items-center gap-2">

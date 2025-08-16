@@ -84,6 +84,7 @@ export async function getNoteBySlug(slug: string): Promise<Note> {
           }
         )
       }
+      links
     }
   }`;
 

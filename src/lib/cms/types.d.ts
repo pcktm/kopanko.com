@@ -11,6 +11,7 @@ export interface Note {
   title: string;
   targetURL: string;
   coverImage: Image;
+  links?: Array<string | [string, string]>;
 }
 
 export interface ImagePlaceholder {
