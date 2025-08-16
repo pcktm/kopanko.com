@@ -55,16 +55,18 @@ const orderedNotes = slugs
     }
     
     <!-- View all link -->
-    <div class="featured-note flex-none w-52 border border-stone-300 bg-stone-50 dark:border-stone-600 dark:bg-stone-900/30 flex items-center justify-center">
-      <a 
-        href="/notes" 
-        class="font-mono text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 text-center p-4"
-        data-astro-prefetch
-      >
-        <div class="text-xl mb-2">→</div>
+    <a 
+      href="/notes" 
+      class="featured-note flex-none w-52 border border-stone-300 bg-stone-50 dark:border-stone-600 dark:bg-stone-900/30 flex items-center justify-center font-mono text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200"
+      data-astro-prefetch
+    >
+      <div class="text-center">
+        <div class="mb-2">
+          <Icon name="angle-right-solid" class="h-5 w-5 mx-auto" />
+        </div>
         <div>view all</div>
-      </a>
-    </div>
+      </div>
+    </a>
   </div>
 </div>
 
