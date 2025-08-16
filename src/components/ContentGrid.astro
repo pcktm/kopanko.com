@@ -12,7 +12,7 @@ const { content } = Astro.props;
 <div class="columns-1 gap-4 sm:columns-2">
   {
     content.map((entry) => (
-      <div class="light:bg-white mb-5 w-full break-inside-avoid-column overflow-hidden rounded-lg border shadow-sm dark:border-zinc-800 dark:backdrop-brightness-110">
+      <div class="mb-5 w-full break-inside-avoid-column ncurses-border bg-stone-50 dark:bg-zinc-900 relative">
         {entry.coverImage && (
           <Image
             style={entry.coverImage?.placeholder?.css}
@@ -26,23 +26,24 @@ const { content } = Astro.props;
             alt={entry.coverImage.caption ?? ""}
           />
         )}
-        <div class="relative p-4">
+        <div class="relative p-4 font-mono">
           {entry.action && (
             <a
-              class="bg-opacity-20 absolute -top-3 right-3 rounded-lg bg-stone-100 px-2 py-1 font-mono text-sm shadow-xs backdrop-blur-md backdrop-brightness-130 backdrop-contrast-125 dark:text-stone-900 dark:backdrop-brightness-90"
+              class="absolute -top-3 right-3 bg-zinc-800 text-green-400 px-2 py-1 font-mono text-xs border border-zinc-600"
               href={entry.action.url}
               target="_blank"
               rel="noopener"
             >
-              {entry.action.text}
+              [{entry.action.text}]
             </a>
           )}
           <h1 class="font-redaction20 mt-1 text-xl font-bold text-balance">
             {entry.title}
           </h1>
-          <h2 class="font-mono text-sm">{entry.tagline}</h2>
-          {/* <hr class="my-3 border-b-1 border-zinc-500" /> */}
-          <div class="prose prose-sm prose-stone dark:prose-invert mt-2">
+          <h2 class="font-mono text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+            # {entry.tagline}
+          </h2>
+          <div class="prose prose-sm prose-stone dark:prose-invert mt-3 font-sans">
             <Fragment set:html={entry.description?.html} />
           </div>
         </div>
@@ -50,3 +51,16 @@ const { content } = Astro.props;
     ))
   }
 </div>
+
+<style>
+.ncurses-border {
+  /* Subtle dithered effect - more functional, less showy */
+  border: 1px dotted #a1a1aa;
+  position: relative;
+}
+
+/* Dark mode version - very subtle */
+.dark .ncurses-border {
+  border-color: #52525b;
+}
+</style>

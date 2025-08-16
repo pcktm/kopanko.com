@@ -3,66 +3,51 @@ import Layout from "@layouts/Layout.astro";
 import { getAllNotes } from "@lib/cms/notes";
 
 const allNotes = await getAllNotes();
-const highlightedNote = allNotes[0];
-const otherNotes = allNotes.slice(1);
 ---
 
 <Layout title="Notes" breadcrumb="notes.sh">
-  <div class="flex flex-col gap-8">
+  <div class="flex flex-col gap-6">
+    <div class="font-mono text-xs text-stone-500 dark:text-stone-400">
+      <div class="flex items-center gap-2 -ml-[3px]">
+        <span>├──</span>
+        <span>entries:</span>
+      </div>
+    </div>
+    
     {
-      highlightedNote && (
-        <a
-          class="mb-4 flex flex-col gap-4 sm:mb-5 sm:items-center"
-          href={`/notes/${highlightedNote.slug}`}
-          data-astro-prefetch
-        >
-          <img
-            src={highlightedNote.coverImage.url}
-            width={highlightedNote.coverImage.width || 100}
-            height={highlightedNote.coverImage.height || 100}
-            class="rounded-lg object-cover shadow-md sm:max-w-xl"
-            style={highlightedNote.coverImage.placeholder?.css}
-            loading="lazy"
-          />
-          <div class="flex flex-col gap-1 sm:text-center">
-            <h2 class="font-redaction20 text-2xl font-bold text-balance sm:text-3xl">
-              {highlightedNote.title}
-            </h2>
-            <p class="font-mono text-sm">{highlightedNote.excerpt}</p>
-            <div class="mt-1 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-700 sm:justify-center dark:text-stone-300">
-              {highlightedNote.tags?.map((tag) => (
-                <span>#{tag}</span>
-              ))}
+      allNotes.map((note, index) => (
+        <div class="note-entry border-l-2 border-stone-300 pl-4 dark:border-stone-600">
+          <a
+            class="flex flex-col gap-3 sm:flex-row sm:gap-4 sm:items-start"
+            href={`/notes/${note.slug}`}
+            data-astro-prefetch
+          >
+            <div class="flex flex-col gap-2 sm:flex-row sm:gap-3">
+              <div class="font-mono text-xs text-stone-400 dark:text-stone-500 sm:mt-1">
+                [{String(index + 1).padStart(2, '0')}]
+              </div>
+              <img
+                src={note.coverImage.url}
+                width={note.coverImage.width || 100}
+                height={note.coverImage.height || 100}
+                class="aspect-wxga object-cover w-40"
+                style={note.coverImage.placeholder?.css}
+                loading="lazy"
+              />
             </div>
-          </div>
-        </a>
-      )
-    }
-    {
-      otherNotes.map((note) => (
-        <a
-          class="flex flex-col gap-4 sm:flex-row"
-          href={`/notes/${note.slug}`}
-          data-astro-prefetch
-        >
-          <img
-            src={note.coverImage.url}
-            width={note.coverImage.width || 100}
-            height={note.coverImage.height || 100}
-            class="aspect-wxga max-w-full rounded-lg object-cover sm:max-w-48"
-            style={note.coverImage.placeholder?.css}
-            loading="lazy"
-          />
-          <div class="flex flex-col gap-0.5">
-            <h2 class="font-redaction20 text-2xl font-bold">{note.title}</h2>
-            <p class="font-mono text-sm">{note.excerpt}</p>
-            <div class="mt-1 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-700 dark:text-stone-300">
-              {note.tags?.map((tag) => (
-                <span>#{tag}</span>
-              ))}
+            <div class="flex flex-col gap-1 sm:flex-1">
+              <h2 class="font-mono text-lg font-bold leading-tight">
+                {note.title}
+              </h2>
+              <p class="font-mono text-sm text-stone-600 dark:text-stone-300 leading-relaxed">{note.excerpt}</p>
+              <div class="mt-2 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-500 dark:text-stone-400">
+                {note.tags?.map((tag: any) => (
+                  <span class="bg-stone-100 px-2 py-0.5 dark:bg-stone-800">#{tag}</span>
+                ))}
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       ))
     }
   </div>
