@@ -14,50 +14,54 @@ const allNotes = await getAllNotes();
       A collection of thoughts, on various topics.
     </p>
   </div>
-  <div class="mb-12 flex flex-col gap-6">
-    <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-2">
+  <div class="mb-8">
+    <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-4">
       <span class="text-blue-600 dark:text-blue-400">></span> entries
     </div>
 
-    {
-      allNotes.map((note, index) => (
-        <div class="note-entry border-b border-stone-200 pb-6 dark:border-stone-700 last:border-b-0 last:pb-0">
-          <a
-            class="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4"
-            href={`/notes/${note.slug}`}
-            data-astro-prefetch
-          >
-            <div class="flex flex-col gap-2 sm:flex-row sm:gap-3">
-              <div class="font-mono text-xs text-stone-400 sm:mt-1 dark:text-stone-500">
-                [{String(index + 1).padStart(2, "0")}]
-              </div>
+    <div class="flex flex-col gap-6">
+      {
+        allNotes.map((note, index) => (
+          <div class="border border-stone-200 bg-stone-50 dark:border-stone-700 dark:bg-stone-900/40 overflow-hidden">
+            <a
+              href={`/notes/${note.slug}`}
+              data-astro-prefetch
+              class="flex flex-col sm:flex-row"
+            >
               <img
                 src={note.coverImage.url}
                 width={note.coverImage.width || 100}
                 height={note.coverImage.height || 100}
-                class="aspect-wxga w-40 object-cover"
+                class="aspect-wxga w-full sm:w-64 object-cover"
                 style={note.coverImage.placeholder?.css}
                 loading="lazy"
               />
-            </div>
-            <div class="flex flex-col gap-1 sm:flex-1">
-              <h2 class="font-redaction20 text-xl font-bold text-balance leading-tight">
-                {note.title}
-              </h2>
-              <p class="font-mono text-sm leading-relaxed text-stone-600 dark:text-stone-300">
-                {note.excerpt}
-              </p>
-              <div class="mt-2 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-500 dark:text-stone-400">
-                {note.tags?.map((tag: any) => (
-                  <span class="bg-stone-200 px-2 py-0.5 dark:bg-stone-800">
-                    #{tag}
-                  </span>
-                ))}
+              <div class="p-4 flex-1">
+                <div class="font-mono text-xs text-stone-400 mb-2 dark:text-stone-500">
+                  [{String(index + 1).padStart(2, "0")}]
+                </div>
+                <h2 class="font-redaction20 text-xl font-bold text-balance leading-tight mb-2">
+                  {note.title}
+                </h2>
+                <p class="font-mono text-sm leading-relaxed text-stone-600 dark:text-stone-300 mb-3">
+                  {note.excerpt}
+                </p>
+                <div class="flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-500 dark:text-stone-400">
+                  {note.tags?.map((tag: any) => (
+                    <span class="bg-stone-200 px-2 py-0.5 dark:bg-stone-800">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-      ))
-    }
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  
+  <div class="my-8 font-mono text-xs text-stone-500 dark:text-stone-400">
+    <span class="text-stone-600 dark:text-stone-300">{allNotes.length} entries • more coming soon</span>
   </div>
 </Layout>
