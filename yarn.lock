@@ -714,10 +714,10 @@
   dependencies:
     "@iconify/types" "*"
 
-"@iconify-json/simple-icons@^1.2.25":
-  version "1.2.25"
-  resolved "https://registry.yarnpkg.com/@iconify-json/simple-icons/-/simple-icons-1.2.25.tgz#b984e1851baac5cddbe82ecc15f3a5806c8879bb"
-  integrity sha512-2E1/gOCO97rF6usfhhiXxwzCb+UhdEsxW3lW1Sew+xZY0COY6dp82Z/r1rUt2fWKneWjuoGcNeJHHXQyG8mIuw==
+"@iconify-json/simple-icons@^1.2.51":
+  version "1.2.51"
+  resolved "https://registry.yarnpkg.com/@iconify-json/simple-icons/-/simple-icons-1.2.51.tgz#9a6b1ed21d362c60f29676148ef10492913020d1"
+  integrity sha512-vFH0QEHFG3rt9hZOR3oE/ZfAKFA7cS11UXttD/IphClEbiSTsPbpeeJ4kRYGDBUDmAKhBzk6jxHNG8VipwA69Q==
   dependencies:
     "@iconify/types" "*"
 

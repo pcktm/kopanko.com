@@ -15,7 +15,7 @@
     "@giscus/react": "^2.4.0",
     "@graphcms/rich-text-react-renderer": "^0.6.1",
     "@hackernoon/pixel-icon-library": "^1.0.1",
-    "@iconify-json/simple-icons": "^1.2.25",
+    "@iconify-json/simple-icons": "^1.2.51",
     "@sentry/astro": "^7.94.1",
     "@spotlightjs/astro": "^1.0.10",
     "@tailwindcss/vite": "^4.0.3",

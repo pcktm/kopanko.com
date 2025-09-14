@@ -11,26 +11,7 @@ import HackAghLogo from "@assets/hackagh-logo.svg?raw";
 import ActiveCampaignLogo from "@assets/ac-logo.svg?raw";
 import FeedbackBubble from "./FeedbackBubble.astro";
 
-type Entry = {
-  logo: string;
-  subentries: {
-    date: string;
-    title: string;
-  }[];
-  icons?: string[];
-  dividerAfter?: boolean;
-  feedback?: {
-    quote: string;
-    signature: string;
-  }[];
-};
-
-type SmallLogo = {
-  logo: string;
-  altText: string;
-};
-
-const iconNameToTooltip: Record<string, string> = {
+const iconNameToTooltip = {
   "simple-icons:typescript": "TypeScript",
   "simple-icons:nodedotjs": "Node.js",
   "simple-icons:awslambda": "AWS Lambda",
@@ -48,7 +29,32 @@ const iconNameToTooltip: Record<string, string> = {
   "simple-icons:affinitydesigner": "Affinity Designer",
   "simple-icons:wordpress": "Wordpress",
   "simple-icons:javascript": "JavaScript",
+  "simple-icons:kubernetes": "Kubernetes",
+  "simple-icons:pydantic": "Pydantic AI",
+  "simple-icons:grafana": "Grafana",
+  "simple-icons:anthropic": "Anthropic",
+  "simple-icons:modelcontextprotocol": "Model Context Protocol",
+} as const;
+
+type Entry = {
+  logo: string;
+  subentries: {
+    date: string;
+    title: string;
+  }[];
+  icons?: Array<keyof typeof iconNameToTooltip>;
+  dividerAfter?: boolean;
+  feedback?: {
+    quote: string;
+    signature: string;
+  }[];
 };
+
+type SmallLogo = {
+  logo: string;
+  altText: string;
+};
+
 
 const entries: Entry[] = [
   {
@@ -71,14 +77,19 @@ const entries: Entry[] = [
       {
         date: "2025 — now",
         title:
-          "Full-stack engineer at ActiveCampaign, building cutting-edge AI-powered marketing automation and CRM solutions.",
+          "Full-stack engineer at ActiveCampaign, building cutting-edge AI-powered marketing automation and customer-centric agentic systems.",
       },
     ],
     icons: [
       "simple-icons:python",
+      "simple-icons:fastapi",
       "simple-icons:typescript",
       "simple-icons:react",
-      "simple-icons:awslambda",
+      "simple-icons:kubernetes",
+      "simple-icons:pydantic",
+      "simple-icons:modelcontextprotocol",
+      "simple-icons:anthropic",
+      "simple-icons:grafana",
     ],
   },
   {
@@ -148,16 +159,6 @@ const smallLogos: SmallLogo[] = [
     altText: "Uczelniana Rada Samorządu Studentów AGH",
   },
 ];
-
-entries.forEach((entry) => {
-  if (entry.icons) {
-    entry.icons.forEach((icon) => {
-      if (!iconNameToTooltip[icon]) {
-        throw new Error(`Icon ${icon} does not have a tooltip`);
-      }
-    });
-  }
-});
 ---
 
 <div>
