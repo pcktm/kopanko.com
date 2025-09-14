@@ -8,26 +8,37 @@ import Layout from "@layouts/Layout.astro";
   breadcrumb="portfolio.sh\n[ERROR 404] Portfolio kernel unreachable"
 >
   <div class="pt-4 min-h-[400px]">
-    <div
-      class="overflow-hidden rounded-md bg-stone-950 font-mono text-sm tracking-widest text-white"
-    >
-      <div class="flex w-full bg-amber-500 px-4 py-0.5 text-stone-950">
-        <div class="flex-1">MAINFRAME ACCESS POINT</div>
+    <div class="mb-8">
+      <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-2">
+        <span class="text-red-600 dark:text-red-400">#</span> error_404.log
       </div>
-      <div class="p-4 whitespace-pre-line">
-        <span class="text-red-500"
-          >[ERROR 404] Portfolio kernel unreachable!</span
-        >
+      <h1 class="font-redaction20 text-2xl font-bold text-balance mb-2">
+        Page not found
+      </h1>
+      <p class="font-mono text-sm text-balance text-stone-600 dark:text-stone-300">
+        The requested resource could not be located
+      </p>
+    </div>
 
-        <br />
-        :: neural-log://inspirational.quotes[23]:
-        <div id="quote" class="opacity-0">
-          <span id="quote-text"> Loading inspirational quote... </span>
-          <br />
-          <span class="text-md font-mono" id="quote-author"></span>
+    <div class="border border-stone-200 bg-stone-50 dark:border-stone-700 dark:bg-stone-900/40 p-6">
+      <div class="font-mono text-sm">
+        <div class="mb-6">
+          <span class="text-red-600 dark:text-red-400">[ERROR 404]</span> Portfolio kernel unreachable!
         </div>
-        <br />
-        <span class="text-red-500">System meltdown imminent. Abort? [Y/n]</span>
+        
+        <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-2">
+          <span class="text-cyan-600 dark:text-cyan-400">//</span> neural-log://inspirational.quotes[23]:
+        </div>
+        
+        <div id="quote" class="opacity-0 mb-4">
+          <div class="border-l-2 border-stone-300 dark:border-stone-600 pl-4">
+            <span id="quote-text" class="text-stone-700 dark:text-stone-200"> Loading inspirational quote... </span>
+            <br />
+            <span class="text-sm font-mono text-stone-500 dark:text-stone-400" id="quote-author"></span>
+          </div>
+        </div>
+        
+        <span class="text-red-600 dark:text-red-400">System meltdown imminent. Abort? [Y/n]</span>
         <span class="animate-blink">&#9608;</span>
       </div>
     </div>

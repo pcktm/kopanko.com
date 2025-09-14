@@ -17,6 +17,11 @@ const achievements = await getAchievements();
       </p>
     </div>
 
-    <ContentGrid content={achievements.filter((p) => !p.isMinor)} />
+    <div class="mb-12">
+      <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-4">
+        <span class="text-blue-600 dark:text-blue-400">></span> entries
+      </div>
+      <ContentGrid content={achievements.filter((p) => !p.isMinor)} />
+    </div>
   </main>
 </Layout>

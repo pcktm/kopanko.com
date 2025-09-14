@@ -6,43 +6,52 @@ const allNotes = await getAllNotes();
 ---
 
 <Layout title="Notes" breadcrumb="notes.sh">
-  <div class="flex flex-col gap-6 mb-12">
-    <div class="font-mono text-xs text-stone-500 dark:text-stone-400">
-      <div class="flex items-center gap-2 -ml-[3px]">
-        <span>├──</span>
-        <span>entries:</span>
-      </div>
+  <div class="mb-8">
+    <h1 class="font-redaction20 text-2xl font-bold text-balance">
+      Notes
+    </h1>
+    <p class="font-mono text-sm text-balance">
+      A collection of thoughts, on various topics.
+    </p>
+  </div>
+  <div class="mb-12 flex flex-col gap-6">
+    <div class="font-mono text-xs text-stone-500 dark:text-stone-400 mb-2">
+      <span class="text-blue-600 dark:text-blue-400">></span> entries
     </div>
-    
+
     {
       allNotes.map((note, index) => (
-        <div class="note-entry border-l-2 border-stone-300 pl-4 dark:border-stone-600">
+        <div class="note-entry border-b border-stone-200 pb-6 dark:border-stone-700 last:border-b-0 last:pb-0">
           <a
-            class="flex flex-col gap-3 sm:flex-row sm:gap-4 sm:items-start"
+            class="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4"
             href={`/notes/${note.slug}`}
             data-astro-prefetch
           >
             <div class="flex flex-col gap-2 sm:flex-row sm:gap-3">
-              <div class="font-mono text-xs text-stone-400 dark:text-stone-500 sm:mt-1">
-                [{String(index + 1).padStart(2, '0')}]
+              <div class="font-mono text-xs text-stone-400 sm:mt-1 dark:text-stone-500">
+                [{String(index + 1).padStart(2, "0")}]
               </div>
               <img
                 src={note.coverImage.url}
                 width={note.coverImage.width || 100}
                 height={note.coverImage.height || 100}
-                class="aspect-wxga object-cover w-40"
+                class="aspect-wxga w-40 object-cover"
                 style={note.coverImage.placeholder?.css}
                 loading="lazy"
               />
             </div>
             <div class="flex flex-col gap-1 sm:flex-1">
-              <h2 class="font-mono text-lg font-bold leading-tight">
+              <h2 class="font-redaction20 text-xl font-bold text-balance leading-tight">
                 {note.title}
               </h2>
-              <p class="font-mono text-sm text-stone-600 dark:text-stone-300 leading-relaxed">{note.excerpt}</p>
+              <p class="font-mono text-sm leading-relaxed text-stone-600 dark:text-stone-300">
+                {note.excerpt}
+              </p>
               <div class="mt-2 flex flex-row flex-wrap gap-2 font-mono text-xs text-stone-500 dark:text-stone-400">
                 {note.tags?.map((tag: any) => (
-                  <span class="bg-stone-100 px-2 py-0.5 dark:bg-stone-800">#{tag}</span>
+                  <span class="bg-stone-200 px-2 py-0.5 dark:bg-stone-800">
+                    #{tag}
+                  </span>
                 ))}
               </div>
             </div>
