@@ -4,6 +4,7 @@ import Hero from "@components/Hero.astro";
 import Contact from "@components/Contact.astro";
 import Resume from "@components/Resume.astro";
 import FeaturedNotes from "@components/FeaturedNotes.astro";
+import PlanetSVG from "../assets/planet.svg?raw";
 ---
 
 <Layout>
@@ -21,4 +22,7 @@ import FeaturedNotes from "@components/FeaturedNotes.astro";
     />
     <Contact />
   </main>
+  <div class="-z-10 absolute top-[260px] -left-[720px] xl:block hidden fill-stone-800 dark:fill-stone-300">
+    <Fragment set:html={PlanetSVG} />
+  </div>
 </Layout>

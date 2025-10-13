@@ -1,0 +1,9 @@
+<svg width="992" height="992" viewBox="0 0 992 992" fill="none" xmlns="http://www.w3.org/2000/svg" class="planet-svg">
+<path d="M921.786 318.765L808.523 496" stroke="#6C6C58" stroke-linejoin="round"/>
+<circle cx="496" cy="496" r="495" stroke="#6C6C58" stroke-linejoin="round"/>
+<path d="M523.266 3.09747L523.266 988.903" stroke="#6C6C58" stroke-linejoin="round"/>
+<path d="M808.52 496L523.266 150.968M523.266 496L921.783 246.403V496" stroke="#6C6C58" stroke-linejoin="round"/>
+<path d="M808.523 112.165V879.835" stroke="#6C6C58" stroke-linejoin="round"/>
+<path d="M991 496L0.999972 496" stroke="#6C6C58" stroke-linejoin="round"/>
+<ellipse cx="496" cy="496" rx="495" ry="346.081" stroke="#6C6C58" stroke-linejoin="round"/>
+</svg>

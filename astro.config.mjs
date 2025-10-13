@@ -21,6 +21,32 @@ export default defineConfig({
   experimental: {
     fonts: [
       {
+        name: 'Departure Mono',
+        provider: 'local',
+        cssVariable: '--font-departure-mono',
+        fallbacks: [
+          'ui-monospace',
+          'SFMono-Regular',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace'
+        ],
+        variants: [
+          {
+            weight: 400,
+            style: 'normal',
+            display: 'swap',
+            src: [
+              './src/fonts/DepartureMono-Regular.woff',
+              './src/fonts/DepartureMono-Regular.woff2'
+            ]
+          }
+        ]
+      },
+      {
         name: 'Redaction_20',
         provider: 'local',
         cssVariable: '--font-redaction-20',
@@ -278,6 +304,59 @@ export default defineConfig({
             src: [
               './src/fonts/iAWriterDuoS-BoldItalic.woff2',
               './src/fonts/iAWriterDuoS-BoldItalic.woff'
+            ]
+          }
+        ]
+      },
+      {
+        name: 'iA Writer Mono',
+        provider: 'local',
+        cssVariable: '--font-writer-mono',
+        fallbacks: [
+          'ui-monospace',
+          'SFMono-Regular',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace'
+        ],
+        variants: [
+          {
+            weight: 400,
+            style: 'normal',
+            display: 'swap',
+            src: [
+              './src/fonts/iAWriterMonoS-Regular.woff2',
+              './src/fonts/iAWriterMonoS-Regular.woff'
+            ]
+          },
+          {
+            weight: 700,
+            style: 'normal',
+            display: 'swap',
+            src: [
+              './src/fonts/iAWriterMonoS-Bold.woff2',
+              './src/fonts/iAWriterMonoS-Bold.woff'
+            ]
+          },
+          {
+            weight: 400,
+            style: 'italic',
+            display: 'swap',
+            src: [
+              './src/fonts/iAWriterMonoS-Italic.woff2',
+              './src/fonts/iAWriterMonoS-Italic.woff'
+            ]
+          },
+          {
+            weight: 700,
+            style: 'italic',
+            display: 'swap',
+            src: [
+              './src/fonts/iAWriterMonoS-BoldItalic.woff2',
+              './src/fonts/iAWriterMonoS-BoldItalic.woff'
             ]
           }
         ]

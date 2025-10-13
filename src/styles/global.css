@@ -4,7 +4,7 @@
 
 @theme inline {
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-writer-duo);
+  --font-mono: var(--font-writer-mono);
   --font-redaction20: var(--font-redaction-20);
   --font-redaction50: var(--font-redaction-50);
 }
@@ -27,6 +27,7 @@
     }
   }
 }
+
 
 @utility container {
   @media (width >= --theme(--breakpoint-sm)) {
