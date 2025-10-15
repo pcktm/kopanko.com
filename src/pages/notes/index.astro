@@ -6,7 +6,7 @@ const allNotes = await getAllNotes();
 ---
 
 <Layout title="Notes" breadcrumb="notes.sh">
-  <div class="mb-8">
+  <div class="mb-8 effect-text-glitch">
     <h1 class="font-redaction20 text-2xl font-bold text-balance">
       Notes
     </h1>
@@ -61,7 +61,7 @@ const allNotes = await getAllNotes();
     </div>
   </div>
   
-  <div class="my-8 font-mono text-xs text-stone-500 dark:text-stone-400">
+  <div class="my-8 font-mono text-xs text-stone-500 dark:text-stone-400 effect-text-glitch">
     <span class="text-stone-600 dark:text-stone-300">{allNotes.length} entries • more coming soon</span>
   </div>
 </Layout>

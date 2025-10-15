@@ -1,58 +1,55 @@
-const LOWERCASE_LETTERS = 'abcdefghijklmnopqrstuvwxyz';
-const UPPERCASE_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const NUMBERS = '0123456789';
+const GLITCH_CHARS = '@#$%&*+=-_|:;~^';
+
+interface CharacterGlitch {
+  charIndex: number;
+  glitchChar: string;
+  startTime: number;
+  duration: number;
+  showGlitch: boolean; 
+}
 
 interface TextNodeData {
   node: Text;
   originalText: string;
-  charMask: boolean[];
-  charDistances: number[];
-  intervalId?: number;
-  startTime: number;
+  activeGlitches: CharacterGlitch[];
+  timeoutId?: number;
 }
 
-const EFFECT_RADIUS = 150;
-const ANIMATION_DURATION = 400;
-const ANIMATION_INTERVAL = 200;
-const MOUSE_MOVE_THRESHOLD = 50;
-const MOUSE_TRAIL_RADIUS = 100;
-const DEBOUNCE_DELAY = 150;
-const GLITCH_INTENSITY = 0.4;
+const NUM_CHARS_MIN = 15;
+const NUM_CHARS_MAX = 30;
+const RIPPLE_DIST_MIN = 50;
+const RIPPLE_DIST_MAX = 150;
+const RIPPLE_DIST_POWER = 3;
+const MIN_CURSOR_SPEED = 2;
+const MAX_CURSOR_SPEED = 40;
+const ORIG_CHAR_RATIO = 0.76; 
+const GLITCH_DURATION = 400; 
+const ANIMATION_CHECK_INTERVAL = 100; 
 
-function getRandomAsciiChar(char: string): string {
+let lastMouseX = 0;
+let lastMouseY = 0;
+let lastFrameTime = 0;
+
+function getRandomGlitchChar(char: string): string {
   if (!/[a-zA-Z0-9]/.test(char)) {
     return char;
   }
-  
-  if (/[a-z]/.test(char)) {
-    return LOWERCASE_LETTERS[Math.floor(Math.random() * LOWERCASE_LETTERS.length)];
-  } else if (/[A-Z]/.test(char)) {
-    return UPPERCASE_LETTERS[Math.floor(Math.random() * UPPERCASE_LETTERS.length)];
-  } else if (/[0-9]/.test(char)) {
-    return NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
-  }
-  
-  return char;
+  return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
 }
 
-function toGlitchText(text: string, charMask: boolean[], charDistances: number[], elapsed: number): string {
-  return text
-    .split('')
-    .map((char, index) => {
-      if (!charMask[index]) {
-        return char;
-      }
-      
-      const distanceIntensity = 1 - (charDistances[index] / EFFECT_RADIUS);
-      const timeFade = 1 - (elapsed / ANIMATION_DURATION);
-      const intensity = Math.max(0, distanceIntensity * timeFade);
-      
-      if (Math.random() > intensity * GLITCH_INTENSITY) {
-        return char;
-      }
-      return getRandomAsciiChar(char);
-    })
-    .join('');
+function getCurrentTextForNode(nodeData: TextNodeData, currentTime: number): string {
+  const chars = nodeData.originalText.split('');
+  
+  for (const glitch of nodeData.activeGlitches) {
+    const elapsed = currentTime - glitch.startTime;
+    
+    
+    if (elapsed < glitch.duration && glitch.showGlitch) {
+      chars[glitch.charIndex] = glitch.glitchChar;
+    }
+  }
+  
+  return chars.join('');
 }
 
 interface CharacterInfo {
@@ -65,19 +62,26 @@ interface TextNodeWithChars {
   affectedChars: CharacterInfo[];
 }
 
-const ALLOWED_CLASSES = ['font-mono', 'font-pixel', 'effect-textglitch', 'font-redaction20'];
+const GLITCH_CONTAINER_CLASS = 'effect-text-glitch';
+const GLITCH_EXCLUSION_CLASS = 'effect-no-text-glitch';
 
-function hasAllowedClass(element: HTMLElement | null): boolean {
+function isGlitchable(element: HTMLElement | null): boolean {
   if (!element) return false;
   
+  let hasContainer = false;
   let current: HTMLElement | null = element;
+  
   while (current && current !== document.body) {
-    if (ALLOWED_CLASSES.some(className => current?.classList.contains(className))) {
-      return true;
+    if (current.classList.contains(GLITCH_EXCLUSION_CLASS)) {
+      return false;
+    }
+    if (current.classList.contains(GLITCH_CONTAINER_CLASS)) {
+      hasContainer = true;
     }
     current = current.parentElement;
   }
-  return false;
+  
+  return hasContainer;
 }
 
 function getTextNodesInCircle(x: number, y: number, radius: number): TextNodeWithChars[] {
@@ -95,7 +99,7 @@ function getTextNodesInCircle(x: number, y: number, radius: number): TextNodeWit
           return NodeFilter.FILTER_REJECT;
         }
         
-        if (!hasAllowedClass(node.parentElement)) {
+        if (!isGlitchable(node.parentElement)) {
           return NodeFilter.FILTER_REJECT;
         }
         
@@ -140,73 +144,143 @@ function getTextNodesInCircle(x: number, y: number, radius: number): TextNodeWit
 
 const activeNodes = new Map<Text, TextNodeData>();
 
-function animateNode(data: TextNodeData) {
-  const elapsed = Date.now() - data.startTime;
+function updateNode(data: TextNodeData, currentTime: number) {
   
-  if (elapsed >= ANIMATION_DURATION) {
-    data.node.textContent = data.originalText;
-    if (data.intervalId) {
-      clearInterval(data.intervalId);
+  data.activeGlitches = data.activeGlitches.filter(glitch => {
+    const elapsed = currentTime - glitch.startTime;
+    return elapsed < glitch.duration;
+  });
+  
+  
+  data.node.textContent = getCurrentTextForNode(data, currentTime);
+  
+  
+  if (data.activeGlitches.length === 0) {
+    if (data.timeoutId) {
+      clearInterval(data.timeoutId);
     }
     activeNodes.delete(data.node);
-    return;
   }
-  
-  data.node.textContent = toGlitchText(data.originalText, data.charMask, data.charDistances, elapsed);
 }
 
-function applyGlitchEffect(x: number, y: number, radius: number = EFFECT_RADIUS) {
+function applyGlitchEffect(x: number, y: number, radius: number, maxChars: number) {
   const textNodesWithChars = getTextNodesInCircle(x, y, radius);
+  const currentTime = performance.now();
+  
+  
+  const allCandidates: Array<{node: Text; charIndex: number; distance: number; originalText: string}> = [];
   
   textNodesWithChars.forEach(({ node, affectedChars }) => {
-    if (activeNodes.has(node)) {
-      const data = activeNodes.get(node)!;
-      if (data.intervalId) {
-        clearInterval(data.intervalId);
-      }
-    }
-    
-    const originalText = activeNodes.get(node)?.originalText || node.textContent || '';
-    const charMask = new Array(originalText.length).fill(false);
-    const charDistances = new Array(originalText.length).fill(Infinity);
+    const existingData = activeNodes.get(node);
+    const originalText = existingData?.originalText || node.textContent || '';
     
     affectedChars.forEach(({ charIndex, distance }) => {
-      charMask[charIndex] = true;
-      charDistances[charIndex] = distance;
+      
+      if (existingData) {
+        const alreadyGlitched = existingData.activeGlitches.some(g => g.charIndex === charIndex);
+        if (alreadyGlitched) return;
+      }
+      
+      
+      const normalizedDistance = distance / radius;
+      const probability = 1 / (1 + Math.pow(normalizedDistance, RIPPLE_DIST_POWER));
+      
+      if (Math.random() < probability) {
+        allCandidates.push({ node, charIndex, distance, originalText });
+      }
     });
+  });
+  
+  
+  allCandidates.sort((a, b) => a.distance - b.distance);
+  const charsToGlitch = allCandidates.slice(0, maxChars);
+  
+  
+  const nodeUpdates = new Map<Text, CharacterGlitch[]>();
+  
+  charsToGlitch.forEach(({ node, charIndex, originalText }) => {
+    if (!nodeUpdates.has(node)) {
+      nodeUpdates.set(node, []);
+    }
     
-    const avgDistance = affectedChars.reduce((sum, c) => sum + c.distance, 0) / affectedChars.length;
-    
-    const nodeData: TextNodeData = {
-      node,
-      originalText,
-      charMask,
-      charDistances,
-      startTime: Date.now(),
+    const glitchChar = getRandomGlitchChar(originalText[charIndex]);
+    const newGlitch: CharacterGlitch = {
+      charIndex,
+      glitchChar,
+      startTime: currentTime,
+      duration: GLITCH_DURATION,
+      showGlitch: Math.random() > ORIG_CHAR_RATIO 
     };
     
-    activeNodes.set(node, nodeData);
-    animateNode(nodeData);
+    nodeUpdates.get(node)!.push(newGlitch);
+  });
+  
+  
+  nodeUpdates.forEach((newGlitches, node) => {
+    const existingData = activeNodes.get(node);
     
-    const animationSpeed = ANIMATION_INTERVAL * (0.5 + (avgDistance / radius) * 0.5);
-    nodeData.intervalId = window.setInterval(() => animateNode(nodeData), animationSpeed);
+    if (existingData) {
+      
+      existingData.activeGlitches.push(...newGlitches);
+      existingData.node.textContent = getCurrentTextForNode(existingData, currentTime);
+    } else {
+      
+      const nodeData: TextNodeData = {
+        node,
+        originalText: node.textContent || '',
+        activeGlitches: newGlitches
+      };
+      
+      activeNodes.set(node, nodeData);
+      node.textContent = getCurrentTextForNode(nodeData, currentTime);
+      
+      
+      const intervalId = window.setInterval(() => {
+        const now = performance.now();
+        updateNode(nodeData, now);
+        if (!activeNodes.has(node)) {
+          clearInterval(intervalId);
+        }
+      }, ANIMATION_CHECK_INTERVAL);
+      
+      nodeData.timeoutId = intervalId;
+    }
   });
 }
 
-let lastMouseX = 0;
-let lastMouseY = 0;
-let mouseMovedDistance = 0;
-let mouseMoveTimeout: number | undefined;
-let lastTriggerTime = 0;
+function calculateRippleDistance(speed: number): number {
+  const speedRatio = Math.min(1, Math.max(0, (speed - MIN_CURSOR_SPEED) / MAX_CURSOR_SPEED));
+  return RIPPLE_DIST_MIN + (RIPPLE_DIST_MAX - RIPPLE_DIST_MIN) * Math.pow(speedRatio, 1 / RIPPLE_DIST_POWER);
+}
+
+function calculateNumChars(speed: number): number {
+  const speedRatio = Math.min(1, Math.max(0, (speed - MIN_CURSOR_SPEED) / MAX_CURSOR_SPEED));
+  return Math.floor(NUM_CHARS_MIN + (NUM_CHARS_MAX - NUM_CHARS_MIN) * speedRatio);
+}
 
 export function initGlitchTextEffect() {
+  let animationFrameId: number;
+  
+  const animate = () => {
+    const now = performance.now() / 1000;
+    const dt = now - lastFrameTime;
+    lastFrameTime = now;
+    
+    animationFrameId = requestAnimationFrame(animate);
+  };
+  
+  lastFrameTime = performance.now() / 1000;
+  animationFrameId = requestAnimationFrame(animate);
+  
   document.addEventListener('click', (event: MouseEvent) => {
     if (event.detail > 1) return;
     
     const selection = window.getSelection();
     if (selection && selection.toString().length > 0) return;
     
-    applyGlitchEffect(event.clientX, event.clientY, EFFECT_RADIUS);
+    const numChars = NUM_CHARS_MAX;
+    const radius = RIPPLE_DIST_MAX;
+    applyGlitchEffect(event.clientX, event.clientY, radius, numChars);
   });
   
   document.addEventListener('mousemove', (event: MouseEvent) => {
@@ -215,25 +289,15 @@ export function initGlitchTextEffect() {
     
     const dx = event.clientX - lastMouseX;
     const dy = event.clientY - lastMouseY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+    const speed = Math.sqrt(dx * dx + dy * dy);
     
-    mouseMovedDistance += distance;
     lastMouseX = event.clientX;
     lastMouseY = event.clientY;
     
-    if (mouseMoveTimeout) {
-      clearTimeout(mouseMoveTimeout);
+    if (speed >= MIN_CURSOR_SPEED) {
+      const numChars = calculateNumChars(speed);
+      const radius = calculateRippleDistance(speed);
+      applyGlitchEffect(event.clientX, event.clientY, radius, numChars);
     }
-    
-    const now = Date.now();
-    if (mouseMovedDistance >= MOUSE_MOVE_THRESHOLD && (now - lastTriggerTime) >= DEBOUNCE_DELAY) {
-      applyGlitchEffect(event.clientX, event.clientY, MOUSE_TRAIL_RADIUS);
-      mouseMovedDistance = 0;
-      lastTriggerTime = now;
-    }
-    
-    mouseMoveTimeout = window.setTimeout(() => {
-      mouseMovedDistance = 0;
-    }, 200);
   });
 }

@@ -11,6 +11,7 @@ interface Props {
   description?: string;
   ogImageUrl?: string;
   breadcrumb?: string;
+  parentClass?: string;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   description = "Fueled by a zest for the lighter side of life, Jakub is an engineer by day and ultra-low-budget cinema enthusiast by night.",
   ogImageUrl = "https://kopanko.com/og.png",
   breadcrumb = "portfolio.sh",
+  parentClass,
 } = Astro.props;
 
 ---
@@ -61,7 +63,9 @@ const {
           </div>
         )
       }
-      <slot />
+      <div class={parentClass}>
+        <slot />
+      </div>
     </div>
     <Footer />
     <!-- <Breadcrumb text={breadcrumb} /> -->
