@@ -1,4 +1,4 @@
-const GLITCH_CHARS = '@#$%&*+=-_|:;~^';
+const GLITCH_CHARS = '@#$&*+=_:;~<>^';
 
 interface CharacterGlitch {
   charIndex: number;
@@ -17,14 +17,14 @@ interface TextNodeData {
 
 const NUM_CHARS_MIN = 15;
 const NUM_CHARS_MAX = 30;
-const RIPPLE_DIST_MIN = 50;
-const RIPPLE_DIST_MAX = 150;
+const RIPPLE_DIST_MIN = 30;
+const RIPPLE_DIST_MAX = 100;
 const RIPPLE_DIST_POWER = 3;
 const MIN_CURSOR_SPEED = 2;
 const MAX_CURSOR_SPEED = 40;
-const ORIG_CHAR_RATIO = 0.76; 
-const GLITCH_DURATION = 400; 
-const ANIMATION_CHECK_INTERVAL = 100; 
+const ORIG_CHAR_RATIO = 0.70; 
+const GLITCH_DURATION = 350; 
+const ANIMATION_CHECK_INTERVAL = 125; 
 
 let lastMouseX = 0;
 let lastMouseY = 0;
